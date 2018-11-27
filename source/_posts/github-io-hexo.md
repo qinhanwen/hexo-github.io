@@ -1,7 +1,10 @@
 ---
 title: github.io+hexo
 date: 2018-10-04 15:22:49
-tags:
+tags: 
+- hexo
+categories: 
+- hexo
 ---
 
 # github.io+hexo
@@ -127,6 +130,51 @@ $ hexo d   #部署到本地，之后再次打开https://xxx.github.io即可
 ```
 
 [这是更换主题参考](https://github.com/iissnan/hexo-theme-next )
+
+
+
+##### 6.添加分类栏与标签栏
+
+1）在写的md文件头部添加tags和categories
+
+```markdown
+tags: 
+- 前端
+- hexo
+categories: 
+- 前端
+```
+
+
+
+2）新建分类和标签
+
+```shell
+$ hexo new page tags
+$ hexo new page categories
+```
+
+
+
+3）打开`tags/index.md`,设置
+
+```markdown
+title: 标签
+date: 日期
+type: "tags"
+```
+
+
+
+4）打开`category/index.md`,设置
+
+```markdown
+title: 分类
+date: 日期
+type: "categories"
+```
+
+
 
 
 

@@ -1,7 +1,10 @@
 ---
 title: Promise学习笔记
 date: 2018-11-12 22:19:12
-tags:
+tags: 
+- es6
+categories: 
+- es6
 ---
 
 # Promise学习笔记

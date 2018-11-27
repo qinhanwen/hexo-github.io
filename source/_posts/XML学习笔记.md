@@ -1,7 +1,10 @@
 ---
 title: XML学习笔记
 date: 2018-11-18 14:53:55
-tags:
+tags: 
+- XML
+categories: 
+- XML
 ---
 
 # XML基础学习笔记

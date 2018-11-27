@@ -1,7 +1,10 @@
 ---
 title: flexible移动端自适应方案学习
 date: 2018-11-19 10:12:21
-tags:
+tags: 
+- 辅助学习
+categories: 
+- css
 ---
 
 # flexible移动端适配学习笔记

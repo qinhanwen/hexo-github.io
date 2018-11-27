@@ -1,7 +1,10 @@
 ---
 title: puppeteer入门
 date: 2018-11-16 16:24:26
-tags:
+tags: 
+- puppeteer
+categories: 
+- 测试工具
 ---
 
 ## Puppeteer入门

@@ -1,7 +1,10 @@
 ---
 title: angular拦截器
 date: 2018-11-03 21:33:04
-tags:
+tags: 
+- angular
+categories: 
+- angular
 ---
 
 # angular拦截器

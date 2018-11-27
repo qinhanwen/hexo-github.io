@@ -1,7 +1,6 @@
 ---
 title: VDOM 和 Render方法
 date: 2018-11-23 22:47:56
-tags:
 ---
 
 # VDOM和Render方法
