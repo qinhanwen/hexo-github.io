@@ -6,3 +6,13 @@ tags:
 categories: 
 - koa
 ---
+
+#  koa入门
+
+1.安装
+
+```shell
+$ npm install koa
+```
+
+然后我们koa故事就开始了哈哈哈哈哈哈。

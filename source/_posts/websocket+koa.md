@@ -117,7 +117,7 @@ app.ws.use(route.all('/', function (ctx) {
 app.listen(3000)
 ```
 
-
+一般都有兼容性问题，可以使用socket.io的库
 
 具体参考[阮大师的文章](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
 
