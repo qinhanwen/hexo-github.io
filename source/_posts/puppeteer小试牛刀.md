@@ -31,6 +31,22 @@ npm i puppeteer
 #会同时安装一个Chromium
 ```
 
+安装时报错:`Chromium revision is not downloaded`
+
+手动下载的办法
+
+1）先下载[https://download-chromium.appspot.com/](https://download-chromium.appspot.com/)
+
+2）下载后解压到项目路径
+
+3）配置路径
+
+```javascript
+  const browser = await puppeteer.launch({
+    executablePath: '这里是你放到路径',//配置路径参数
+  });
+```
+
 
 
 ###### 2.目录结构：

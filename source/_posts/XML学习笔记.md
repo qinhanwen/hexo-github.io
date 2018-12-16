@@ -67,7 +67,7 @@ else
 
 
 
-###### 2.设置请求头
+###### 2.设置请求头（POST请求通常应设置Content-Type请求头）
 
 ```javascript
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -79,7 +79,7 @@ xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
 ```javascript
 xmlhttp.open("GET","url",true);// method,url,async
-xmlhttp.send();//POST参数放在方法里
+xmlhttp.send();//POST参数放在方法里参数形式为：name=qinhanwen&age=18
 ```
 
 
