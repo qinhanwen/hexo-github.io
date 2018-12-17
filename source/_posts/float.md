@@ -128,7 +128,7 @@ float:right 靠右浮动
 
 
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181126-211600@2x.png)
+![](http://39.105.62.145/assets/images/WX20181126-211600@2x.png)
 
 顺带一提float和绝对定位的区别：
 
@@ -159,7 +159,7 @@ float:right 靠右浮动
 
 效果图：
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181126-221025@2x.png)
+![](http://39.105.62.145/assets/images/WX20181126-221025@2x.png)
 
 
 
@@ -181,7 +181,7 @@ float:right 靠右浮动
 
  效果图：
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181126-222436@2x.png)
+![](http://39.105.62.145/assets/images/WX20181126-222436@2x.png)
 
 
 

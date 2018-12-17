@@ -1,8 +1,8 @@
 ---
 title: Sass入门
-date: 2018-11-15 14:38:44
+date: 2018-11-23 18:09:08
 tags: 
-- 辅助学习
+- css
 categories: 
 - css
 ---
@@ -18,10 +18,6 @@ gem install sass
 
 
 ##### 2.编译Sass
-
-目录结构
-
-![image-20181003183048661](http://pi8irywwe.bkt.clouddn.com/WX20181115-200836@2x.png)
 
 ```shell
 #单文件转换命令

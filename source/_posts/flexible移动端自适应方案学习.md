@@ -37,7 +37,7 @@ categories:
 
 ​       从`screen.width/screen.height`获取。(这个是显示器的特征，与浏览无关，不会因为缩放而改变)。如图：
 
-![](http://pi8irywwe.bkt.clouddn.com/1542689394373.jpg) 
+![](http://39.105.62.145/assets/images/1542689394373.jpg) 
 
 
 
@@ -45,7 +45,7 @@ categories:
 
 ​       从`window.innerWidth/window.innerHeight`获取，浏览器窗口的内部宽度使用CSS的pixels（意思就是我打开浏览器，能看到里面的`元素`会因为我`放大或者缩小`浏览器而`变少或者变多`），而缩放比例就是如图：
 
-![](http://pi8irywwe.bkt.clouddn.com/1542690089176.jpg)
+![](http://39.105.62.145/assets/images/1542690089176.jpg)
 
 
 
@@ -105,7 +105,7 @@ categories:
 
 
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181121-125957@2x.png)
+![](http://39.105.62.145/assets/images/WX20181121-125957@2x.png)
 
 
 
@@ -113,7 +113,7 @@ categories:
 
 
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181121-130455@2x.png)
+![](http://39.105.62.145/assets/images/WX20181121-130455@2x.png)
 
 
 
@@ -187,7 +187,7 @@ width/height 反映`document.documentElement.clientWidth/document.documentElemen
 
 
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181123-155710@2x.png)
+![](http://39.105.62.145/assets/images/WX20181123-155710@2x.png)
 
 **设备独立像素：一台设备上程序用来描绘数据的一个个的“点”，也就是虚拟的像素。以前设备像素对应一个设备独立像素，后来出现了高分辨率的手机，不可能再一个设备像素对应一个设备独立像素了，因为这样东西会被缩小，看不清。`iPhone6s的设备宽度和高度为375 * 667,可以理解为设备的独立像素。`**
 
@@ -200,7 +200,7 @@ width:2px;
 height:2px;
 ```
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181123-162010@2x.png)
+![](http://39.105.62.145/assets/images/WX20181123-162010@2x.png)
 
 1倍屏上，1个css像素对应1个物理像素，在2倍屏上，1个css像素对应4个物理像素。
 

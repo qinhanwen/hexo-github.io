@@ -40,7 +40,7 @@ baz(); // <-- baz 的调用位置
 
 在图片里也可以看到，调用到foo函数的时候`baz -> bar -> foo `
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181206-234609@2x.png)
+![](http://39.105.62.145/assets/images/WX20181206-234609@2x.png)
 
 
 

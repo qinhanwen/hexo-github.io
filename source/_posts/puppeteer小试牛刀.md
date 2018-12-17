@@ -4,7 +4,7 @@ date: 2018-11-16 16:24:26
 tags: 
 - puppeteer
 categories: 
-- 测试工具
+- puppeteer
 ---
 
 ## Puppeteer入门
@@ -51,7 +51,7 @@ npm i puppeteer
 
 ###### 2.目录结构：
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181117-164728@2x.png)
+![](http://39.105.62.145/assets/images/WX20181117-164728@2x.png)
 
 
 

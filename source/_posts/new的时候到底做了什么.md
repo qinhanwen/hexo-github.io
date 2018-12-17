@@ -14,7 +14,7 @@ tags:
 
 ##### 1）new做了什么
 
-![](http://pi8irywwe.bkt.clouddn.com/WX20181204-231216@2x.png)
+![](http://39.105.62.145/assets/images/WX20181204-231216@2x.png)
 
 1.创建了一个临时对象
 
