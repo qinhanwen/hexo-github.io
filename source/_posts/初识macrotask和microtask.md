@@ -2,9 +2,9 @@
 title: 事件循环
 date: 2018-12-20 18:44:49
 tags: 
-- 辅助学习
+- 深入学习
 categories: 
-- 辅助学习
+- 深入学习
 ---
 
 # 事件循环（Event Loop）入门
@@ -120,6 +120,19 @@ console.log(7);
 9）主线程和Micro-task中都无任务，从Macro-task中取任务，打印2。
 
 
+
+如果写了一个死循环，那么主线程不空的时候，永远不会执行Macro-task和Micro-task里的任务
+
+```javascript
+setTimeout(function(){
+    console.log('不输出')
+},0)
+for(i=0;i<1;i--)
+{
+    console.log('死循环')
+}
+//我运行了一下风扇狂飙然后重启电脑。。。要谨慎尝试
+```
 
 
 
