@@ -1007,9 +1007,121 @@ categories:
 ##### 4）`flex-basis`属性是设置宽高，类似width和height
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul {
+        display: flex;
+        width: 1000px;
+        list-style: none;
+        padding: 0;
+        border: 1px solid black;
+    }
+
+    li {
+        width: 200px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        background: red;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>3</li>
+    </ul>
+
+    <ul>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+    </ul>
+
+    <ul>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+        <li style="flex-basis:250px">flex-basis:250px</li>
+    </ul>
+
+    <ul>
+        <li style="flex-basis:250px;max-width: 180px;">max-width: 180px</li>
+        <li style="flex-basis:250px;max-width: 180px;">max-width: 180px</li>
+        <li style="flex-basis:250px;max-width: 180px;">max-width: 180px</li>
+        <li style="flex-basis:250px;max-width: 180px;">max-width: 180px</li>
+    </ul>
+</body>
+
+</html>
 ```
 
 
 
-![]()
+![](http://39.105.62.145/assets/images/WX20181218-102851@2x.png)
+
+可以看到优先级 max-width > flex-basis > width
+
+并且项目太多的时候会被压缩。
+
+
+
+##### 5）`flex`属性是`flex-grow`, `flex-shrink` 和 `flex-basis`的简写，默认值为`0 1 auto`
+
+##### 6）align-self属性允许项目与其他有不同的对齐方式，会覆盖`align-item`属性
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul {
+        display: flex;
+        width: 1000px;
+        height: 500px;
+        list-style: none;
+        padding: 0;
+        border: 1px solid black;
+    }
+
+    li {
+        width: 300px;
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+        background: red;
+        border: 1px solid #ddd;
+    }
+</style>
+<body>
+    <ul>
+        <li>1</li>
+        <li style="align-self: flex-end">2 lign-self: flex-end</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>
+```
+
+
+
+![](http://39.105.62.145/assets/images/WX20181218-110113@2x.png)

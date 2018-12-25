@@ -103,13 +103,44 @@ minimum-scale=1： 允许用户缩放到的最小比例
 
 
 
-**3.CSS touch-action**
+**在ios10以后上面这两个方法失去了效果**
+
+我所了解的解决方案：手势（gesture）事件
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    sadsadk;sak;d
+</body>
+<script>
+window.onload = function(){
+    document.addEventListener('gesturestart',function(event){
+        event.preventDefault();
+    })
+}
+</script>
+</html>
+```
+
+gesturestart：当一个手指已经按在屏幕上，另一个手指又触摸屏幕的时候触发
+
+
+
+3.CSS touch-action**
 
 emm。。这个先不看
 
 
 
-`在ios10以后这一行代码失去了效果`
+
 
 
 
@@ -169,7 +200,7 @@ robots用来告诉爬虫哪些页面需要索引，哪些页面不需要索引�
 <meta http-equiv="Pragma" content="no-cache">
 ```
 
-
+似乎只有ie才可以识别这个，而其他的浏览器是Cache-Control: no-store的标签
 
 3）Refresh(刷新) 
 
