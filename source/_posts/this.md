@@ -91,27 +91,6 @@ obj.foo(); // 2
 
 
 
-我自！己！记！忆！的方式是，WINDOW也是个对象，WINDOW.a，输出1，this指向WINDOW，调用WINDOW.c.d，this指向WINDOW.c，所以输出的是2，这样子方便记忆，但是实际上并不能这样理解！！！
-
-```javascript
-var WINDOW = {
-    a:function(){
-        console.log(this.b);
-    },
-    b:1,
-    c:{
-        d:function(){
-            console.log(this.e);
-        },
-        e:'2'
-    }
-}
-WINDOW.a();//1
-WINDOW.c.d();//2
-```
-
-
-
 ###### 隐式丢失
 
 ```javascript

@@ -518,6 +518,32 @@ button, .button-1, .button-2 {
 
 ```
 
+
+
 1.@mixin可以传入参数，如果@mixin里样式代码很多，编译后会生成大量的代码。
 
 2.@extend编译不会重复花括号内的内容。
+
+
+
+###### 12.%占位符
+
+```scss
+  %choose-competency-icon{
+    line-height: 96px;
+  }
+  .ion-ios-checkmark{ 
+    @extend  %choose-competency-icon;
+    color:$primary-color;
+  }
+```
+
+编译成
+
+```css
+  .ion-ios-checkmark{ 
+    line-height: 96px;
+    color:$primary-color;
+  }
+```
+

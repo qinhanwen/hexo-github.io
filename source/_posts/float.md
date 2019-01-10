@@ -15,6 +15,7 @@ categories:
 float:none 不使用浮动
 float:left 靠左浮动
 float:right 靠右浮动
+float:inherit 继承
 ```
 
 
@@ -185,7 +186,7 @@ float:right 靠右浮动
 
 
 
-
+关于[BFC](https://qinhanwen.github.io/2018/11/23/BFC/)
 
 
 

@@ -173,9 +173,9 @@ width/height 反映`document.documentElement.clientWidth/document.documentElemen
 
 
 
-4) viewport的meta标签（在之后的内容详细说）
+4) viewport的meta标签
 
-用于设置layoutviewport的宽度。
+可以用于设置layoutviewport的宽度。
 
 
 
@@ -183,26 +183,27 @@ width/height 反映`document.documentElement.clientWidth/document.documentElemen
 
 ##### 3.设备像素比(设备像素比 ＝ 物理像素 / 设备独立像素)
 
-**物理像素（设备像素）：平时所说的分辨率，` iphone6s 的分辨率是 750*1334(表示横向右750个像素点，纵向有1334个像素点)`**
+**物理像素（设备像素）：平时所说的分辨率，` iphone6s 的分辨率是 750*1334`**
 
 
 
 ![](http://39.105.62.145/assets/images/WX20181123-155710@2x.png)
 
-**设备独立像素：一台设备上程序用来描绘数据的一个个的“点”，也就是虚拟的像素。以前设备像素对应一个设备独立像素，后来出现了高分辨率的手机，不可能再一个设备像素对应一个设备独立像素了，因为这样东西会被缩小，看不清。`iPhone6s的设备宽度和高度为375 * 667,可以理解为设备的独立像素。`**
+**设备独立像素：`iPhone6s的设备宽度和高度为375 * 667,可以理解为设备的独立像素`**
+
+**一台设备上程序用来描绘数据的一个个的“点”，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)。以前设备像素对应一个设备独立像素，后来出现了高分辨率的手机，不可能再一个设备像素对应一个设备独立像素了，因为这样东西会被缩小，看不清。这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)**
 
 
 
 举个🌰
 
-```css
-width:2px;
-height:2px;
-```
+1倍屏：高宽1px的图片，是1个设备像素
 
-![](http://39.105.62.145/assets/images/WX20181123-162010@2x.png)
+ ![](http://39.105.62.145/assets/images/WX20181228-220032@2x.png)
 
-1倍屏上，1个css像素对应1个物理像素，在2倍屏上，1个css像素对应4个物理像素。
+2倍屏：高宽1px的方格，是4个设备像素，因为如果还是用一个设备像素就太小了
+
+​	![](http://39.105.62.145/assets/images/WX20181228-230615@2x.png)
 
 
 
@@ -212,7 +213,13 @@ height:2px;
 
 `rem`就是相对于根元素`<html>`的`font-size`来做计算。
 
+而`em`是根据父元素的`fon-size`计算
 
+
+
+Flexible会将视觉稿分成**100份**，而每一份被称为一个单位`a`。同时`1rem`单位被认定为`10a`，我就直接理解为设计稿由`10rem`组成
+
+![WX20181229-012813@2x](http://39.105.62.145/assets/images/WX20181229-012813@2x.png)
 
 ##### 5.meta标签
 
@@ -260,11 +267,201 @@ height:2px;
 
 
 
+##### 7.实践出真知，来吧
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    p{
+        width:10rem;
+        background: red;
+        text-align: center;
+    }
+</style>
+
+<body>
+  <p>
+      flexible学习笔记
+  </p>
+</body>
+
+</html>
+```
+
+
+
+###### 1）安卓设备：动态添加了meta标签，初始缩放比为1，根元素添加data-dpr为1，font-size:36px，
+
+![](http://39.105.62.145/assets/images/WX20181229-011051@2x.png)
+
+
+
+###### 2）2倍屏：动态添加meta，设置缩放比为0.5，设置根元素的data-dpr=2，font-size:75px;
+
+![](http://39.105.62.145/assets/images/WX20181229-011248@2x.png)
+
+
+
+###### 3）3倍屏幕：动态添加meta，设置缩放比为0.333(很多个3)，设置根元素的data-dpr=3，font-size:112.5px;
+
+![WX20181229-011651@2x](http://39.105.62.145/assets/images/WX20181229-011651@2x.png)
 
 
 
 
-##### 
+
+这里有个问题，如果我在头部加了这句
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+那么，就不会动态的添加meta，并且提示
+
+![WX20181229-012037@2x](http://39.105.62.145/assets/images/WX20181229-012037@2x.png)
+
+
+
+##### 8.具体实现（不要说， 来看[源码](https://github.com/amfe/lib-flexible/blob/master/src/flexible.js)吧）
+
+```javascript
+(function(win, lib) {
+    var doc = win.document;
+    var docEl = doc.documentElement;//获取HTML根元素
+    var metaEl = doc.querySelector('meta[name="viewport"]');//选中meta，属性是name="viewport"
+    var flexibleEl = doc.querySelector('meta[name="flexible"]');//选中meta，属性是name="flexible"
+    var dpr = 0;//设置dpr初始值
+    var scale = 0;//设置scale初始值
+    var tid;
+    var flexible = lib.flexible || (lib.flexible = {});
+    
+    if (metaEl) {//如果存在就是用已有的meta头部
+        console.warn('将根据已有的meta标签来设置缩放比例');
+        var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);//获取meta的content属性，是否有设置初始缩放比
+        if (match) {//如果设置了，就取初始缩放比和dpr，
+            scale = parseFloat(match[1]);
+            dpr = parseInt(1 / scale);
+        }
+    } else if (flexibleEl) {//如果有设置flexibleEl，而且有设置缩放比，就是用设置的缩放比
+        var content = flexibleEl.getAttribute('content');
+        if (content) {
+            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+            var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+            if (initialDpr) {
+                dpr = parseFloat(initialDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+            if (maximumDpr) {
+                dpr = parseFloat(maximumDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+        }
+    }
+
+    if (!dpr && !scale) {//如果上面两个都没有的话，就是没有设置属性name=viewport，和name=flexible的meta标签的话，dpr和scale就是0，
+        //判断平台，取得设备像素比，如果是iphone，就是根据设备像素比设置dpr，否则一律设置为1，缩放比为1除dpr。
+        var isAndroid = win.navigator.appVersion.match(/android/gi);
+        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        var devicePixelRatio = win.devicePixelRatio;
+        if (isIPhone) {
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+                dpr = 3;
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        } else {
+            dpr = 1;
+        }
+        scale = 1 / dpr;
+    }
+
+    docEl.setAttribute('data-dpr', dpr);//给根元素动态添加data-dpr属性，值为dpr
+    if (!metaEl) {//如果没有已有的meta头部，创建meta标签，name属性是viewport，content里面的初始缩放比，最大、最小缩放比为scale，不允许缩放
+        metaEl = doc.createElement('meta');
+        metaEl.setAttribute('name', 'viewport');
+        metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+        if (docEl.firstElementChild) {//如果有第一个子元素，就插入meta标签
+            docEl.firstElementChild.appendChild(metaEl);
+        } else {//否则创建一个div，在div内插入meta标签，然后在文档流中写入div的内容
+            var wrap = doc.createElement('div');
+            wrap.appendChild(metaEl);
+            doc.write(wrap.innerHTML);
+        }
+    }
+
+    function refreshRem(){
+        var width = docEl.getBoundingClientRect().width;//获取根元素的宽
+        if (width / dpr > 540) {//如果逻辑像素大于540，就重写width
+            width = 540 * dpr;
+        }
+        var rem = width / 10;//声明变量值为width/10，这里的值就是等下设置根元素font-size的值
+        docEl.style.fontSize = rem + 'px';//设置根元素的font-size为多少px
+        flexible.rem = win.rem = rem;//设置flexible对象的rem属性值为多少，window对象的rem属性值为多少
+    }
+
+    win.addEventListener('resize', function() {//监听页面resize事件，窗体的状态改变时将触发Resize事件
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 300);//设置定时器
+    }, false);
+    win.addEventListener('pageshow', function(e) {//在chrome下事件触发顺序ready→load→pageshow，在页面加载，或者后退前进的时候触发。
+        if (e.persisted) {//是否引用缓存
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }
+    }, false);
+
+    if (doc.readyState === 'complete') {//文档载入完成
+        doc.body.style.fontSize = 12 * dpr + 'px';//设置body的font-size
+    } else {
+        doc.addEventListener('DOMContentLoaded', function(e) {//监听DOM内容加载完毕
+            doc.body.style.fontSize = 12 * dpr + 'px';//设置body的font-size
+        }, false);
+    }
+    
+    refreshRem();
+
+    flexible.dpr = win.dpr = dpr;
+    flexible.refreshRem = refreshRem;
+    flexible.rem2px = function(d) {
+        var val = parseFloat(d) * this.rem;
+        if (typeof d === 'string' && d.match(/rem$/)) {
+            val += 'px';
+        }
+        return val;
+    }
+    flexible.px2rem = function(d) {
+        var val = parseFloat(d) / this.rem;
+        if (typeof d === 'string' && d.match(/px$/)) {
+            val += 'rem';
+        }
+        return val;
+    }
+
+})(window, window['lib'] || (window['lib'] = {}));
+```
+
+
+
+###### 
+
+
+
+
+
+
 
 
 
