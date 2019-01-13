@@ -36,7 +36,7 @@ Promise链式调用的风格，书写方式都让程序变得更好维护
 
 then方法接受两个参数，第一个参数是成功时的回调，在Promise由“等待”态转换到“完成”态时调用，另一个是失败时的回调，在Promise由“等待”态转换到“拒绝”态时调用
 
-![](http://39.105.62.145/assets/images/WX20181116-172309@2x.png)
+![](http://39.108.238.15:97/static/images/images/WX20181116-172309@2x.png)
 
 
 
@@ -181,12 +181,16 @@ p1().then(p2).then(p3).catch(err=>{
 //如果 onFulfilled 不是函数，其必须被忽略
 //如果 onFulfilled 是函数：当 promise 执行结束后其必须被调用，其第一个参数为 promise 的终值，在 promise 执行结束前其不可被调用
 
-//总的来说如果传入的不是函数或者没有返回值就忽略当前的then，会使用上一个then的结果。
+//总的来说!!!!!!如果传入的不是函数或者没有返回值就忽略当前的then，会使用上一个then的结果。
 //我们需要关心的只是
 //1.上一个then中传入了回调函数吗？
 //2.上一个then中提供了返回值吗?
 //3.若上一个then中若提供了返回值，返回了什么？
 ```
+
+![](http://www.exexm.com/images/new-images/WX20190111-172541@2x.png)
+
+如果没有返回值，那就是undefined。
 
 ```javascript
 let func = function() {
