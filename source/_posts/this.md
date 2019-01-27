@@ -11,7 +11,7 @@ categories:
 
 在手写Promise的时候被this折腾的不清，网上this又一堆资料看了也还是不会，于是决定认真的看一下`你不知道的JavaScript`。用的例子基本都是原文偷的。
 
-
+##### 首先this只与调用时候的上下文环境有关，与声明的上下文环境无关。
 
 #### 1.了解调用位置
 
@@ -40,7 +40,7 @@ baz(); // <-- baz 的调用位置
 
 在图片里也可以看到，调用到foo函数的时候`baz -> bar -> foo `
 
-![](http://39.108.238.15:97/static/images/images/WX20181206-234609@2x.png)
+![](http://www.qinhanwen.xyz/images/WX20181206-234609@2x.png)
 
 
 

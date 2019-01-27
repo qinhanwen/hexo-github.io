@@ -11,7 +11,7 @@ categories:
 
 1. 创建一个库，这里的名字叫 **xxx.github.io**，xxx 就是你的账号名字，同时可以选择 “Initialize this … README”。
 
-![image-20181003183048661](http://39.108.238.15:97/static/images/images/WX20181204-175001@2x.png)
+![image-20181003183048661](http://www.qinhanwen.xyz/images/WX20181204-175001@2x.png)
 
 2. 可以通过访问**xxx.github.io**，访问你的页面了。
 
@@ -28,7 +28,7 @@ categories:
 
 上传之后访问 **xxx.github.io**
 
-![image-20181003190309249](http://39.108.238.15:97/static/images/images/image-20181003190309249.png)
+![image-20181003190309249](http://www.qinhanwen.xyz/images/image-20181003190309249.png)
 
 顺带提一下配置 SSH Key，配置 SSH Key 的目的主要配置是为了让本地和远端可以连接。
 
@@ -121,7 +121,7 @@ $ curl -L https://api.github.com/repos/iissnan/hexo-theme-next/tarball | tar -zx
 #修改_config.yml文件配置如下
 ```
 
-![image-20181004194051654](http://39.108.238.15:97/static/images/images/image-20181004194051654.png)
+![image-20181004194051654](http://www.qinhanwen.xyz/images/image-20181004194051654.png)
 
 ```shell
 $ hexo clean  #清理缓存

@@ -16,3 +16,6 @@ $ npm install koa
 ```
 
 然后我们koa故事就开始了哈哈哈哈哈哈。
+
+[同事写的](https://github.com/yuqian2015/koa-learning)
+

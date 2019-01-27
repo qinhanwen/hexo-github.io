@@ -11,7 +11,13 @@ categories:
 
 # 手写[Promise](https://qinhanwen.github.io/2018/11/12/Promise%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/)
 
-> 参考资料：https://juejin.im/post/5b5d0ac5f265da0f574df709
+> 参考资料：[掘金，手写Promise](https://juejin.im/post/5b5d0ac5f265da0f574df709)
+>
+> ​		    [阮一峰promise](http://es6.ruanyifeng.com/#docs/promise)
+>
+> ​		   [this的指向问题](https://qinhanwen.github.io/2018/12/05/this/)
+
+
 
 
 
@@ -203,9 +209,13 @@ new Promise(function (resolve, reject) {
 
 #### 4.实现多个then的链式调用方法
 
+上面的都还比较好理解。。直到链式调用，简直脑袋打结。
+
 上面的then方法调用之后就再也无法调用then方法了，我必须在调用then方法之后返回一个带有then方法的对象的新的实例，与之前那个的无关了。
 
 实现下面🌰
+
+#### 先写 我 ! 自! 己 ! 的 ! 想 ! 法 ! ：
 
 ```javascript
 new Promise(function (resolve, reject) {
@@ -214,17 +224,169 @@ new Promise(function (resolve, reject) {
         resolve('resolve');
     }, 2000);
 })
-.then(function (data) { console.log(data);return 'resolve'; }, function (err) { console.log(err) })
-.then(function (data) { console.log(data) }, function (err) { console.log(err) });
+.then(function (data) { console.log(data); })
+.then(function (data) { console.log(data); })
 ```
 
 
 
-我们又知道then方法里如果接收到的不是函数，那么将视为null，并把上一个传递下来的值，继续往下传递。修改一下上面的then方法
+##### `.then`需要返回一个新的`promise`，我一直在想执行器里面要放什么。首先，`.then`方法里放的是成功和失败的回调，那么我得知道成功了还是失败了。
+
+拆分一下一步一步写。。脑子不太好用怕自己搞晕。
+
+###### 1) 那么我的第一步，把判断放进新的promise的执行器里。这样`status`变化成了`resolved`或者`rejected`，那么会我立刻知道，然后可以立刻执行回调。执行回调的同时调用`reject`或者`resolve`，才能让下一个`.then`里的回调执行（说的好绕，反正就是`resolve`或者`reject`调用之后，会调用`.then`里的回调，然后循环）
+
+```javascript
+Promise.prototype.then = function (onFulfilled, onRejected) {
+    const self = this;
+    return new Promise(function (resolve, reject) {
+        if (self.status == 'resolved') {
+            onFulfilled(self.value);
+            resolve();//还没写参数
+        }
+    
+        if (self.status == 'rejected') {
+            onRejected(self.value);
+            reject();//还没写参数
+        }
+    
+        if (self.status == 'pending') {
+            self.successCB.push(function () {
+                onFulfilled(self.value);
+          	    resolve();//还没写参数
+            })
+            self.errorCB.push(function () {
+                onRejected(self.value);
+                reject();//还没写参数
+            })
+        }
+    })
+}
+```
 
 
 
-emm..写到这感觉知识不够写不下去了,看的资料理解不了。后面再补上
+###### 2）第二步，`resolve`和`reject`方法里的填什么参数？？ 我们知道，如果`.then`方法里接受到的不是函数，就视为null，会把上一次传递的值继续往下传递。如果接受到的是函数，就返回函数的返回值（没有返回值就视为`undefined`），所以修改了一下上面的代码。
+
+```javascript
+Promise.prototype.then = function (onFulfilled, onRejected) {
+    const self = this;
+    return new Promise1(function (resolve, reject) {
+        if (self.status == 'resolved') {
+            if (typeof onFulfilled == "function") {
+                resolve(onFulfilled(self.value));
+            } else {
+                resolve(self.value);
+            }
+        }
+
+        if (self.status == 'rejected') {
+            if (typeof onFulfilled == "function") {
+                reject(onRejected(self.value));
+            } else {
+                reject(self.value);
+            }
+        }
+
+        if (self.status == 'pending') {
+            self.successCB.push(function () {
+                if (typeof onFulfilled == "function") {
+                    resolve(onFulfilled(self.value));
+                } else {
+                    resolve(self.value);
+                }
+            })
+            self.errorCB.push(function () {
+                if (typeof onFulfilled == "function") {
+                    reject(onRejected(self.value));
+                } else {
+                    reject(self.value);
+                }
+            })
+        }
+    })
+}
+```
+
+
+
+##### 我们稍微写几个🌰试试输出结果
+
+第一个🌰，`.then`方法里不是个函数
+
+```javascript
+new Promise(function (resolve, reject) {
+    console.log(1);
+    setTimeout(function () {
+        resolve('resolve');
+    }, 2000);
+})
+.then(1)
+.then(function (data) { console.log(data); })
+//打印出
+//1
+//resolve
+```
+
+
+
+第二个🌰,`.then`方法是个函数，但是没有返回值
+
+```javascript
+new Promise(function (resolve, reject) {
+    console.log(1);
+    setTimeout(function () {
+        resolve('resolve');
+    }, 2000);
+})
+.then(function (data) { console.log(data);})
+.then(function (data) { console.log(data);})
+//打印出
+//1
+//resolve
+//undefined
+```
+
+
+
+第三个🌰,`.then`方法是个函数，并且有返回值
+
+```javascript
+new Promise(function (resolve, reject) {
+    console.log(1);
+    setTimeout(function () {
+        resolve('resolve');
+    }, 2000);
+})
+.then(function (data) { console.log(data);return '有返回值';})
+.then(function (data) { console.log(data);});
+//打印出
+//1
+//resolve
+//有返回值
+```
+
+
+
+emm...其实这个的调用过程真的很绕，因为有一堆的`self`，于是我决定画个图，就拿上面第一个🌰的调用过程来画吧
+
+![59EF3428467C4B9F81D0CA9C20DBE35C](http://www.qinhanwen.xyz/images/59EF3428467C4B9F81D0CA9C20DBE35C.png)
+
+
+
+如果`.then`里是函数并且有返回值，也就是黄色箭头的那个数组变成
+
+`[function(){resolve(onFulfilled(self.value))}]`，就会让第二个promise对象的value变成onFulfilled(self.value)的返回值。
+
+
+
+
+
+#### 以上就是我 ! 自 ! 己 ! 的 ! 想 ! 法 ! ，还是看看别人怎么写的吧哈哈哈哈
+
+
+
+下次再看了，工期来不及了哈哈哈哈。
 
 
 

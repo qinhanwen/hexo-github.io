@@ -36,7 +36,7 @@ Promise链式调用的风格，书写方式都让程序变得更好维护
 
 then方法接受两个参数，第一个参数是成功时的回调，在Promise由“等待”态转换到“完成”态时调用，另一个是失败时的回调，在Promise由“等待”态转换到“拒绝”态时调用
 
-![](http://39.108.238.15:97/static/images/images/WX20181116-172309@2x.png)
+![](http://www.qinhanwen.xyz/images/WX20181116-172309@2x.png)
 
 
 
@@ -188,7 +188,7 @@ p1().then(p2).then(p3).catch(err=>{
 //3.若上一个then中若提供了返回值，返回了什么？
 ```
 
-![](http://www.exexm.com/images/new-images/WX20190111-172541@2x.png)
+![](http://www.qinhanwen.xyz/images/WX20190111-172541@2x.png)
 
 如果没有返回值，那就是undefined。
 
