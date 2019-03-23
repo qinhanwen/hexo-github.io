@@ -200,7 +200,7 @@ robots用来告诉爬虫哪些页面需要索引，哪些页面不需要索引�
 <meta http-equiv="Pragma" content="no-cache">
 ```
 
-似乎只有ie才可以识别这个，而其他的浏览器是Cache-Control: no-store的标签
+似乎只有ie才可以识别这个，而其他的浏览器是Cache-Control: no-store的标签（不过现在浏览器好像放弃了使用meta控制浏览器缓存）
 
 3）Refresh(刷新) 
 

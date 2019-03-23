@@ -1,0 +1,83 @@
+---
+title: IFC
+date: 2019-02-28 12:04:14
+tags: 
+- css
+categories: 
+- css
+---
+
+
+
+#### 内联格式化上下文(Inline Formatting Contexts)
+
+##### 1）在一个IFC中，从父元素的顶部开始，盒子一个接着一个的横向安放。横向的margin、padding、border才生效。
+
+垂直方向的padding，margin，border都未生效，如图：
+
+![WX20190302-232824@2x](http://www.qinhanwen.xyz/images/WX20190302-232824@2x.png)
+
+
+
+
+
+##### 2）盒子在垂直方向上可以以不同的方式对齐（它们顶部或底部对齐，或者文字的基线对齐），可通过 vertical-align 来设置，默认对齐为 baseline，包含这些框的方形区域叫做行框（line box）。
+
+不同对齐方式：
+
+![WX20190303-111953@2x](http://www.qinhanwen.xyz/images/WX20190303-111953@2x.png)
+
+
+
+
+
+##### 3）每一行会生成一个行框，它的宽度由元素的宽度，以及元素里是否有float元素决定。
+
+
+
+##### 4）浮动盒会位于包含块边缘与行框边缘之间，这样行框的可用宽度就小于包含块的宽度（也就是说浮动元素，会导致行框可用宽度缩小），同时因为浮动元素，导致行框可用宽度缩短，它们在水平方向上的对齐取决于text-align。
+
+![WX20190303-115746@2x](http://www.qinhanwen.xyz/images/WX20190303-115746@2x.png)
+
+##### 5）当行框内所有元素总宽度超过一个行框时候，会形成多个行框，多个行框在垂直方向堆叠，且不会重叠，如果元素设置了不允许分割，那么就会溢出行框
+
+![WX20190303-121239@2x](http://www.qinhanwen.xyz/images/WX20190303-121239@2x.png)
+
+
+
+##### 6）如果行框内的元素发生分割的时候，分割处的margin，padding，border都不会生效
+
+设置了span标签`border-right:20px solid red;`，在分割处未生效。
+
+![WX20190303-121815@2x](http://www.qinhanwen.xyz/images/WX20190303-121815@2x.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

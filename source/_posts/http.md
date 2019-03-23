@@ -1,10 +1,10 @@
 ---
-title: http
+title: HTTP
 date: 2018-12-27 17:48:31
 tags: 
-- 深入学习
+- http
 categories: 
-- 深入学习
+- http
 ---
 
 # HTTP（HyperText Transfer Protocol）

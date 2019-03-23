@@ -271,7 +271,7 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
 ```javascript
 Promise.prototype.then = function (onFulfilled, onRejected) {
     const self = this;
-    return new Promise1(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
         if (self.status == 'resolved') {
             if (typeof onFulfilled == "function") {
                 resolve(onFulfilled(self.value));
@@ -381,12 +381,6 @@ emm...其实这个的调用过程真的很绕，因为有一堆的`self`，于�
 
 
 
-
-#### 以上就是我 ! 自 ! 己 ! 的 ! 想 ! 法 ! ，还是看看别人怎么写的吧哈哈哈哈
-
-
-
-下次再看了，工期来不及了哈哈哈哈。
 
 
 

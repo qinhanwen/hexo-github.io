@@ -73,13 +73,22 @@ else
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 ```
 
+Content-type决定了传输的send方法里的参数的形式，服务端会根据content-type解析。
+
+```javascript
+//如果是application/x-www-form-urlencoded
+xmlhttp.send()//接收name=qinhanwen&age=18
+//如果是application/json
+xmlhttp.send()//接收JSON序列化字符串
+```
+
 
 
 ###### 3.发送请求
 
 ```javascript
 xmlhttp.open("GET","url",true);// method,url,async
-xmlhttp.send();//POST参数放在方法里参数形式为：name=qinhanwen&age=18
+xmlhttp.send();
 ```
 
 

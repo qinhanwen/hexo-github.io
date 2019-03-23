@@ -1,7 +1,10 @@
 ---
 title: new的时候到底做了什么
 date: 2018-12-04 23:05:16
-tags:
+tags: 
+- JavaScript
+categories: 
+- JavaScript
 ---
 
 # new到底做了什么
