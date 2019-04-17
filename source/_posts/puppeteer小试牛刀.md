@@ -51,7 +51,7 @@ npm i puppeteer
 
 ###### 2.目录结构：
 
-![](http://www.qinhanwen.xyz/images/WX20181117-164728@2x.png)
+![](http://www.qinhanwen.xyz/WX20181117-164728@2x.png)
 
 
 

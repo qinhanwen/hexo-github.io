@@ -57,7 +57,7 @@ XSS（Cross Site Scripting）跨站脚本攻击，通过在目标网站注入恶
 
 如图：
 
-![reflected-xss](http://www.qinhanwen.xyz/images/reflected-xss.png)
+![reflected-xss](http://www.qinhanwen.xyz/reflected-xss.png)
 
 1）攻击者构造特殊的URL，其中添加了恶意代码。
 
@@ -141,7 +141,7 @@ console.log('koa server is listening port 3000');
 
 在chrome下，自动帮助用户防御
 
-![WX20190323-230946@2x](http://www.qinhanwen.xyz/images/WX20190323-230946@2x.png)
+![WX20190323-230946@2x](http://www.qinhanwen.xyz/WX20190323-230946@2x.png)
 
 
 
@@ -151,7 +151,7 @@ console.log('koa server is listening port 3000');
 
 如图：
 
-![persistent-xss](http://www.qinhanwen.xyz/images/persistent-xss.png)
+![persistent-xss](http://www.qinhanwen.xyz/persistent-xss.png)
 
 1）攻击者提交了带有恶意代码的数据。
 

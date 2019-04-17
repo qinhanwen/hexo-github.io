@@ -17,7 +17,7 @@ categories:
 
 ##### 1）new做了什么
 
-![](http://www.qinhanwen.xyz/images/WX20181204-231216@2x.png)
+![](http://www.qinhanwen.xyz/WX20181204-231216@2x.png)
 
 1.创建了一个临时对象
 

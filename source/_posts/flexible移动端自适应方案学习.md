@@ -37,7 +37,7 @@ categories:
 
 ​       从`screen.width/screen.height`获取。(这个是显示器的特征，与浏览无关，不会因为缩放而改变)。如图：
 
-![](http://www.qinhanwen.xyz/images/1542689394373.jpg) 
+![](http://www.qinhanwen.xyz/1542689394373.jpg) 
 
 
 
@@ -45,7 +45,7 @@ categories:
 
 ​       从`window.innerWidth/window.innerHeight`获取，浏览器窗口的内部宽度使用CSS的pixels（意思就是我打开浏览器，能看到里面的`元素`会因为我`放大或者缩小`浏览器而`变少或者变多`），而缩放比例就是如图：
 
-![](http://www.qinhanwen.xyz/images/1542690089176.jpg)
+![](http://www.qinhanwen.xyz/1542690089176.jpg)
 
 
 
@@ -105,7 +105,7 @@ categories:
 
 
 
-![](http://www.qinhanwen.xyz/images/WX20181121-125957@2x.png)
+![](http://www.qinhanwen.xyz/WX20181121-125957@2x.png)
 
 
 
@@ -113,7 +113,7 @@ categories:
 
 
 
-![](http://www.qinhanwen.xyz/images/WX20181121-130455@2x.png)
+![](http://www.qinhanwen.xyz/WX20181121-130455@2x.png)
 
 
 
@@ -187,7 +187,7 @@ width/height 反映`document.documentElement.clientWidth/document.documentElemen
 
 
 
-![](http://www.qinhanwen.xyz/images/WX20181123-155710@2x.png)
+![](http://www.qinhanwen.xyz/WX20181123-155710@2x.png)
 
 **设备独立像素：`iPhone6s的设备宽度和高度为375 * 667,可以理解为设备的独立像素`**
 
@@ -199,11 +199,11 @@ width/height 反映`document.documentElement.clientWidth/document.documentElemen
 
 1倍屏：高宽1px的图片，是1个设备像素
 
- ![](http://www.qinhanwen.xyz/images/WX20181228-220032@2x.png)
+ ![](http://www.qinhanwen.xyz/WX20181228-220032@2x.png)
 
 2倍屏：高宽1px的方格，是4个设备像素，因为如果还是用一个设备像素就太小了
 
-​	![](http://www.qinhanwen.xyz/images/WX20181228-230615@2x.png)
+​	![](http://www.qinhanwen.xyz/WX20181228-230615@2x.png)
 
 
 
@@ -219,7 +219,7 @@ width/height 反映`document.documentElement.clientWidth/document.documentElemen
 
 Flexible会将视觉稿分成**100份**，而每一份被称为一个单位`a`。同时`1rem`单位被认定为`10a`，我就直接理解为设计稿由`10rem`组成
 
-![WX20181229-012813@2x](http://www.qinhanwen.xyz/images/WX20181229-012813@2x.png)
+![WX20181229-012813@2x](http://www.qinhanwen.xyz/WX20181229-012813@2x.png)
 
 ##### 5.meta标签
 
@@ -303,19 +303,19 @@ Flexible会将视觉稿分成**100份**，而每一份被称为一个单位`a`�
 
 ###### 1）安卓设备：动态添加了meta标签，初始缩放比为1，根元素添加data-dpr为1，font-size:36px，
 
-![](http://www.qinhanwen.xyz/images/WX20181229-011051@2x.png)
+![](http://www.qinhanwen.xyz/WX20181229-011051@2x.png)
 
 
 
 ###### 2）2倍屏：动态添加meta，设置缩放比为0.5，设置根元素的data-dpr=2，font-size:75px;
 
-![](http://www.qinhanwen.xyz/images/WX20181229-011248@2x.png)
+![](http://www.qinhanwen.xyz/WX20181229-011248@2x.png)
 
 
 
 ###### 3）3倍屏幕：动态添加meta，设置缩放比为0.333(很多个3)，设置根元素的data-dpr=3，font-size:112.5px;
 
-![WX20181229-011651@2x](http://www.qinhanwen.xyz/images/WX20181229-011651@2x.png)
+![WX20181229-011651@2x](http://www.qinhanwen.xyz/WX20181229-011651@2x.png)
 
 
 
@@ -329,7 +329,7 @@ Flexible会将视觉稿分成**100份**，而每一份被称为一个单位`a`�
 
 那么，就不会动态的添加meta，并且提示
 
-![WX20181229-012037@2x](http://www.qinhanwen.xyz/images/WX20181229-012037@2x.png)
+![WX20181229-012037@2x](http://www.qinhanwen.xyz/WX20181229-012037@2x.png)
 
 
 

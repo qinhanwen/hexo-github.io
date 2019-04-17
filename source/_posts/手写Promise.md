@@ -370,7 +370,7 @@ new Promise(function (resolve, reject) {
 
 emm...其实这个的调用过程真的很绕，因为有一堆的`self`，于是我决定画个图，就拿上面第一个🌰的调用过程来画吧
 
-![59EF3428467C4B9F81D0CA9C20DBE35C](http://www.qinhanwen.xyz/images/59EF3428467C4B9F81D0CA9C20DBE35C.png)
+![59EF3428467C4B9F81D0CA9C20DBE35C](http://www.qinhanwen.xyz/59EF3428467C4B9F81D0CA9C20DBE35C.png)
 
 
 

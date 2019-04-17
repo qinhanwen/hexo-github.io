@@ -24,7 +24,7 @@ categories:
 
 3）服务端也可以修改cookie内容
 
-![WX20190311-221121@2x](http://www.qinhanwen.xyz/images/WX20190311-221121@2x.png)
+![WX20190311-221121@2x](http://www.qinhanwen.xyz/WX20190311-221121@2x.png)
 
 
 
@@ -122,7 +122,7 @@ console.log('koa server is listening port 3000');
 
 
 
-![WX20190312-224503@2x](http://www.qinhanwen.xyz/images/WX20190312-224503@2x.png)
+![WX20190312-224503@2x](http://www.qinhanwen.xyz/WX20190312-224503@2x.png)
 
 
 
@@ -166,7 +166,7 @@ console.log('koa server is listening port 3000');
 
 访问`http://localhost:3000/getCookie`
 
-![WX20190312-225045@2x](http://www.qinhanwen.xyz/images/WX20190312-225045@2x.png)
+![WX20190312-225045@2x](http://www.qinhanwen.xyz/WX20190312-225045@2x.png)
 
 
 
@@ -276,7 +276,7 @@ console.log('koa server is listening port 3000');
 
 ##### 3）先打开刚才这个静态资源的页面`http://localhost:3000/test.html`
 
-![image-20190315183949714](http://www.qinhanwen.xyz/images/WX20190315-183943@2x.png)
+![image-20190315183949714](http://www.qinhanwen.xyz/WX20190315-183943@2x.png)
 
 这个域下的cookies没有数据。
 
@@ -284,13 +284,13 @@ console.log('koa server is listening port 3000');
 
 ##### 4）打开`http://192.168.70.20:8001/test.html`，点击登录按钮
 
-![WX20190315-184516@2x](http://www.qinhanwen.xyz/images/WX20190315-184516@2x.png)
+![WX20190315-184516@2x](http://www.qinhanwen.xyz/WX20190315-184516@2x.png)
 
 请求发送成功，没有在当前的域写入cookie。
 
 点击第二个按钮，请求发送成功，没有取得cookie
 
-![WX20190315-184741@2x](http://www.qinhanwen.xyz/images/WX20190315-184741@2x.png)
+![WX20190315-184741@2x](http://www.qinhanwen.xyz/WX20190315-184741@2x.png)
 
 
 
@@ -410,11 +410,11 @@ console.log('koa server is listening port 3000');
 
 重新点击登录发送请求，cookies仍然没有存入当前域。
 
-![WX20190315-191006@2x](http://www.qinhanwen.xyz/images/WX20190315-191006@2x.png)
+![WX20190315-191006@2x](http://www.qinhanwen.xyz/WX20190315-191006@2x.png)
 
 点击第二个按钮，请求发送成功，并且取得了cookie的值。
 
-![WX20190315-191128@2x](http://www.qinhanwen.xyz/images/WX20190315-191128@2x.png)
+![WX20190315-191128@2x](http://www.qinhanwen.xyz/WX20190315-191128@2x.png)
 
 
 
@@ -422,7 +422,7 @@ console.log('koa server is listening port 3000');
 
 打开之前的`http://localhost:3000/test.html`页面，在`http://localhost:3000`的域下发现了cookie。
 
-![WX20190315-191314@2x](http://www.qinhanwen.xyz/images/WX20190315-191314@2x.png)
+![WX20190315-191314@2x](http://www.qinhanwen.xyz/WX20190315-191314@2x.png)
 
 因为后端项目运行在`http://localhost:3000`域上，所以发回的cookie对应的域名也就是`http://localhost:3000`
 
@@ -488,13 +488,15 @@ console.log('koa server is listening port 3000');
 
 页面再次发送请求的时候，看到如图报错：
 
-![WX20190315-192336@2x](http://www.qinhanwen.xyz/images/WX20190315-192336@2x.png)
+![WX20190315-192336@2x](http://www.qinhanwen.xyz/WX20190315-192336@2x.png)
 
 
 
 大概就是说`http//192.168.70.20:8001`访问`http://localhost:3000/setCookie`被CORS拦截，当XMLHttpRequest对象的控制的`withCredentials`是开启的时候，`Access-Control-Allow-Origin`不能是`*`号。
 
 
+
+​	如果要发送Cookie，`Access-Control-Allow-Origin`就不能设为星号，必须指定明确的、与请求网页一致的域名。同时，Cookie依然遵循同源政策，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，且（跨源）原网页代码中的`document.cookie`也无法读取服务器域名下的Cookie。
 
 
 
@@ -532,7 +534,7 @@ document.cookie
 document.cookie = "age=25";
 ```
 
-![WX20190314-225013@2x](http://www.qinhanwen.xyz/images/WX20190314-225013@2x.png)
+![WX20190314-225013@2x](http://www.qinhanwen.xyz/WX20190314-225013@2x.png)
 
 
 
