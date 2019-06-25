@@ -1,7 +1,10 @@
 ---
 title: MongoDB安装和使用Mac OSX
 date: 2019-04-08 20:22:16
-tags:
+tags: 
+- 拓展
+categories: 
+- 拓展
 ---
 > 参考   	https://jspang.com/post/mongodb.html
 >

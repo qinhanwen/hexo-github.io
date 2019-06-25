@@ -11,11 +11,13 @@ categories:
 >
 > ​			<https://juejin.im/post/5b97ba596fb9a05cda774ba4>
 >
->  ​		        [练习](<http://prompt.ml/0>)
+> ​		        [练习](<http://prompt.ml/0>)
 >
 > ​			<https://excess-xss.com/>
 >
 > ​			[中文](https://segmentfault.com/a/1190000006904327)
+>
+> ​			[CSP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)
 
 ​			
 

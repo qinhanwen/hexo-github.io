@@ -179,7 +179,7 @@ HTTP1.1之前版本遗留的字段
 
 #### Host
 
-告诉服务器请求的资源的主机名和端口号
+告诉服务器请求的资源的主机名
 
 
 
@@ -187,7 +187,7 @@ HTTP1.1之前版本遗留的字段
 
 #### If-None-Match
 
-其实是上一次请求返回的ETag字段（文件在服务器上的唯一标识）的值。
+其实是上一次请求返回的ETag字段（文件在服务器上的唯一标识）的值。(可以根据文件内容hash运算生成)
 
 ![WX20190227-235752@2x](http://www.qinhanwen.xyz/WX20190227-235752@2x.png)
 
@@ -287,7 +287,43 @@ HTTP1.1之前版本遗留的字段
 
 **application/x-www-form-urlencoded** 
 
+ x-www-form-urlencoded：只能上传键值对，并且键值对都是间隔分开的，只是最后会转化为一条信息。
+ ```
+POST  HTTP/1.1
+Host: test.app.com
+Content-Type: application/x-www-form-urlencoded
+Cache-Control: no-cache
+Postman-Token: e00dbaf5-15e8-3667-6fc5-48ee3cc89758
+
+key1=value1&key2=value2
+ ```
+
+
+
 **multipart/form-data** 
+
+multipart/form-data：既可以上传文件等二进制数据，也可以上传表单键值对。
+
+```
+POST  HTTP/1.1
+Host: test.app.com
+Cache-Control: no-cache
+Postman-Token: 59227787-c438-361d-fbe1-75feeb78047e
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="filekey"; filename=""
+Content-Type: 
+
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="textkey"
+
+tttttt
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+```
+
+
 
 **application/json** 
 
