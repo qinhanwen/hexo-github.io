@@ -2,9 +2,9 @@
 title: cookie
 date: 2019-03-11 19:09:54
 tags: 
-- 基础知识
+- 优化
 categories: 
-- 基础知识
+- 优化
 ---
 
 > 参考资料：    	https://juejin.im/post/5aede266f265da0ba266e0ef
@@ -537,6 +537,10 @@ document.cookie = "age=25";
 ![WX20190314-225013@2x](http://www.qinhanwen.xyz/WX20190314-225013@2x.png)
 
 
+
+## cookie限制
+
+![WX20190625-234902@2x](http://www.qinhanwen.xyz/WX20190625-234902@2x.png)
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: 手写Promise
+title: 实现Promise
 date: 2018-12-04 20:11:07
 tags: 
 - es6
@@ -211,247 +211,66 @@ new MyPromise(function (resolve, reject) {
 
 #### 4.实现多个then的链式调用方法
 
-上面的都还比较好理解。。直到链式调用，简直脑袋打结。
+1）
 
-上面的then方法调用之后就再也无法调用then方法了，我必须在调用then方法之后返回一个带有then方法的对象的新的实例，与之前那个的无关了。
-
-实现下面🌰
-
-#### 先写 我 ! 自! 己 ! 的 ! 想 ! 法 ! ：
+`Promise` 对象的 `then` 方法接受两个参数：
 
 ```javascript
-new Promise(function (resolve, reject) {
-    console.log(1);
-    setTimeout(function () {
-        resolve('resolve');
-    }, 2000);
-})
-.then(function (data) { console.log(data); })
-.then(function (data) { console.log(data); })
+promise.then(onFulfilled, onRejected)
 ```
 
+`onFulfilled` 和 `onRejected` 都是可选参数。
 
+- 如果 `onFulfilled` 或 `onRejected` 不是函数，其必须被忽略
 
-##### `.then`需要返回一个新的`promise`，我一直在想执行器里面要放什么。首先，`.then`方法里放的是成功和失败的回调，那么我得知道成功了还是失败了。
+**onFulfilled 特性**
 
-拆分一下一步一步写。。脑子不太好用怕自己搞晕。
+    如果 `onFulfilled` 是函数：
 
-###### 1) 那么我的第一步，把判断放进新的promise的执行器里。这样`status`变化成了`resolved`或者`rejected`，那么会我立刻知道，然后可以立刻执行回调。执行回调的同时调用`reject`或者`resolve`，才能让下一个`.then`里的回调执行（说的好绕，反正就是`resolve`或者`reject`调用之后，会调用`.then`里的回调，然后循环）
+- 当 `promise` 状态变为成功时必须被调用，其第一个参数为 `promise` 成功状态传入的值（ `resolve` 执行时传入的值）
+- 在 `promise` 状态改变前其不可被调用
+- 其调用次数不可超过一次
 
-```javascript
-MyPromise.prototype.then = function (onFulfilled, onRejected) {
-    const self = this;
-    return new MyPromise(function (resolve, reject) {
-        if (self.status == 'resolved') {
-            onFulfilled(self.value);
-            resolve();//还没写参数
-        }
-    
-        if (self.status == 'rejected') {
-            onRejected(self.value);
-            reject();//还没写参数
-        }
-    
-        if (self.status == 'pending') {
-            self.successCB.push(function () {
-                onFulfilled(self.value);
-          	    resolve();//还没写参数
-            })
-            self.errorCB.push(function () {
-                onRejected(self.value);
-                reject();//还没写参数
-            })
-        }
-    })
-}
-```
+**onRejected 特性**
+
+    如果 `onRejected` 是函数：
+
+- 当 `promise` 状态变为失败时必须被调用，其第一个参数为 `promise` 失败状态传入的值（ `reject` 执行时传入的值）
+- 在 `promise` 状态改变前其不可被调用
+- 其调用次数不可超过一次
+
+**多次调用**
+
+    `then` 方法可以被同一个 `promise` 对象调用多次
+
+- 当 `promise` 成功状态时，所有 `onFulfilled` 需按照其注册顺序依次回调
+- 当 `promise` 失败状态时，所有 `onRejected` 需按照其注册顺序依次回调
+
+**返回**
+
+`then` 方法必须返回一个新的 `promise` 对象
 
 
 
-###### 2）第二步，`resolve`和`reject`方法里的填什么参数？？ 我们知道，如果`.then`方法里接受到的不是函数，就视为null，会把上一次传递的值继续往下传递。如果接受到的是函数，就返回函数的返回值（没有返回值就视为`undefined`），所以修改了一下上面的代码。
+2）
 
-```javascript
-MyPromise.prototype.then = function (onFulfilled, onRejected) {
-    const self = this;
-    return new MyPromise(function (resolve, reject) {
-        if (self.status == 'resolved') {
-            if (typeof onFulfilled == "function") {
-                resolve(onFulfilled(self.value));
-            } else {
-                resolve(self.value);
-            }
-        }
-
-        if (self.status == 'rejected') {
-            if (typeof onFulfilled == "function") {
-                reject(onRejected(self.value));
-            } else {
-                reject(self.value);
-            }
-        }
-
-        if (self.status == 'pending') {
-            self.successCB.push(function () {
-                if (typeof onFulfilled == "function") {
-                  	let result = onFulfilled(self.value);
-                  	if(result instanceof MyPromise){
-                       
-                    }else{
-                   		 resolve(result);
-                    }
-                } else {
-                    resolve(self.value);
-                }
-            })
-            self.errorCB.push(function () {
-                if (typeof onFulfilled == "function") {
-                    reject(onRejected(self.value));
-                } else {
-                    reject(self.value);
-                }
-            })
-        }
-    })
-}
-```
-
-
-
-##### 我们稍微写几个🌰试试输出结果
-
-第一个🌰，`.then`方法里不是个函数
-
-```javascript
-new MyPromise(function (resolve, reject) {
-    console.log(1);
-    setTimeout(function () {
-        resolve('resolve');
-    }, 2000);
-})
-.then(1)
-.then(function (data) { console.log(data); })
-//打印出
-//1
-//resolve
-```
-
-
-
-第二个🌰,`.then`方法是个函数，但是没有返回值
-
-```javascript
-new Promise(function (resolve, reject) {
-    console.log(1);
-    setTimeout(function () {
-        resolve('resolve');
-    }, 2000);
-})
-.then(function (data) { console.log(data);})
-.then(function (data) { console.log(data);})
-//打印出
-//1
-//resolve
-//undefined
-```
-
-
-
-第三个🌰,`.then`方法是个函数，并且有返回值
-
-```javascript
-new Promise(function (resolve, reject) {
-    console.log(1);
-    setTimeout(function () {
-        resolve('resolve');
-    }, 2000);
-})
-.then(function (data) { console.log(data);return '有返回值';})
-.then(function (data) { console.log(data);});
-//打印出
-//1
-//resolve
-//有返回值
-```
-
-
-
-emm...其实这个的调用过程真的很绕，因为有一堆的`self`，于是我决定画个图，就拿上面第一个🌰的调用过程来画吧
-
-![59EF3428467C4B9F81D0CA9C20DBE35C](http://www.qinhanwen.xyz/59EF3428467C4B9F81D0CA9C20DBE35C.png)
-
-
-
-如果`.then`里是函数并且有返回值，也就是黄色箭头的那个数组变成
-
-`[function(){resolve(onFulfilled(self.value))}]`，就会让第二个promise对象的value变成onFulfilled(self.value)的返回值。
-
-
-
-
-
-#### 实现的then发现一个问题
-
-1、如果 `onFulfilled` 或者 `onRejected` 返回一个值 `x` ，则运行下面的 `Promise` 解决过程：`[[Resolve]](promise2, x)`
+如果 `onFulfilled` 或者 `onRejected` 返回一个值 `x` ，则运行下面的 `Promise` 解决过程：`[[Resolve]](promise2, x)`
 
 - 若 `x` 不为 `Promise` ，则使 `x` 直接作为新返回的 `Promise` 对象的值， 即新的`onFulfilled` 或者 `onRejected` 函数的参数.
 - 若 `x` 为 `Promise` ，这时后一个回调函数，就会等待该 `Promise` 对象(即 `x` )的状态发生变化，才会被调用，并且新的 `Promise` 状态和 `x` 的状态相同。
 
 
 
-就是说如果then方法里面的回调返回值为Promise，则要等它的状态变为`resolved`或者`rejected`，才会执行之后的回调，举个例子
-
-```javascript
-new Promise((resolve)=>{
-    setTimeout(()=>{
-        resolve();
-    },1000)
-}).then((data)=>{
-    return new Promise((resolve)=>{
-            setTimeout(()=>{
-                resolve(2000);
-            },2000)
-        })
-}).then((data)=>{
-    console.log(data);
-})
-//3秒后打印出
-//2000
-```
-
-而
-
-```javascript
-new MyPromise((resolve)=>{
-    setTimeout(()=>{
-        resolve();
-    },1000)
-}).then((data)=>{
-    return new MyPromise((resolve)=>{
-            setTimeout(()=>{
-                resolve(2000);
-            },2000)
-        })
-}).then((data)=>{
-    console.log(data);
-})
-//1秒后打印出
-//MyPromise对象
-```
-
-
-
-修改一下then方法
-
 ```javascript
 MyPromise.prototype.then = function (onFulfilled, onRejected) {
     const self = this;
     return new MyPromise(function (resolve, reject) {
         if (self.status == 'resolved') {
             if (typeof onFulfilled == "function") {
-              	//新增部分
+                //新增部分
                 let result = onFulfilled(self.value);
                 if (result instanceof MyPromise) {
-                    result.then(resolve,reject);
+                    result.then(resolve, reject);
                 } else {
                     resolve(result);
                 }
@@ -461,13 +280,13 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         }
 
         if (self.status == 'rejected') {
-            if (typeof onFulfilled == "function") {
-              	//新增部分
-                let result = reject(onRejected(self.value));
-                if(result instanceof MyPromise){
-                    result.then(resolve,reject);
-                }else{
-                    reject(onRejected(self.value));
+            if (typeof onRejected == "function") {
+                //新增部分
+                let result = onRejected(self.value);
+                if (result instanceof MyPromise) {
+                    result.then(resolve, reject);
+                } else {
+                    reject(result);
                 }
             } else {
                 reject(self.value);
@@ -477,10 +296,10 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
         if (self.status == 'pending') {
             self.successCB.push(function () {
                 if (typeof onFulfilled == "function") {
-                  	//新增部分
+                    //新增部分
                     let result = onFulfilled(self.value);
                     if (result instanceof MyPromise) {
-                        result.then(resolve,reject);
+                        result.then(resolve, reject);
                     } else {
                         resolve(result);
                     }
@@ -489,13 +308,13 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
                 }
             })
             self.errorCB.push(function () {
-                if (typeof onFulfilled == "function") {
-	                  //新增部分
-                    let result = reject(onRejected(self.value));
-                    if(result instanceof MyPromise){
-                        result.then(resolve,reject);
-                    }else{
-                        reject(onRejected(self.value));
+                if (typeof onRejected == "function") {
+                    //新增部分
+                    let result = onRejected(self.value);
+                    if (result instanceof MyPromise) {
+                        result.then(resolve, reject);
+                    } else {
+                        reject(result);
                     }
                 } else {
                     reject(self.value);
@@ -506,9 +325,13 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
 }
 ```
 
-新增的部分其实就是`onFulfilled`或者`onRejected`调用返回的是一个`Promise`，则当这个`Promise`的状态变成`resolved`或者`reject`的时候，再去执行之后的回调。
 
 
+抽出一下重复部分
+
+```javascript
+
+```
 
 
 

@@ -71,7 +71,8 @@ XSS（Cross Site Scripting）跨站脚本攻击，通过在目标网站注入恶
 
 
 
-补充：使用innerHtml或outerHTML插入脚本，只是当作普通的html执行，js解析器不会执行js脚本。
+补充：使用innerHtml或outerHTML插入脚本，只是当作普通的html执行，js解析器不会执行js脚本，标签不会被转义。
+比如<div></div>，页面上不会显示这个
 
 
 
