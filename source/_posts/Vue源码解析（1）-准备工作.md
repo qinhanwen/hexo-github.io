@@ -95,3 +95,9 @@ export default Vue
 
 - 声明构造函数`Vue`，并且确保只能通过`new`关键字调用
 - 把`Vue`当做参数传入函数调用，基本上都是为构造函数`Vue`添加原型方法
+
+
+
+## 资料
+
+https://ustbhuangyi.github.io/vue-analysis/

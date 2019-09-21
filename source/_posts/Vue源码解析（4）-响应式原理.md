@@ -913,7 +913,7 @@ Watcher.prototype.update = function update () {
 };
 ```
 
-最后走进`queueWatcher`，`Vue` 在做派发更新的时候不会每次数据改变都触发 `watcher` 的回调，而是把这些 `watcher` 先添加到一个队列里，然后在 `nextTick` 后执行 `flushSchedulerQueue`。
+最后走进`queueWatcher`，`Vue` 在做派发更新的时候不会每次数据改变都触发 `watcher` 的回调，而是把这些 `watcher` 先添加到一个队列里（这里会过滤有重复`id`的`watcher`），然后在 `nextTick` 后执行 `flushSchedulerQueue`。
 
 ```javascript
 var queue = [];
