@@ -152,7 +152,28 @@ $ npm ls
 
 #运行script命令
 $ npm run <command> [--<args>]
+
+#创建软链
+$ npm link <packageName>
 ```
+
+**npm link使用**
+
+项目A和项目B，B依赖A
+
+在本地调试的时候，在项目A目录下，创建软链
+
+```shell
+$ npm link
+```
+
+在项目B目录下
+
+```shell
+$ npm link A
+```
+
+这里的A和B分别对应项目`package.json`文件里的`name`字段（取名当然不能为A和B）
 
 
 
