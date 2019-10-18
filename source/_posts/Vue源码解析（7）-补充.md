@@ -1908,3 +1908,662 @@ function renderList (
 
 如果传入的`val`是数组，就会遍历数组，调用`ret[i] = render(val[i], i);`，而这里的遍历操作是无意义的
 
+
+
+## keep-alive
+
+main.js
+
+```javascript
+import Vue from 'vue'
+
+var child1 = {
+  template: '<div><button @click="add">add</button><p>{{num}}</p></div>',
+  data () {
+    return {
+      num: 1
+    }
+  },
+  activated () {
+    console.log('active')
+  },
+  created () {
+    console.log('created')
+  },
+  mounted () {
+    console.log('mounted')
+  },
+  methods: {
+    add () {
+      this.num++
+    }
+  }
+}
+var child2 = {
+  template: '<div>child2</div>'
+}
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  components: {
+    child1, child2
+  },
+  data () {
+    return {
+      chooseTabs: 'child1'
+    }
+  },
+  methods: {
+    changeTabs (tab) {
+      this.chooseTabs = tab
+    }
+  },
+  template: `
+  <div>
+    <button @click="changeTabs('child1')">child1</button>
+    <button @click="changeTabs('child2')">child2</button>
+    <keep-alive>
+        <component :is="chooseTabs">
+        </component>
+    </keep-alive>
+  </div>
+  `
+})
+
+```
+
+
+
+首先声明了`KeepAlive`对象，之后作为`builtInComponents`对象的元素
+
+```javascript
+var KeepAlive = {
+  name: 'keep-alive',
+  abstract: true,
+
+  props: {
+    include: patternTypes,
+    exclude: patternTypes,
+    max: [String, Number]
+  },
+
+  created: function created () {
+    this.cache = Object.create(null);
+    this.keys = [];
+  },
+
+  destroyed: function destroyed () {
+    for (var key in this.cache) {
+      pruneCacheEntry(this.cache, key, this.keys);
+    }
+  },
+
+  mounted: function mounted () {
+    var this$1 = this;
+
+    this.$watch('include', function (val) {
+      pruneCache(this$1, function (name) { return matches(val, name); });
+    });
+    this.$watch('exclude', function (val) {
+      pruneCache(this$1, function (name) { return !matches(val, name); });
+    });
+  },
+
+  render: function render () {
+    var slot = this.$slots.default;
+    var vnode = getFirstComponentChild(slot);
+    var componentOptions = vnode && vnode.componentOptions;
+    if (componentOptions) {
+      // check pattern
+      var name = getComponentName(componentOptions);
+      var ref = this;
+      var include = ref.include;
+      var exclude = ref.exclude;
+      if (
+        // not included
+        (include && (!name || !matches(include, name))) ||
+        // excluded
+        (exclude && name && matches(exclude, name))
+      ) {
+        return vnode
+      }
+
+      var ref$1 = this;
+      var cache = ref$1.cache;
+      var keys = ref$1.keys;
+      var key = vnode.key == null
+        // same constructor may get registered as different local components
+        // so cid alone is not enough (#3269)
+        ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
+        : vnode.key;
+      if (cache[key]) {
+        vnode.componentInstance = cache[key].componentInstance;
+        // make current key freshest
+        remove(keys, key);
+        keys.push(key);
+      } else {
+        cache[key] = vnode;
+        keys.push(key);
+        // prune oldest entry
+        if (this.max && keys.length > parseInt(this.max)) {
+          pruneCacheEntry(cache, keys[0], keys, this._vnode);
+        }
+      }
+
+      vnode.data.keepAlive = true;
+    }
+    return vnode || (slot && slot[0])
+  }
+};
+var builtInComponents = {
+  KeepAlive: KeepAlive
+};
+```
+
+在`initGlobalAPI`方法调用中`extend(Vue.options.components, builtInComponents);`，把`keepAlive`组件添加到`Vue.options.components`
+
+```javascript
+function initGlobalAPI (Vue) {
+  // config
+  var configDef = {};
+  configDef.get = function () { return config; };
+  if (process.env.NODE_ENV !== 'production') {
+    configDef.set = function () {
+      warn(
+        'Do not replace the Vue.config object, set individual fields instead.'
+      );
+    };
+  }
+  Object.defineProperty(Vue, 'config', configDef);
+
+  // exposed util methods.
+  // NOTE: these are not considered part of the public API - avoid relying on
+  // them unless you are aware of the risk.
+  Vue.util = {
+    warn: warn,
+    extend: extend,
+    mergeOptions: mergeOptions,
+    defineReactive: defineReactive$$1
+  };
+
+  Vue.set = set;
+  Vue.delete = del;
+  Vue.nextTick = nextTick;
+
+  // 2.6 explicit observable API
+  Vue.observable = function (obj) {
+    observe(obj);
+    return obj
+  };
+
+  Vue.options = Object.create(null);
+  ASSET_TYPES.forEach(function (type) {
+    Vue.options[type + 's'] = Object.create(null);
+  });
+
+  // this is used to identify the "base" constructor to extend all plain-object
+  // components with in Weex's multi-instance scenarios.
+  Vue.options._base = Vue;
+
+  extend(Vue.options.components, builtInComponents);
+
+  initUse(Vue);
+  initMixin$1(Vue);
+  initExtend(Vue);
+  initAssetRegisters(Vue);
+}
+```
+
+**首次渲染：**
+
+根据`ast`生成的`render`函数
+
+```javascript
+(function anonymous(
+) {
+with(this){return _c('div',[_c('button',{on:{"click":function($event){return changeTabs('child1')}}},[_v("child1")]),_v(" "),_c('button',{on:{"click":function($event){return changeTabs('child2')}}},[_v("child2")]),_v(" "),_c('keep-alive',[_c(chooseTabs,{tag:"component"})],1)],1)}
+})
+```
+
+在`patch`阶段
+
+生成`keep-alive`组件的`vnode`的时候，`render`函数就是`keep-alive`组件的`render`函数
+
+![微信截图_20190927223928](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190927223928.png)
+
+```javascript
+  render: function render () {
+    var slot = this.$slots.default;
+    var vnode = getFirstComponentChild(slot);
+    var componentOptions = vnode && vnode.componentOptions;
+    if (componentOptions) {
+      // check pattern
+      var name = getComponentName(componentOptions);
+      var ref = this;
+      var include = ref.include;
+      var exclude = ref.exclude;
+      if (
+        // not included
+        (include && (!name || !matches(include, name))) ||
+        // excluded
+        (exclude && name && matches(exclude, name))
+      ) {
+        return vnode
+      }
+
+      var ref$1 = this;
+      var cache = ref$1.cache;
+      var keys = ref$1.keys;
+      var key = vnode.key == null
+        // same constructor may get registered as different local components
+        // so cid alone is not enough (#3269)
+        ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
+        : vnode.key;
+      if (cache[key]) {
+        vnode.componentInstance = cache[key].componentInstance;
+        // make current key freshest
+        remove(keys, key);
+        keys.push(key);
+      } else {
+        cache[key] = vnode;
+        keys.push(key);
+        // prune oldest entry
+        if (this.max && keys.length > parseInt(this.max)) {
+          pruneCacheEntry(cache, keys[0], keys, this._vnode);
+        }
+      }
+
+      vnode.data.keepAlive = true;
+    }
+    return vnode || (slot && slot[0])
+  }
+```
+
+在这里对组件`vnode`进行了缓存，之后有用到的时候会取出来
+
+**缓存渲染：**
+
+点击添加按钮，并且切换视图两次，触发派发更新
+
+![微信截图_20190928191902](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928191902.png)
+
+走进更新视图的`patch`，会走进`prepatch`方法
+
+```javascript
+  prepatch: function prepatch (oldVnode, vnode) {
+    var options = vnode.componentOptions;
+    var child = vnode.componentInstance = oldVnode.componentInstance;
+    updateChildComponent(
+      child,
+      options.propsData, // updated props
+      options.listeners, // updated listeners
+      vnode, // new parent vnode
+      options.children // new children
+    );
+  },
+```
+
+然后走进`updateChildComponent`
+
+```javascript
+function updateChildComponent (
+  vm,
+  propsData,
+  listeners,
+  parentVnode,
+  renderChildren
+) {
+  if (process.env.NODE_ENV !== 'production') {
+    isUpdatingChildComponent = true;
+  }
+
+  // determine whether component has slot children
+  // we need to do this before overwriting $options._renderChildren.
+
+  // check if there are dynamic scopedSlots (hand-written or compiled but with
+  // dynamic slot names). Static scoped slots compiled from template has the
+  // "$stable" marker.
+  var newScopedSlots = parentVnode.data.scopedSlots;
+  var oldScopedSlots = vm.$scopedSlots;
+  var hasDynamicScopedSlot = !!(
+    (newScopedSlots && !newScopedSlots.$stable) ||
+    (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
+    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
+  );
+
+  // Any static slot children from the parent may have changed during parent's
+  // update. Dynamic scoped slots may also have changed. In such cases, a forced
+  // update is necessary to ensure correctness.
+  var needsForceUpdate = !!(
+    renderChildren ||               // has new static slots
+    vm.$options._renderChildren ||  // has old static slots
+    hasDynamicScopedSlot
+  );
+
+  vm.$options._parentVnode = parentVnode;
+  vm.$vnode = parentVnode; // update vm's placeholder node without re-render
+
+  if (vm._vnode) { // update child tree's parent
+    vm._vnode.parent = parentVnode;
+  }
+  vm.$options._renderChildren = renderChildren;
+
+  // update $attrs and $listeners hash
+  // these are also reactive so they may trigger child update if the child
+  // used them during render
+  vm.$attrs = parentVnode.data.attrs || emptyObject;
+  vm.$listeners = listeners || emptyObject;
+
+  // update props
+  if (propsData && vm.$options.props) {
+    toggleObserving(false);
+    var props = vm._props;
+    var propKeys = vm.$options._propKeys || [];
+    for (var i = 0; i < propKeys.length; i++) {
+      var key = propKeys[i];
+      var propOptions = vm.$options.props; // wtf flow?
+      props[key] = validateProp(key, propOptions, propsData, vm);
+    }
+    toggleObserving(true);
+    // keep a copy of raw propsData
+    vm.$options.propsData = propsData;
+  }
+
+  // update listeners
+  listeners = listeners || emptyObject;
+  var oldListeners = vm.$options._parentListeners;
+  vm.$options._parentListeners = listeners;
+  updateComponentListeners(vm, listeners, oldListeners);
+
+  // resolve slots + force update if has children
+  if (needsForceUpdate) {
+    vm.$slots = resolveSlots(renderChildren, parentVnode.context);
+    vm.$forceUpdate();
+  }
+```
+
+调用`vm.$forceUpdate`，为`queue`新增了一个`wathcer`
+
+![微信截图_20190928101915](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928101915.png)
+
+之后调用新增这个`wathcer`的`run`方法(最后就是`  vm._update(vm._render(), hydrating);`)，在生成`vnode`的时候，从`cache`中取出缓存的`vnode`
+
+![微信截图_20190928185150](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928185150.png)
+
+之后调用`update`更新视图，这次走的不是新增的流程，而是比较的
+
+这次在创建子组件的时候
+
+```javascript
+  function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+    var i = vnode.data;
+    if (isDef(i)) {
+      var isReactivated = isDef(vnode.componentInstance) && i.keepAlive;
+      if (isDef(i = i.hook) && isDef(i = i.init)) {
+        i(vnode, false /* hydrating */);
+      }
+      // after calling the init hook, if the vnode is a child component
+      // it should've created a child instance and mounted it. the child
+      // component also has set the placeholder vnode's elm.
+      // in that case we can just return the element and be done.
+      if (isDef(vnode.componentInstance)) {
+        initComponent(vnode, insertedVnodeQueue);
+        insert(parentElm, vnode.elm, refElm);
+        if (isTrue(isReactivated)) {
+          reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm);
+        }
+        return true
+      }
+    }
+  }
+```
+
+进入组建`init`方法的时候，逻辑是走的这里
+
+进入`prepatch`方法,在`updateChildComponent`做了一些更新操作
+
+```javascript
+  prepatch: function prepatch (oldVnode, vnode) {
+    var options = vnode.componentOptions;
+    var child = vnode.componentInstance = oldVnode.componentInstance;
+    updateChildComponent(
+      child,
+      options.propsData, // updated props
+      options.listeners, // updated listeners
+      vnode, // new parent vnode
+      options.children // new children
+    );
+  },
+```
+
+回到`createComponent`，在`initComponent`方法里，把组建实例的`$el`赋值给了`vnode.elm`
+
+```javascript
+ vnode.elm = vnode.componentInstance.$el;
+```
+
+之后调用
+
+```javascript
+insert(parentElm, vnode.elm, refElm);
+```
+
+把缓存的`dom`结构插入到了插槽中
+
+![微信截图_20190928192812](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928192812.png)
+
+之后再移除旧的节点
+
+![微信截图_20190928193001](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928193001.png)
+
+
+
+看一下`componentInstance`在什么时候添加的
+
+![微信截图_20190929010011](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190929010011.png)
+
+看一下`createComponentInstanceForVnode`
+
+```javascript
+function createComponentInstanceForVnode (
+  vnode, // we know it's MountedComponentVNode but flow doesn't
+  parent // activeInstance in lifecycle state
+) {
+  var options = {
+    _isComponent: true,
+    _parentVnode: vnode,
+    parent: parent
+  };
+  // check inline-template render functions
+  var inlineTemplate = vnode.data.inlineTemplate;
+  if (isDef(inlineTemplate)) {
+    options.render = inlineTemplate.render;
+    options.staticRenderFns = inlineTemplate.staticRenderFns;
+  }
+  return new vnode.componentOptions.Ctor(options)
+}
+```
+
+
+
+需要注意的就是组建在**重新渲染**的时候不会调用`created`和`mounted`钩子函数，会调用`activated `钩子函数
+
+而**首次渲染**也会调用`activated `钩子函数
+
+
+
+
+
+## Vue.directive
+
+改一下例子
+
+```javascript
+import Vue from 'vue'
+
+Vue.directive('qhw', function (el, binding, vnode) {
+  console.log(el, binding, vnode)
+  el.style = 'color:' + binding.value
+})
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  data: {
+    color: 'red'
+  },
+  template: `
+  <div v-qhw="color">
+    123
+  </div>
+  `
+})
+```
+
+
+
+
+
+![微信截图_20190929235816](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190929235816.png)
+
+看一下`updateDirectives`方法，其实就是遍历`directives`，调用`_update`
+
+```javascript
+function updateDirectives (oldVnode, vnode) {
+  if (oldVnode.data.directives || vnode.data.directives) {
+    _update(oldVnode, vnode);
+  }
+}
+```
+
+看一下`_update`方法
+
+```javascript
+function _update (oldVnode, vnode) {
+  var isCreate = oldVnode === emptyNode;
+  var isDestroy = vnode === emptyNode;
+  var oldDirs = normalizeDirectives$1(oldVnode.data.directives, oldVnode.context);
+  var newDirs = normalizeDirectives$1(vnode.data.directives, vnode.context);
+
+  var dirsWithInsert = [];
+  var dirsWithPostpatch = [];
+
+  var key, oldDir, dir;
+  for (key in newDirs) {
+    oldDir = oldDirs[key];
+    dir = newDirs[key];
+    if (!oldDir) {
+      // new directive, bind
+      callHook$1(dir, 'bind', vnode, oldVnode);
+      if (dir.def && dir.def.inserted) {
+        dirsWithInsert.push(dir);
+      }
+    } else {
+      // existing directive, update
+      dir.oldValue = oldDir.value;
+      dir.oldArg = oldDir.arg;
+      callHook$1(dir, 'update', vnode, oldVnode);
+      if (dir.def && dir.def.componentUpdated) {
+        dirsWithPostpatch.push(dir);
+      }
+    }
+  }
+
+  if (dirsWithInsert.length) {
+    var callInsert = function () {
+      for (var i = 0; i < dirsWithInsert.length; i++) {
+        callHook$1(dirsWithInsert[i], 'inserted', vnode, oldVnode);
+      }
+    };
+    if (isCreate) {
+      mergeVNodeHook(vnode, 'insert', callInsert);
+    } else {
+      callInsert();
+    }
+  }
+
+  if (dirsWithPostpatch.length) {
+    mergeVNodeHook(vnode, 'postpatch', function () {
+      for (var i = 0; i < dirsWithPostpatch.length; i++) {
+        callHook$1(dirsWithPostpatch[i], 'componentUpdated', vnode, oldVnode);
+      }
+    });
+  }
+
+  if (!isCreate) {
+    for (key in oldDirs) {
+      if (!newDirs[key]) {
+        // no longer present, unbind
+        callHook$1(oldDirs[key], 'unbind', oldVnode, oldVnode, isDestroy);
+      }
+    }
+  }
+}
+```
+
+在这里调用`bind`钩子，其实就是调用`directive`传入的函数
+
+![微信截图_20190930000934](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190930000934.png)
+
+
+
+
+
+## ref在什么时候添加到$refs上的
+
+在`patch`阶段
+
+![WX20191007-130322@2x](http://www.qinhanwen.xyz/WX20191007-130322@2x.png)
+
+
+
+![WX20191007-130349@2x](http://www.qinhanwen.xyz/WX20191007-130349@2x.png)
+
+
+
+![WX20191007-130403@2x](http://www.qinhanwen.xyz/WX20191007-130403@2x.png)
+
+
+
+![WX20191007-130428@2x](http://www.qinhanwen.xyz/WX20191007-130428@2x.png)
+
+
+
+```javascript
+  create: function create (_, vnode) {
+    registerRef(vnode);
+  },
+```
+
+进入`registerRef`
+
+```javascript
+function registerRef (vnode, isRemoval) {
+  var key = vnode.data.ref;
+  if (!isDef(key)) { return }
+
+  var vm = vnode.context;
+  var ref = vnode.componentInstance || vnode.elm;
+  var refs = vm.$refs;
+  if (isRemoval) {
+    if (Array.isArray(refs[key])) {
+      remove(refs[key], ref);
+    } else if (refs[key] === ref) {
+      refs[key] = undefined;
+    }
+  } else {
+    if (vnode.data.refInFor) {
+      if (!Array.isArray(refs[key])) {
+        refs[key] = [ref];
+      } else if (refs[key].indexOf(ref) < 0) {
+        // $flow-disable-line
+        refs[key].push(ref);
+      }
+    } else {
+      refs[key] = ref;
+    }
+  }
+}
+```
+
+这个方法获取了`vm.$refs`，并且传值给`refs`，之后为`refs`添加属性
