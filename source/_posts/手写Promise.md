@@ -327,10 +327,173 @@ MyPromise.prototype.then = function (onFulfilled, onRejected) {
 
 
 
-抽出一下重复部分
+抽出一下重复部分，修改了部分，增加了catch方法
 
 ```javascript
 
+function MyPromise(exector){
+    const _that = this;
+    _that.state = 'pending';
+    _that.value = '';
+    _that.successCb = [];
+    _that.errorCb = [];
+
+    const resolve = (data) => {
+        if(_that.state === 'pending'){
+            const run = () => {
+                const runFulfilled = (data) => {  
+                    let cb;
+                    while(cb = _that.successCb.shift()){
+                        cb(data);
+                    }
+                }
+
+                const runRejected = (data) => {
+                    _that.state = 'rejected';
+                    _that.value = data;
+                    let cb;
+                    while(cb = _that.errorCb.shift()){
+                        cb(data);
+                    }
+                }
+
+                if(data instanceof MyPromise){
+                    data.then(data=>{        
+                        _that.state = 'resolved';
+                        _that.value = data;
+                        runFulfilled(data)
+                    },err=>{
+                        _that.state = 'rejected';
+                        _that.value = data;
+                        runRejected(data)
+                    })
+                }else{     
+                    _that.state = 'resolved';
+                    _that.value = data;
+                    runFulfilled(data);
+                }
+            }
+
+            setTimeout(run);
+        }
+    }
+
+    const reject = (data) => {
+        if(_that.state === 'pending'){
+            const run = () => {
+                _that.state = 'rejected';
+                _that.value = data;
+                let cb;
+                while(cb = _that.errorCb.shift()){
+                    cb(data);
+                }
+            }
+            setTimeout(run);
+        }
+    }
+    try{
+        exector(resolve,reject);
+    }catch(e){
+        reject(e);
+    }
+}
+
+MyPromise.prototype.then = function(onFulfilled,onRejected){
+    const _that = this;
+    return new MyPromise((resolve,reject)=>{
+        const onfulfilled = ()=> {
+              if(typeof onFulfilled === 'function'){
+                    try{
+                        let result = onFulfilled(_that.value);
+                        if(result instanceof MyPromise){
+                            result.then(resolve,reject);
+                        }else{
+                            resolve(result);
+                        }  
+                    }catch(e){
+                        reject(e);
+                    }
+                }else{
+                    resolve(_that.value);
+                }
+        }
+
+        const onrejected = ()=> {
+               if(typeof onRejected === 'function'){
+                   try{
+                        let result = onRejected(_that.value);
+                        if(result instanceof MyPromise){
+                            result.then(resolve,reject);
+                        }else{
+                            reject(result);
+                        }
+                   }catch(e){
+                      reject(e);
+                   }
+                }else{
+                    reject(_that.value);
+                }
+        }
+
+        if(_that.state === 'pending'){
+            _that.successCb.push(()=>{
+              onfulfilled()
+            })
+            _that.errorCb.push(()=>{
+              onrejected()
+            })
+        }
+
+        if(_that.state === 'resolved'){
+            try{
+                onfulfilled();
+            }catch(e){
+                onRejected(e);
+            }
+        }
+
+        if(_that.state === 'rejected'){
+            try{
+                onrejected();
+            }catch(e){
+                onRejected(e);
+            }
+        }
+
+    })
+}
+
+MyPromise.prototype.catch = function(onRejected){
+    this.then(undefined,onRejected);
+}
+
+MyPromise.all = function(arr){
+    return new MyPromise((resolve,rejected) => {
+        let count = 0;
+        let values = [];
+        for(let [i,p] of arr.entries()){
+            MyPromise.resolve(p).then(res=>{
+                count++;
+                values[i] = res;
+                if(count === arr.length){
+                    resolve(values);
+                }
+            },err => {
+                reject(err);
+            })
+        }
+    })
+}
+
+MyPromise.resolve = function(value){
+    if(value instanceof MyPromise)return value;
+    return new MyPromise(resolve=>resolve(value));
+    
+}
+
+MyPromise.reject = function(value){
+    return new MyPromise((resolve ,reject) => reject(value))
+}
 ```
 
 

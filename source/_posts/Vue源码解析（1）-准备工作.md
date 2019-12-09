@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（1）- 准备工作
+title: Vue源码过程（1）- 准备工作
 date: 2019-08-28 13:05:04
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## [Flow](https://flow.org/)

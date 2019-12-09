@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（8）- Vuex
+title: Vue源码过程（8）- Vuex
 date: 2019-10-02 23:03:34
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## Vuex

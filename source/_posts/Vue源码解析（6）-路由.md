@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（6）- 路由
+title: Vue源码过程（6）- 路由
 date: 2019-09-08 10:03:30
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## 路由注册
@@ -825,12 +825,67 @@ function pushState (url, replace) {
 
 
 
+
+
+
+
+**router-link与a标签的区别**
+
+router-link组件有自己的render方法，在这里添加了on的属性，之后生成DOM结构的时候就会为a标签添加
+
+![WX20191028-222327@2x](http://www.qinhanwen.xyz/WX20191028-222327@2x.png)
+
+a标签点击的时候，进去handler方法
+
+![WX20191028-221738@2x](http://www.qinhanwen.xyz/WX20191028-221738@2x.png)
+
+guardEvent判断是否event上有preventDefault，有就调用，阻止默认行为
+
+![WX20191028-221608@2x](http://www.qinhanwen.xyz/WX20191028-221608@2x.png)
+
+
+
+
+
 ## 总结
 
-1）`Vue.use(VueRouter)`增加钩子函数`beforeCreate`和`created`，还有组件`RouterView`与`RouterLink`
+hash路由，根据情况使用的不同
 
-2）调用`beforeCreate`钩子的时候，这时候获取初始的路由，并且设置监听`hashchange`或者`popstate`事件，并且设置`_route`属性为响应式对象
+```javascript
+var supportsPushState = inBrowser && (function () {
+  var ua = window.navigator.userAgent;
 
-3）在首次渲染，生成`RouterView`的`vnode`的时候收集依赖（收集了`render watcher`）
+  if (
+    (ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) &&
+    ua.indexOf('Mobile Safari') !== -1 &&
+    ua.indexOf('Chrome') === -1 &&
+    ua.indexOf('Windows Phone') === -1
+  ) {
+    return false
+  }
 
-4）点击时候改变`_route`触发`setter`，视图更新
+  return window.history && 'pushState' in window.history
+})();
+```
+
+supportsPushState为true的时候：
+
+- use方法，调用install方法，为所有组件添加beforeCreate和destroyed钩子，还有定义了RouterView和RouterLink组件，并且让\$router和$route变成响应式
+
+- 创建router实例，根据不同的支持实例化不同的history，还有个match方法匹配地址。
+
+- new Vue 进入beforeCreate钩子调用，调用transitionTo，根据location匹配出route，调用comfirmTransiton，**之后添加监听事件popstate**，渲染视图（routerlink渲染）
+
+- 点击routerlink生成的a标签，触发点击事件，被阻止冒泡，之后调用router.push(location, noop); 进入history.push，又进入了transitionTo，调用dep.notify，之后调用 history.pushState({ key: _key }, '', url); （比如"http://localhost:8080/#/foo"）之后更新搜索栏地址。
+
+- 更新视图
+
+supportsPushState为false的时候：
+
+- use方法，调用install方法，为所有组件添加beforeCreate和destroyed钩子，还有定义了RouterView和RouterLink组件，并且让\$router和$route变成响应式
+
+- 创建router实例，根据不同的支持实例化不同的history，还有个match方法匹配地址。
+
+- new Vue 进入beforeCreate钩子调用，调用transitionTo，根据location匹配出route，调用comfirmTransiton，**之后添加监听事件hashchange**，渲染视图（routerlink渲染）。
+- 点击routerlink生成的a标签，触发点击事件，被阻止冒泡，之后调用router.push(location, noop); 进入history.push，又进入了transitionTo，调用dep.notify，**之后调用pushHash(route.fullPath)，因为supportsPushState为false所以执行的是window.location.hash = path（比如path是/foo）** ，之后更新搜索栏地址。也触发了hashchange事件
+- 更新视图

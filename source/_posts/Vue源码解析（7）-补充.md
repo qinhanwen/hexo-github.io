@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（7）- 补充
+title: Vue源码过程（7）- 补充
 date: 2019-09-08 14:23:31
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## 补充
@@ -1094,11 +1094,19 @@ function($event){if($event.target.composing)return;message=$event.target.value}
 
 
 
-
-
 ## 数组
 
-为什么不能直接通过索引，或者通过`length`属性修改值，在响应式原理。
+为什么不能直接通过索引，或者通过`length`属性修改值，在响应式原理有写。
+
+其实Object.defineProperty本身有一定的监控到数组下标变化的能力，因为性能问题，所以没有使用到。
+
+Vue 的响应式原理中 Object.defineProperty 有什么缺陷？为什么在 Vue3.0 采用了 Proxy，抛弃了 Object.defineProperty？
+
+```
+Object.defineProperty只能劫持对象的属性，从而需要对每个对象，每个属性进行遍历，如果，属性值是对象，还需要深度遍历。Proxy可以劫持整个对象，并返回一个新的对象。
+
+Proxy不仅可以代理对象，还可以代理数组。还可以代理动态增加的属性。
+```
 
 
 
@@ -1222,6 +1230,15 @@ export default {
 ![WX20190909-084607@2x](http://www.qinhanwen.xyz/WX20190909-084607@2x.png)
 
 并且得知，事件是可以绑定多个方法的
+
+
+
+**总结结**
+
+- 子组件创建实例的时候，传入了options里包含父vnode，父vnode里包含了自定义事件。子组件init进入initEvent的时候挂载到了子组件实例的_events上
+- $emit方法调用的时候，从vm._events上取得回调，并调用
+
+​	
 
 
 
@@ -2567,3 +2584,45 @@ function registerRef (vnode, isRemoval) {
 ```
 
 这个方法获取了`vm.$refs`，并且传值给`refs`，之后为`refs`添加属性
+
+
+
+## 组件style标签中scoped的作用
+
+在创建占位符的时候，调用setScope的时候，为标签设置了一个属性
+
+```javascript
+  function setScope (vnode) {
+    var i;
+    if (isDef(i = vnode.fnScopeId)) {
+      nodeOps.setStyleScope(vnode.elm, i);
+    } else {
+      var ancestor = vnode;
+      while (ancestor) {
+        if (isDef(i = ancestor.context) && isDef(i = i.$options._scopeId)) {
+          nodeOps.setStyleScope(vnode.elm, i);
+        }
+        ancestor = ancestor.parent;
+      }
+    }
+    // for slot content they should also get the scopeId from the host instance.
+    if (isDef(i = activeInstance) &&
+      i !== vnode.context &&
+      i !== vnode.fnContext &&
+      isDef(i = i.$options._scopeId)
+    ) {
+      nodeOps.setStyleScope(vnode.elm, i);
+    }
+  }
+```
+
+![WX20191024-000600@2x](http://www.qinhanwen.xyz/WX20191024-000600@2x.png)
+
+![WX20191024-000626@2x](http://www.qinhanwen.xyz/WX20191024-000626@2x.png)
+
+![WX20191024-000744@2x](http://www.qinhanwen.xyz/WX20191024-000744@2x.png)
+
+
+
+
+

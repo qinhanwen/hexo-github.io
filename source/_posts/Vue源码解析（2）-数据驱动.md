@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（2）- 数据驱动
+title: Vue源码过程（2）- 数据驱动
 date: 2019-08-28 21:21:59
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## 什么是数据驱动

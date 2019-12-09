@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（3）- 组件
+title: Vue源码过程（3）- 组件
 date: 2019-08-30 12:55:52
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## 组件

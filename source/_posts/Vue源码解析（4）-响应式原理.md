@@ -1,10 +1,10 @@
 ---
-title: Vue源码解析（4）- 响应式原理
+title: Vue源码过程（4）- 响应式原理
 date: 2019-09-01 20:25:21
 tags: 
-- Vue源码解析
+- Vue源码过程
 categories: 
-- Vue源码解析
+- Vue源码过程
 ---
 
 ## 响应式

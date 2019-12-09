@@ -1,6 +1,6 @@
 ---
-title: Koa源码阅读
-date: 2019-10-05 11:27:58
+title: Koa插件之类
+date: 2019-06-05 11:27:58
 tags: 
 - koa
 categories: 
@@ -782,3 +782,59 @@ module.exports = function crossOrigin(options = {}) {
 
 
 
+## koa-bodyparser
+
+```javascript
+...
+const bodyParser = require('koa-bodyparser')
+...
+app.use(bodyParser())
+...
+```
+
+先进入`bodyParser()`
+
+最后往middleware数组push进去这个函数
+
+```javascript
+async function bodyParser(ctx, next) {
+    if (ctx.request.body !== undefined) return await next();
+    if (ctx.disableBodyParser) return await next();
+    try {
+      const res = await parseBody(ctx);
+      ctx.request.body = 'parsed' in res ? res.parsed : {};
+      if (ctx.request.rawBody === undefined) ctx.request.rawBody = res.raw;
+    } catch (err) {
+      if (onerror) {
+        onerror(err, ctx);
+      } else {
+        throw err;
+      }
+    }
+    await next();
+  };
+```
+
+收到请求后根据不同的`content-type`调用不同的方法解析请求体，这边使用的是`application/x-www-form-urlencoded`
+
+![WX20191024-215420@2x](http://www.qinhanwen.xyz/WX20191024-215420@2x.png)
+
+获取请求的`content-encoding`、`content-length`和编码方式`utf-8`
+
+- 先根据`contentn-encoding`的值判断是否需要解压，还是直接返回
+
+![WX20191028-095029@2x](http://www.qinhanwen.xyz/WX20191028-095029@2x.png)
+
+- 根据编码方式，Buffer转字符串
+
+![WX20191028-095418@2x](http://www.qinhanwen.xyz/WX20191028-095418@2x.png)
+
+![WX20191028-094333@2x](http://www.qinhanwen.xyz/WX20191028-094333@2x.png)
+
+- 解析完成后返回str
+
+![WX20191028-093318@2x](http://www.qinhanwen.xyz/WX20191028-093318@2x.png)
+
+最后挂载在ctx.request.body上
+
+![WX20191024-220208@2x](http://www.qinhanwen.xyz/WX20191024-220208@2x.png)
