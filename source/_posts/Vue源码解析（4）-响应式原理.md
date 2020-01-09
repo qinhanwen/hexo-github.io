@@ -335,9 +335,9 @@ function defineReactive$$1 (
 
 2）然后使用`Object.defineProperty`方法为对象属性添加`getter`与`setter`
 
-![WX20190902-124407@2x](http://www.qinhanwen.xyz/WX20190902-124407@2x.png)
+![WX20190902-124407@2x](http://118.24.241.76/WX20190902-124407@2x.png)
 
-![WX20190902-124858@2x](http://www.qinhanwen.xyz/WX20190902-124858@2x.png)
+![WX20190902-124858@2x](http://118.24.241.76/WX20190902-124858@2x.png)
 
 
 
@@ -345,7 +345,7 @@ function defineReactive$$1 (
 
 这是`data`最后的样子
 
-![WX20190902-125823@2x](http://www.qinhanwen.xyz/WX20190902-125823@2x.png)
+![WX20190902-125823@2x](http://118.24.241.76/WX20190902-125823@2x.png)
 
 
 
@@ -489,7 +489,7 @@ Watcher.prototype.get = function get () {
 
 **先执行`pushTarget(this);`，其实就是把`watcher`实例存起来**
 
-![WX20190903-001044@2x](http://www.qinhanwen.xyz/WX20190903-001044@2x.png)
+![WX20190903-001044@2x](http://118.24.241.76/WX20190903-001044@2x.png)
 
 **`value = this.getter.call(vm, vm)`其实就是执行`vm._update(vm._render(), hydrating)`，在` vm._render()` 过程中这个阶段会触发了所有数据的 `getter`。**
 
@@ -563,21 +563,21 @@ test(obj);//相当于调用obj上的a
 
 (之前初始化数据的时候的`initData`方法里面有这个一步，所以在访问`message`的时候，会调用这里的`proxyGetter`方法)
 
-![WX20190902-215945@2x](http://www.qinhanwen.xyz/WX20190902-215945@2x.png)
+![WX20190902-215945@2x](http://118.24.241.76/WX20190902-215945@2x.png)
 
 就触发了`this[sourceKey][key]`，意思也就是访问`vm._data.message`
 
-![WX20190902-220304@2x](http://www.qinhanwen.xyz/WX20190902-220304@2x.png)
+![WX20190902-220304@2x](http://118.24.241.76/WX20190902-220304@2x.png)
 
 紧接着又触发了这个`message`的`get`方法
 
-![WX20190902-221723@2x](http://www.qinhanwen.xyz/WX20190902-221723@2x.png)
+![WX20190902-221723@2x](http://118.24.241.76/WX20190902-221723@2x.png)
 
 这个`get`方法做了什么：
 
 1）先判断是否有`getter`，这个是在上面闭包，从这个属性的描述符里拿的
 
-![WX20190903-002017@2x](http://www.qinhanwen.xyz/WX20190903-002017@2x.png)
+![WX20190903-002017@2x](http://118.24.241.76/WX20190903-002017@2x.png)
 
 2）判断是否有`Dep.target`，就是`watcher`的实例，有就调用`dep.depend();`（`dep`是之前实例化的，每个属性都有一个）
 
@@ -608,11 +608,11 @@ Watcher.prototype.addDep = function addDep (dep) {
 
 **之后取`personInfo`属性的时候，又触发了`getter`，并且这个属性是个对象所以进入到了`childOb.dep.depend()`，跟`dep.depend();`一个意思的**
 
-![WX20190903-003637@2x](http://www.qinhanwen.xyz/WX20190903-003637@2x.png)
+![WX20190903-003637@2x](http://118.24.241.76/WX20190903-003637@2x.png)
 
 **取`name`属性时候又重复了一次，这里就不写了，于是完成了全部的依赖收集之后，回到`get`方法里，执行`popTarget()`**
 
-![WX20190903-004631@2x](http://www.qinhanwen.xyz/WX20190903-004631@2x.png)
+![WX20190903-004631@2x](http://118.24.241.76/WX20190903-004631@2x.png)
 
 ```javascript
 function popTarget () {
@@ -990,7 +990,7 @@ timerFunc = function () {
 };
 ```
 
-![WX20190903-123424@2x](http://www.qinhanwen.xyz/WX20190903-123424@2x.png)
+![WX20190903-123424@2x](http://118.24.241.76/WX20190903-123424@2x.png)
 
 这里做的事情是把`flushCallbacks`任务放到`微任务队列`，而这个方法做的事情就是遍历`callbacks`然后执行之前`push`进去的每一个匿名函数
 
@@ -1009,11 +1009,11 @@ function flushCallbacks () {
 
 **当`setter`操作完成之后开始执行上面的`flushCallbacks`方法**
 
-![WX20190903-132043@2x](http://www.qinhanwen.xyz/WX20190903-132043@2x.png)
+![WX20190903-132043@2x](http://118.24.241.76/WX20190903-132043@2x.png)
 
 走进`copies[i]()`调用
 
-![WX20190903-132122@2x](http://www.qinhanwen.xyz/WX20190903-132122@2x.png)
+![WX20190903-132122@2x](http://118.24.241.76/WX20190903-132122@2x.png)
 
 `cb.call(ctx)`调用到`flushSchedulerQueue`方法
 
@@ -1072,7 +1072,7 @@ function flushSchedulerQueue () {
 
 这个方法把`queue`数组排序，之后遍历（`queue`数组`push` 进`watcher`的地方在这里）
 
-![WX20190903-132532@2x](http://www.qinhanwen.xyz/WX20190903-132532@2x.png)
+![WX20190903-132532@2x](http://118.24.241.76/WX20190903-132532@2x.png)
 
 遍历每一项的时候，如果有`watcher.before`方法就执行，然后执行`watcher.run`方法。
 
@@ -1235,11 +1235,11 @@ methodsToPatch.forEach(function (method) {
 
 3）接着，遍历`methodsToPatch`
 
-![WX20190903-174019@2x](http://www.qinhanwen.xyz/WX20190903-174019@2x.png)
+![WX20190903-174019@2x](http://118.24.241.76/WX20190903-174019@2x.png)
 
 进去`def`
 
-![WX20190903-174209@2x](http://www.qinhanwen.xyz/WX20190903-174209@2x.png)
+![WX20190903-174209@2x](http://118.24.241.76/WX20190903-174209@2x.png)
 
 就是为`arrayMethods`添加下面几个属性
 
@@ -1281,7 +1281,7 @@ function mutator () {
 
 返回到外面`Observer`方法调用里，进去`this.observeArray`方法
 
-![WX20190903-174959@2x](http://www.qinhanwen.xyz/WX20190903-174959@2x.png)
+![WX20190903-174959@2x](http://118.24.241.76/WX20190903-174959@2x.png)
 
 ```javascript
 Observer.prototype.observeArray = function observeArray (items) {
@@ -1464,7 +1464,7 @@ function set (target, key, val) {
 
 其实是调用`splice`方法
 
-![WX20190903-185940@2x](http://www.qinhanwen.xyz/WX20190903-185940@2x.png)
+![WX20190903-185940@2x](http://118.24.241.76/WX20190903-185940@2x.png)
 
 
 
@@ -1627,15 +1627,15 @@ function computedGetter () {
 
 然后在`render`的时候触发计算属性的`getter`，拿到计算属性的`watcher`，因为`watcher.dirty`的值为`true`，所以执行`watcher.evaluate`
 
-![WX20190903-233522@2x](http://www.qinhanwen.xyz/WX20190903-233522@2x.png)
+![WX20190903-233522@2x](http://118.24.241.76/WX20190903-233522@2x.png)
 
 断点往下看，发现最终执行了`watcher.getter`（是上面实例化`watcher`的时候存的）
 
-![WX20190903-233741@2x](http://www.qinhanwen.xyz/WX20190903-233741@2x.png)
+![WX20190903-233741@2x](http://118.24.241.76/WX20190903-233741@2x.png)
 
 调用完成后返回，接着执行`watcher.depend();`，断点进去，发现是渲染`watcher`对`计算属性watcher`的订阅
 
-![WX20190903-235049@2x](http://www.qinhanwen.xyz/WX20190903-235049@2x.png)
+![WX20190903-235049@2x](http://118.24.241.76/WX20190903-235049@2x.png)
 
 
 
@@ -1765,7 +1765,7 @@ function createWatcher (
 
 2）实例化一个`watcher`，是一个`user wathcer`，这个实例`cb`属性就是`handler`，然后`getter`属性是这个
 
-![WX20190904-130806@2x](http://www.qinhanwen.xyz/WX20190904-130806@2x.png)
+![WX20190904-130806@2x](http://118.24.241.76/WX20190904-130806@2x.png)
 
 ```javascript
 function parsePath (path) {
@@ -1785,9 +1785,9 @@ function parsePath (path) {
 
 这个方法返回的值就赋值给`watcher.value`，同时这里获取`obj[segments[i]]`触发了`getter`，也是在这里完成了依赖收集
 
-![WX20190904-134857@2x](http://www.qinhanwen.xyz/WX20190904-134857@2x.png)
+![WX20190904-134857@2x](http://118.24.241.76/WX20190904-134857@2x.png)
 
-![WX20190904-135020@2x](http://www.qinhanwen.xyz/WX20190904-135020@2x.png)
+![WX20190904-135020@2x](http://118.24.241.76/WX20190904-135020@2x.png)
 
 
 
@@ -1810,41 +1810,41 @@ watch: {
 
 **触发一下点击事件看一下**
 
-![WX20190904-125055@2x](http://www.qinhanwen.xyz/WX20190904-125055@2x.png)
+![WX20190904-125055@2x](http://118.24.241.76/WX20190904-125055@2x.png)
 
 `firstName`的值变化，先进`setter`
 
-![WX20190904-125118@2x](http://www.qinhanwen.xyz/WX20190904-125118@2x.png)
+![WX20190904-125118@2x](http://118.24.241.76/WX20190904-125118@2x.png)
 
 然后进入`dep.notify()`派发更新
 
-![WX20190904-135236@2x](http://www.qinhanwen.xyz/WX20190904-135236@2x.png)
+![WX20190904-135236@2x](http://118.24.241.76/WX20190904-135236@2x.png)
 
 这里的`subs[i]`就是`user watcher`(在上面实例化`user watcher`，调用`parsePath`返回的匿名函数的地方完成的依赖收集)
 
-![WX20190904-185715@2x](http://www.qinhanwen.xyz/WX20190904-185715@2x.png)
+![WX20190904-185715@2x](http://118.24.241.76/WX20190904-185715@2x.png)
 
 走进`queueWatcher`方法
 
-![WX20190904-185856@2x](http://www.qinhanwen.xyz/WX20190904-185856@2x.png)
+![WX20190904-185856@2x](http://118.24.241.76/WX20190904-185856@2x.png)
 
 走到`nextTick`这个方法上面有说，这里就忽略
 
 一直往下走到`watcher.run();`
 
-![WX20190904-233441@2x](http://www.qinhanwen.xyz/WX20190904-233441@2x.png)
+![WX20190904-233441@2x](http://118.24.241.76/WX20190904-233441@2x.png)
 
 这里拿到`firstName`新值和旧值，调用回调函数，就是这个方法
 
-![WX20190904-233642@2x](http://www.qinhanwen.xyz/WX20190904-233642@2x.png)
+![WX20190904-233642@2x](http://118.24.241.76/WX20190904-233642@2x.png)
 
 然后触发`totalName`的`setter`
 
-![WX20190905-000215@2x](http://www.qinhanwen.xyz/WX20190905-000215@2x.png)
+![WX20190905-000215@2x](http://118.24.241.76/WX20190905-000215@2x.png)
 
 关于这个`setter`一开始有点搞不懂为什么执行完`val = newVal`以后，`totalName`的值就变成了新值？后面发现得从`getter`的角度来看，当执行完这句之后，`val`变为新值，所以`getter`取到的就是这个值了
 
-![WX20190905-000445@2x](http://www.qinhanwen.xyz/WX20190905-000445@2x.png)
+![WX20190905-000445@2x](http://118.24.241.76/WX20190905-000445@2x.png)
 
 之后又走`dep.notify()`函数调用，最后调用的是
 
@@ -1911,11 +1911,11 @@ new Vue({
 
 触发点击事件之后，前面流程略过，直接进入到`vm._update`方法，因为存在`preVnode`所以走了`else`的逻辑
 
-![WX20190905-123924@2x](http://www.qinhanwen.xyz/WX20190905-123924@2x.png)
+![WX20190905-123924@2x](http://118.24.241.76/WX20190905-123924@2x.png)
 
 然后走进`sameVnode`，判断它们是否是相同的`vnode`，来执行不同的逻辑
 
-![WX20190905-124120@2x](http://www.qinhanwen.xyz/WX20190905-124120@2x.png)
+![WX20190905-124120@2x](http://118.24.241.76/WX20190905-124120@2x.png)
 
 `sameVnode`方法，首先直接判断`key`是否相同，如果相同再判断其他的一些属性是否相同
 
@@ -2028,7 +2028,7 @@ function sameVnode (a, b) {
 
 2）执行`updateChildren`
 
-![WX20190905-130348@2x](http://www.qinhanwen.xyz/WX20190905-130348@2x.png)
+![WX20190905-130348@2x](http://118.24.241.76/WX20190905-130348@2x.png)
 
 ```javascript
   function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
@@ -2106,11 +2106,11 @@ function sameVnode (a, b) {
 
 因为我们这边的两个节点是相同的，所以又进入`patchVode`方法
 
-![WX20190905-130922@2x](http://www.qinhanwen.xyz/WX20190905-130922@2x.png)
+![WX20190905-130922@2x](http://118.24.241.76/WX20190905-130922@2x.png)
 
 因为节点的`text`不是`undefined`，并且新`vnode.text`不等于旧的`vnode.text`，执行`nodeOps.setTextContent`方法
 
-![WX20190905-131039@2x](http://www.qinhanwen.xyz/WX20190905-131039@2x.png)
+![WX20190905-131039@2x](http://118.24.241.76/WX20190905-131039@2x.png)
 
 这个方法只是把节点的`textContent`直接替换成新的文本
 
@@ -2242,11 +2242,11 @@ new Vue({
 
 存了`oldVnode.children`，也存了`vnode.children`
 
-![WX20190905-190113@2x](http://www.qinhanwen.xyz/WX20190905-190113@2x.png)
+![WX20190905-190113@2x](http://118.24.241.76/WX20190905-190113@2x.png)
 
 然后进入`updateChildren`
 
-![WX20190905-191339@2x](http://www.qinhanwen.xyz/WX20190905-191339@2x.png)
+![WX20190905-191339@2x](http://118.24.241.76/WX20190905-191339@2x.png)
 
 ```javascript
 
@@ -2327,19 +2327,19 @@ new Vue({
 
 1）
 
-![WX20190905-214901@2x](http://www.qinhanwen.xyz/WX20190905-214901@2x.png)
+![WX20190905-214901@2x](http://118.24.241.76/WX20190905-214901@2x.png)
 
 2）
 
-![WX20190905-215956@2x](http://www.qinhanwen.xyz/WX20190905-215956@2x.png)
+![WX20190905-215956@2x](http://118.24.241.76/WX20190905-215956@2x.png)
 
 3）
 
-![WX20190905-230734@2x](http://www.qinhanwen.xyz/WX20190905-230734@2x.png)
+![WX20190905-230734@2x](http://118.24.241.76/WX20190905-230734@2x.png)
 
 4）最后一个比较特别，`createElm`创建了一个`text:3`，然后`insert`进去
 
-![WX20190905-231255@2x](http://www.qinhanwen.xyz/WX20190905-231255@2x.png)
+![WX20190905-231255@2x](http://118.24.241.76/WX20190905-231255@2x.png)
 
 **总结**
 

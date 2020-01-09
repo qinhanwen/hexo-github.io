@@ -15,7 +15,7 @@ categories:
 
 生成`render`函数在` $mount`方法里
 
-![WX20190905-234124@2x](http://www.qinhanwen.xyz/WX20190905-234124@2x.png)
+![WX20190905-234124@2x](http://118.24.241.76/WX20190905-234124@2x.png)
 
 进入`compileToFunctions`
 
@@ -123,7 +123,7 @@ function createCompileToFunctionFn (compile) {
 
 重要的`compile`方法，传入`template`和`options`
 
-![WX20190905-235038@2x](http://www.qinhanwen.xyz/WX20190905-235038@2x.png)
+![WX20190905-235038@2x](http://118.24.241.76/WX20190905-235038@2x.png)
 
 进入`compile`方法
 
@@ -229,7 +229,7 @@ var createCompiler = createCompilerCreator(function baseCompile (
 
 2）`const code = generate(ast, options)`生成代码
 
-![WX20190905-235533@2x](http://www.qinhanwen.xyz/WX20190905-235533@2x.png)
+![WX20190905-235533@2x](http://118.24.241.76/WX20190905-235533@2x.png)
 
 关于`ast`的生成就没看了，后面再看吧
 
@@ -328,7 +328,7 @@ function installRenderHelpers (target) {
 
 调用`renderMixin`的时候，加在`Vue`的`prototype`上
 
-![WX20190906-090320@2x](http://www.qinhanwen.xyz/WX20190906-090320@2x.png)
+![WX20190906-090320@2x](http://118.24.241.76/WX20190906-090320@2x.png)
 
 ## **生成`ast`过程**
 
@@ -623,13 +623,13 @@ function parseHTML (html, options) {
 
 **1）进入`while`循环后，匹配第一个`div`开始标签，然后`html`变为图片中这样，之后返回`match`（`match`中有标签名，属性数组，开始结束位置等）**
 
-![WX20190917-223926@2x](http://www.qinhanwen.xyz/WX20190917-223926@2x.png)
+![WX20190917-223926@2x](http://118.24.241.76/WX20190917-223926@2x.png)
 
 
 
 **2）往`stack`数组`push`这个对象，并且把`lastTag`的名称赋值为`div`**
 
-![WX20190917-224217@2x](http://www.qinhanwen.xyz/WX20190917-224217@2x.png)
+![WX20190917-224217@2x](http://118.24.241.76/WX20190917-224217@2x.png)
 
 
 
@@ -724,7 +724,7 @@ function parseHTML (html, options) {
     },
 ```
 
-![WX20190917-230350@2x](http://www.qinhanwen.xyz/WX20190917-230350@2x.png)
+![WX20190917-230350@2x](http://118.24.241.76/WX20190917-230350@2x.png)
 
 之后`push`到另外一个存`ast`对象的`stack`里面
 
@@ -732,29 +732,29 @@ function parseHTML (html, options) {
 
 **4）第二次循环，在`advance(text.length)`的地方把`html`字符串前面的空白字符截取掉**
 
-![WX20190917-231105@2x](http://www.qinhanwen.xyz/WX20190917-231105@2x.png)
+![WX20190917-231105@2x](http://118.24.241.76/WX20190917-231105@2x.png)
 
 之后赋值给`html`字符串，之后开始又一轮循环
 
-![WX20190917-231219@2x](http://www.qinhanwen.xyz/WX20190917-231219@2x.png)
+![WX20190917-231219@2x](http://118.24.241.76/WX20190917-231219@2x.png)
 
 
 
 **5）匹配`p`标签的时候有点不一样，因为`p`标签有指令`v-if`，所以`match`对象的`attrs`属性是个数组**
 
-![WX20190917-232344@2x](http://www.qinhanwen.xyz/WX20190917-232344@2x.png)
+![WX20190917-232344@2x](http://118.24.241.76/WX20190917-232344@2x.png)
 
 
 
 **6）接着往`stack`里`push`这个`match对象`，并且把`lastTag`的名称赋值为`p`**
 
-![WX20190917-232546@2x](http://www.qinhanwen.xyz/WX20190917-232546@2x.png)
+![WX20190917-232546@2x](http://118.24.241.76/WX20190917-232546@2x.png)
 
 
 
 **7）然后进入`start`方法，在这个方法里为`p`创建`ASTElement`，然后为这个`对象`添加属性**
 
-![WX20190917-233321@2x](http://www.qinhanwen.xyz/WX20190917-233321@2x.png)
+![WX20190917-233321@2x](http://118.24.241.76/WX20190917-233321@2x.png)
 
 之后`push`到另外一个存`ast`对象的`stack`里面
 
@@ -762,7 +762,7 @@ function parseHTML (html, options) {
 
 **8）又一次循环，这次是插值表达式开头**
 
-![WX20190917-233647@2x](http://www.qinhanwen.xyz/WX20190917-233647@2x.png)
+![WX20190917-233647@2x](http://118.24.241.76/WX20190917-233647@2x.png)
 
 
 
@@ -842,17 +842,17 @@ function parseHTML (html, options) {
     },
 ```
 
-![WX20190917-234445@2x](http://www.qinhanwen.xyz/WX20190917-234445@2x.png)
+![WX20190917-234445@2x](http://118.24.241.76/WX20190917-234445@2x.png)
 
 
 
 **10）下一次循环，`html`字符串剩2个结束标签**
 
-![WX20190917-234528@2x](http://www.qinhanwen.xyz/WX20190917-234528@2x.png)
+![WX20190917-234528@2x](http://118.24.241.76/WX20190917-234528@2x.png)
 
 匹配到结束标签
 
-![WX20190917-234915@2x](http://www.qinhanwen.xyz/WX20190917-234915@2x.png)
+![WX20190917-234915@2x](http://118.24.241.76/WX20190917-234915@2x.png)
 
 进入`parseEndTag`方法之后进入`end`方法，拿到`ast`的`stack`栈中最后一个元素，修改`currentParent`的值。
 
@@ -873,13 +873,13 @@ function parseHTML (html, options) {
 
 在这里改变非`ast`的`stack`的数组长度
 
-![WX20190918-085857@2x](http://www.qinhanwen.xyz/WX20190918-085857@2x.png)
+![WX20190918-085857@2x](http://118.24.241.76/WX20190918-085857@2x.png)
 
 
 
 **11）又一次循环，之后返回生成好的`ast`对象**
 
-![WX20190918-090344@2x](http://www.qinhanwen.xyz/WX20190918-090344@2x.png)
+![WX20190918-090344@2x](http://118.24.241.76/WX20190918-090344@2x.png)
 
 
 

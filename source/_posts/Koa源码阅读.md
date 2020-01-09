@@ -48,11 +48,11 @@ console.log('koa server is listening port 3000');
 
 通过` node --inspect-brk test`运行，进入调试模式。
 
-![WX20191005-125153@2x](http://www.qinhanwen.xyz/WX20191005-125153@2x.png)
+![WX20191005-125153@2x](http://118.24.241.76/WX20191005-125153@2x.png)
 
 浏览器打开`http://127.0.0.1:9229/`，点击这个
 
-![WX20191005-125329@2x](http://www.qinhanwen.xyz/WX20191005-125329@2x.png)
+![WX20191005-125329@2x](http://118.24.241.76/WX20191005-125329@2x.png)
 
 
 
@@ -80,7 +80,7 @@ module.exports = class Application extends Emitter {
 
 对象实例：
 
-![WX20191005-190445@2x](http://www.qinhanwen.xyz/WX20191005-190445@2x.png)
+![WX20191005-190445@2x](http://118.24.241.76/WX20191005-190445@2x.png)
 
 
 
@@ -177,7 +177,7 @@ function compose (middleware) {
 
 **发送请求到`http://localhost:3000/`，执行回调函数**
 
-![WX20191005-201601@2x](http://www.qinhanwen.xyz/WX20191005-201601@2x.png)
+![WX20191005-201601@2x](http://118.24.241.76/WX20191005-201601@2x.png)
 
 ```javascript
     const handleRequest = (req, res) => {
@@ -286,7 +286,7 @@ console.log('koa server is listening port 3000');
 
 **看实例化`Router`的过程之前，先看一下，遍历数组为`Router`构造函数添加`prototype`属性**
 
-![WX20191005-224823@2x](http://www.qinhanwen.xyz/WX20191005-224823@2x.png)
+![WX20191005-224823@2x](http://118.24.241.76/WX20191005-224823@2x.png)
 
 看`Router`构造函数
 
@@ -314,7 +314,7 @@ function Router(opts) {
 
 `Router`的实例
 
-![WX20191005-225339@2x](http://www.qinhanwen.xyz/WX20191005-225339@2x.png)
+![WX20191005-225339@2x](http://118.24.241.76/WX20191005-225339@2x.png)
 
 
 
@@ -530,7 +530,7 @@ function(ctx, next) {
 
 第二个是访问`/list`的回调函数
 
-![WX20191006-231742@2x](http://www.qinhanwen.xyz/WX20191006-231742@2x.png)
+![WX20191006-231742@2x](http://118.24.241.76/WX20191006-231742@2x.png)
 
 
 
@@ -560,11 +560,11 @@ function(ctx, next) {
 
 也就是先调用了上面的匿名函数，这个匿名函数为`上下文对象`添加了一些属性
 
-![WX20191006-234337@2x](http://www.qinhanwen.xyz/WX20191006-234337@2x.png)
+![WX20191006-234337@2x](http://118.24.241.76/WX20191006-234337@2x.png)
 
 之后调用`next`方法，走到我们为访问`/list`添加的回调那里
 
-![WX20191006-234604@2x](http://www.qinhanwen.xyz/WX20191006-234604@2x.png)
+![WX20191006-234604@2x](http://118.24.241.76/WX20191006-234604@2x.png)
 
 
 
@@ -774,11 +774,11 @@ module.exports = function crossOrigin(options = {}) {
 
 - 当替换请求方法为`PUT`的时候，判断是`OPTIONS`请求的时候，会设置这个响应头
 
-![WX20191007-153846@2x](http://www.qinhanwen.xyz/WX20191007-153846@2x.png)
+![WX20191007-153846@2x](http://118.24.241.76/WX20191007-153846@2x.png)
 
 - 当添加请求头`name`属性的时候，会设置这个响应头
 
-![WX20191007-154107@2x](http://www.qinhanwen.xyz/WX20191007-154107@2x.png)
+![WX20191007-154107@2x](http://118.24.241.76/WX20191007-154107@2x.png)
 
 
 
@@ -817,24 +817,24 @@ async function bodyParser(ctx, next) {
 
 收到请求后根据不同的`content-type`调用不同的方法解析请求体，这边使用的是`application/x-www-form-urlencoded`
 
-![WX20191024-215420@2x](http://www.qinhanwen.xyz/WX20191024-215420@2x.png)
+![WX20191024-215420@2x](http://118.24.241.76/WX20191024-215420@2x.png)
 
 获取请求的`content-encoding`、`content-length`和编码方式`utf-8`
 
 - 先根据`contentn-encoding`的值判断是否需要解压，还是直接返回
 
-![WX20191028-095029@2x](http://www.qinhanwen.xyz/WX20191028-095029@2x.png)
+![WX20191028-095029@2x](http://118.24.241.76/WX20191028-095029@2x.png)
 
 - 根据编码方式，Buffer转字符串
 
-![WX20191028-095418@2x](http://www.qinhanwen.xyz/WX20191028-095418@2x.png)
+![WX20191028-095418@2x](http://118.24.241.76/WX20191028-095418@2x.png)
 
-![WX20191028-094333@2x](http://www.qinhanwen.xyz/WX20191028-094333@2x.png)
+![WX20191028-094333@2x](http://118.24.241.76/WX20191028-094333@2x.png)
 
 - 解析完成后返回str
 
-![WX20191028-093318@2x](http://www.qinhanwen.xyz/WX20191028-093318@2x.png)
+![WX20191028-093318@2x](http://118.24.241.76/WX20191028-093318@2x.png)
 
 最后挂载在ctx.request.body上
 
-![WX20191024-220208@2x](http://www.qinhanwen.xyz/WX20191024-220208@2x.png)
+![WX20191024-220208@2x](http://118.24.241.76/WX20191024-220208@2x.png)

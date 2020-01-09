@@ -34,7 +34,7 @@ $ vue create my-vue-app
 
 也就是`npm run dev`的时候，使用的打包配置文件是`webpack.dev.conf.js`，而在这个配置文件中又`merge`了`webpack.base.conf`的配置。
 
-![WX20190829-133807@2x](http://www.qinhanwen.xyz/WX20190829-133807@2x.png)
+![WX20190829-133807@2x](http://118.24.241.76/WX20190829-133807@2x.png)
 
 `resolve.alias`用于创建 `import` 或 `require` 的别名，来确保模块引入变得更简单，在这里的意思就是
 
@@ -46,7 +46,7 @@ import Vue from 'vue/dist/vue.esm.js';
 
 所以在`vue.esm.js`文件里的构造函数里打`debugger`
 
-![WX20190829-121037@2x](http://www.qinhanwen.xyz/WX20190829-121037@2x.png)
+![WX20190829-121037@2x](http://118.24.241.76/WX20190829-121037@2x.png)
 
 然后执行`npm run dev`，就可以断点调试了。
 
@@ -941,7 +941,7 @@ function insertBefore (parentNode, newNode, referenceNode) {
 
 ## new Vue之后发生的事情流程图
 
-![new-vue](http://www.qinhanwen.xyz/new-vue.png)
+![new-vue](http://118.24.241.76/new-vue.png)
 
 
 

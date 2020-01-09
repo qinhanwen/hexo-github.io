@@ -114,7 +114,7 @@ index.html
 
 打开页面的时候会看到报错，（uncaught SyntaxError: Unexpected identifier）意外的标识符，浏览器不认识ES模块引入和导出的方式。
 
-![WX20190625-200220@2x](http://www.qinhanwen.xyz/WX20190625-200220@2x.png)
+![WX20190625-200220@2x](http://118.24.241.76/WX20190625-200220@2x.png)
 
 
 
@@ -144,7 +144,7 @@ $ npx webpack index.js
 
 在index.html页面中引入dist/main.js
 
-![WX20190625-220157@2x](http://www.qinhanwen.xyz/WX20190625-220157@2x.png)
+![WX20190625-220157@2x](http://118.24.241.76/WX20190625-220157@2x.png)
 
 
 
@@ -188,7 +188,7 @@ $ npm webpack index.js
 
 打开页面
 
-![WX20190625-222729@2x](http://www.qinhanwen.xyz/WX20190625-222729@2x.png)
+![WX20190625-222729@2x](http://118.24.241.76/WX20190625-222729@2x.png)
 
 
 

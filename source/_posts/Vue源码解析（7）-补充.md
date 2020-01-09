@@ -71,7 +71,7 @@ export default {
 
 从` var code = ast ? genElement(ast, state) : '_c("div")';`开始，先看生成的`ast`，进入`genElement`方法
 
-![WX20190906-230735@2x](http://www.qinhanwen.xyz/WX20190906-230735@2x.png)
+![WX20190906-230735@2x](http://118.24.241.76/WX20190906-230735@2x.png)
 
 ```javascript
 function generate (
@@ -179,7 +179,7 @@ function genNode (node, state) {
 
 又进到`genElement`
 
-![WX20190906-232213@2x](http://www.qinhanwen.xyz/WX20190906-232213@2x.png)
+![WX20190906-232213@2x](http://118.24.241.76/WX20190906-232213@2x.png)
 
 这次走到了`genData$2`
 
@@ -278,29 +278,29 @@ function genData$2 (el, state) {
 
 看一下生成`vnode`调用`render`方法的时候，发现`App`是个`component`，不是普通的HTML标签，所以创建组件`vnode`，下面是创建组件`vnode`的过程：
 
-![WX20190907-125550@2x](http://www.qinhanwen.xyz/WX20190907-125550@2x.png)
+![WX20190907-125550@2x](http://118.24.241.76/WX20190907-125550@2x.png)
 
-![WX20190907-125619@2x](http://www.qinhanwen.xyz/WX20190907-125619@2x.png)
+![WX20190907-125619@2x](http://118.24.241.76/WX20190907-125619@2x.png)
 
 变量`lsteners`保存了`data.on`，并将`data.on`指向`data.nativeOn`，然后为组件安装声明周期钩子函数
 
-![WX20190907-133025@2x](http://www.qinhanwen.xyz/WX20190907-133025@2x.png)
+![WX20190907-133025@2x](http://118.24.241.76/WX20190907-133025@2x.png)
 
 之后创建组件`vnode`，这就是生成的组件`vnode`
 
-![WX20190907-133856@2x](http://www.qinhanwen.xyz/WX20190907-133856@2x.png)
+![WX20190907-133856@2x](http://118.24.241.76/WX20190907-133856@2x.png)
 
 
 
 进入`update`方法，首先是创建`div`占位符，然后遍历`children`，创建子节点，就看一下创建组件`App`的过程，在`createComponent`的时候，会调用子组件的`init`钩子方法
 
-![WX20190907-145809@2x](http://www.qinhanwen.xyz/WX20190907-145809@2x.png)
+![WX20190907-145809@2x](http://118.24.241.76/WX20190907-145809@2x.png)
 
 最后调用`child.$mount`挂载子组件，在挂载子组件过程中，会先生成子组件`vnode`，之后再挂载。
 
 挂载之前会为元素添加事件了
 
-![WX20190907-151133@2x](http://www.qinhanwen.xyz/WX20190907-151133@2x.png)
+![WX20190907-151133@2x](http://118.24.241.76/WX20190907-151133@2x.png)
 
 进入`invokeCreateHooks`方法
 
@@ -317,7 +317,7 @@ function genData$2 (el, state) {
   }
 ```
 
-![WX20190907-151217@2x](http://www.qinhanwen.xyz/WX20190907-151217@2x.png)
+![WX20190907-151217@2x](http://118.24.241.76/WX20190907-151217@2x.png)
 
 进入`updateDOMListeners`方法
 
@@ -335,7 +335,7 @@ function updateDOMListeners (oldVnode, vnode) {
 }
 ```
 
-![WX20190907-151354@2x](http://www.qinhanwen.xyz/WX20190907-151354@2x.png)
+![WX20190907-151354@2x](http://118.24.241.76/WX20190907-151354@2x.png)
 
 进入`updateListeners`方法
 
@@ -380,7 +380,7 @@ function updateListeners (
 }
 ```
 
-![WX20190907-151541@2x](http://www.qinhanwen.xyz/WX20190907-151541@2x.png)
+![WX20190907-151541@2x](http://118.24.241.76/WX20190907-151541@2x.png)
 
 进入`add`方法
 
@@ -437,7 +437,7 @@ function add$1 (
 
 点击一下触发点击事件
 
-![WX20190907-165247@2x](http://www.qinhanwen.xyz/WX20190907-165247@2x.png)
+![WX20190907-165247@2x](http://118.24.241.76/WX20190907-165247@2x.png)
 
 走进`original.apply(this,arguments)`
 
@@ -486,11 +486,11 @@ function invokeWithErrorHandling (
 
 走进` handler.apply(context, args)`
 
-![WX20190907-165937@2x](http://www.qinhanwen.xyz/WX20190907-165937@2x.png)
+![WX20190907-165937@2x](http://118.24.241.76/WX20190907-165937@2x.png)
 
 触发`App`组件的`click`事件，不过触发之前，先回从`_vm`上取`clickHandler`，所以走到了`get`
 
-![WX20190907-170314@2x](http://www.qinhanwen.xyz/WX20190907-170314@2x.png)
+![WX20190907-170314@2x](http://118.24.241.76/WX20190907-170314@2x.png)
 
 这里补充一下`initMethods`方法吧，在初始化调用`initState`的时候会走进`initMethods`方法
 
@@ -536,7 +536,7 @@ function nativeBind (fn, ctx) {
 
 继续说触发了`App`组件`click`方法
 
-![WX20190907-171130@2x](http://www.qinhanwen.xyz/WX20190907-171130@2x.png)
+![WX20190907-171130@2x](http://118.24.241.76/WX20190907-171130@2x.png)
 
 先打印出`Button clicked,xxxxxx`，之后调用`this.$emit`
 
@@ -586,11 +586,11 @@ function initEvents (vm) {
 
 接着就是调用`selectHandler`方法
 
-![WX20190907-222530@2x](http://www.qinhanwen.xyz/WX20190907-222530@2x.png)
+![WX20190907-222530@2x](http://118.24.241.76/WX20190907-222530@2x.png)
 
 然后冒泡，触发
 
-![WX20190907-222753@2x](http://www.qinhanwen.xyz/WX20190907-222753@2x.png)
+![WX20190907-222753@2x](http://118.24.241.76/WX20190907-222753@2x.png)
 
 
 
@@ -647,15 +647,15 @@ var createCompiler = createCompilerCreator(function baseCompile (
 
 一直往下走，这是调用栈
 
-![WX20190906-151714@2x](http://www.qinhanwen.xyz/WX20190906-151714@2x.png)
+![WX20190906-151714@2x](http://118.24.241.76/WX20190906-151714@2x.png)
 
 当`el`是`input`的时候
 
-![WX20190906-151816@2x](http://www.qinhanwen.xyz/WX20190906-151816@2x.png)
+![WX20190906-151816@2x](http://118.24.241.76/WX20190906-151816@2x.png)
 
 走进`genData$2`
 
-![WX20190906-152105@2x](http://www.qinhanwen.xyz/WX20190906-152105@2x.png)
+![WX20190906-152105@2x](http://118.24.241.76/WX20190906-152105@2x.png)
 
 ```javascript
 function genData$2 (el, state) {
@@ -893,13 +893,13 @@ function genDefaultModel (
 
 其中的这两个方法，给 `el` 添加一个 `prop`，相当于我们在 `input` 上动态绑定了 `value`，又给 `el` 添加了事件处理，相当于在 `input` 上绑定了 `input` 事件
 
-![WX20190906-161250@2x](http://www.qinhanwen.xyz/WX20190906-161250@2x.png)
+![WX20190906-161250@2x](http://118.24.241.76/WX20190906-161250@2x.png)
 
 
 
 然后上面`  var dirs = genDirectives(el, state);`返回的`dirs`就是这样的
 
-![WX20190906-161533@2x](http://www.qinhanwen.xyz/WX20190906-161533@2x.png)
+![WX20190906-161533@2x](http://118.24.241.76/WX20190906-161533@2x.png)
 
 
 
@@ -913,7 +913,7 @@ function genDefaultModel (
 
 往后走到调用`render`方法的地方
 
-![WX20190906-165558@2x](http://www.qinhanwen.xyz/WX20190906-165558@2x.png)
+![WX20190906-165558@2x](http://118.24.241.76/WX20190906-165558@2x.png)
 
 顺便补充一下这个`vm._renderProxy`，其实就是`new Proxy(vm,handlers)`返回的实例
 
@@ -934,17 +934,17 @@ function genDefaultModel (
 
 这个是`input`生成的`vnode`
 
-![WX20190906-171617@2x](http://www.qinhanwen.xyz/WX20190906-171617@2x.png)
+![WX20190906-171617@2x](http://118.24.241.76/WX20190906-171617@2x.png)
 
 走进去`update`方法看下`patch`阶段做了什么，进入`createElm`方法里的`createChildren`方法（这里是创建的是`div`标签的`children`）
 
-![WX20190906-174914@2x](http://www.qinhanwen.xyz/WX20190906-174914@2x.png)
+![WX20190906-174914@2x](http://118.24.241.76/WX20190906-174914@2x.png)
 
-![WX20190906-172113@2x](http://www.qinhanwen.xyz/WX20190906-172113@2x.png)
+![WX20190906-172113@2x](http://118.24.241.76/WX20190906-172113@2x.png)
 
 又会走到`createElm`，这里是`input`标签的了
 
-![WX20190906-175418@2x](http://www.qinhanwen.xyz/WX20190906-175418@2x.png)
+![WX20190906-175418@2x](http://118.24.241.76/WX20190906-175418@2x.png)
 
 进入`invokeCreateHooks`方法
 
@@ -961,7 +961,7 @@ function genDefaultModel (
   }
 ```
 
-![WX20190906-180033@2x](http://www.qinhanwen.xyz/WX20190906-180033@2x.png)
+![WX20190906-180033@2x](http://118.24.241.76/WX20190906-180033@2x.png)
 
 `updateDOMListeners`方法
 
@@ -1058,15 +1058,15 @@ function add$1 (
 
 在这里添加绑定事件
 
-![WX20190906-185324@2x](http://www.qinhanwen.xyz/WX20190906-185324@2x.png)
+![WX20190906-185324@2x](http://118.24.241.76/WX20190906-185324@2x.png)
 
 
 
 触发一下绑定`input`事件
 
-![WX20190906-185653@2x](http://www.qinhanwen.xyz/WX20190906-185653@2x.png)
+![WX20190906-185653@2x](http://118.24.241.76/WX20190906-185653@2x.png)
 
-![WX20190906-185841@2x](http://www.qinhanwen.xyz/WX20190906-185841@2x.png)
+![WX20190906-185841@2x](http://118.24.241.76/WX20190906-185841@2x.png)
 
 就是调用
 
@@ -1076,7 +1076,7 @@ function($event){if($event.target.composing)return;message=$event.target.value}
 
 然后又触发`setter`
 
-![WX20190906-190059@2x](http://www.qinhanwen.xyz/WX20190906-190059@2x.png)
+![WX20190906-190059@2x](http://118.24.241.76/WX20190906-190059@2x.png)
 
 后面就不写了
 
@@ -1086,7 +1086,7 @@ function($event){if($event.target.composing)return;message=$event.target.value}
 
 1）在模板解析，生成`render`方法的时候，为`input`的`el`先添加了`events`属性，之后又判断有`events`属性的话，生成的`data`做字符串拼接(最后拼接到`render`方法里的字符串)
 
-![WX20190907-123004@2x](http://www.qinhanwen.xyz/WX20190907-123004@2x.png)
+![WX20190907-123004@2x](http://118.24.241.76/WX20190907-123004@2x.png)
 
 2）在调用`render`方法生成`vnode`以后，在`update`的`patch`阶段，为DOM元素增加事件
 
@@ -1122,31 +1122,31 @@ Proxy不仅可以代理对象，还可以代理数组。还可以代理动态增
 
 在子组件做`mergeOptions`的时候
 
-![WX20190908-233124@2x](http://www.qinhanwen.xyz/WX20190908-233124@2x.png)
+![WX20190908-233124@2x](http://118.24.241.76/WX20190908-233124@2x.png)
 
 如果`childVal`不是`function`类型就会提示
 
-![WX20190908-233206@2x](http://www.qinhanwen.xyz/WX20190908-233206@2x.png)
+![WX20190908-233206@2x](http://118.24.241.76/WX20190908-233206@2x.png)
 
 因为：
 
 在组件创建实例做参数合并的时候，看一下`data`，合并参数后返回的是这个方法，其中的`childVal`是`new Vue(options)`，中的`options`中`data`的引用地址
 
-![WX20190908-234713@2x](http://www.qinhanwen.xyz/WX20190908-234713@2x.png)
+![WX20190908-234713@2x](http://118.24.241.76/WX20190908-234713@2x.png)
 
 然后在`initData`的时候，获取`data`
 
-![WX20190908-234921@2x](http://www.qinhanwen.xyz/WX20190908-234921@2x.png)
+![WX20190908-234921@2x](http://118.24.241.76/WX20190908-234921@2x.png)
 
 然后我去修改`data`的值
 
-![WX20190908-235121@2x](http://www.qinhanwen.xyz/WX20190908-235121@2x.png)
+![WX20190908-235121@2x](http://118.24.241.76/WX20190908-235121@2x.png)
 
 
 
 然后看下`new Vue(options)`
 
-![WX20190908-235121@2x](http://www.qinhanwen.xyz/WX20190908-235121@2x.png)
+![WX20190908-235121@2x](http://118.24.241.76/WX20190908-235121@2x.png)
 
 
 
@@ -1213,21 +1213,21 @@ export default {
 
 1）父组件初始化的时候，`initState`的时候，`childEmitHandler`强绑定`this`后挂载到`vm`实例上，在`update`阶段的时候为元素添加事件
 
-![WX20190909-082624@2x](http://www.qinhanwen.xyz/WX20190909-082624@2x.png)
+![WX20190909-082624@2x](http://118.24.241.76/WX20190909-082624@2x.png)
 
 2）子组件初始化的时候，`initEvents`的时候，添加自定义事件进`vm._events`对象
 
-![WX20190909-084215@2x](http://www.qinhanwen.xyz/WX20190909-084215@2x.png)
+![WX20190909-084215@2x](http://118.24.241.76/WX20190909-084215@2x.png)
 
-![WX20190909-002952@2x](http://www.qinhanwen.xyz/WX20190909-002952@2x.png)
+![WX20190909-002952@2x](http://118.24.241.76/WX20190909-002952@2x.png)
 
 然后`initState`的时候`clickHandler`绑定`this`后挂载在实例上，在`update`阶段的时候为元素添加事件。
 
 3）触发子组件点击事件，调用`$emit`方法通知调用自定义事件，遍历`vm._events[event]`，调用每一项的方法调用
 
-![WX20190909-084428@2x](http://www.qinhanwen.xyz/WX20190909-084428@2x.png)
+![WX20190909-084428@2x](http://118.24.241.76/WX20190909-084428@2x.png)
 
-![WX20190909-084607@2x](http://www.qinhanwen.xyz/WX20190909-084607@2x.png)
+![WX20190909-084607@2x](http://118.24.241.76/WX20190909-084607@2x.png)
 
 并且得知，事件是可以绑定多个方法的
 
@@ -1285,15 +1285,15 @@ new Vue({
 
 当没有key的时候（`key`是`undefined`），`sameVnode(oldStartVnode, newStartVnode)`方法的返回值为`true`，选择复用之前的`DOM`结构，也就是`DOM`元素不变，去改变它的`children`（当前这个元素是第一个`li`元素）
 
-![WX20190909-101749@2x](http://www.qinhanwen.xyz/WX20190909-101749@2x.png)
+![WX20190909-101749@2x](http://118.24.241.76/WX20190909-101749@2x.png)
 
 当前元素的`children`的值更新了
 
-![WX20190909-102602@2x](http://www.qinhanwen.xyz/WX20190909-102602@2x.png)
+![WX20190909-102602@2x](http://118.24.241.76/WX20190909-102602@2x.png)
 
 之后再改变另外一个`li`元素的`children`
 
-![WX20190909-103118@2x](http://www.qinhanwen.xyz/WX20190909-103118@2x.png)
+![WX20190909-103118@2x](http://118.24.241.76/WX20190909-103118@2x.png)
 
 
 
@@ -1336,11 +1336,11 @@ new Vue({
 
 这时候因为有`key`，所以`sameVnode(oldStartVnode, newStartVnode)`方法返回值为`false`
 
-![WX20190909-103558@2x](http://www.qinhanwen.xyz/WX20190909-103558@2x.png)
+![WX20190909-103558@2x](http://118.24.241.76/WX20190909-103558@2x.png)
 
 所以走进了另外一个处理分支，`sameVnode(oldStartVnode, newEndVnode)`返回为`true`，把现有元素通过`insertBefore`移动到前面
 
-![WX20190909-104124@2x](http://www.qinhanwen.xyz/WX20190909-104124@2x.png)
+![WX20190909-104124@2x](http://118.24.241.76/WX20190909-104124@2x.png)
 
 
 
@@ -1406,11 +1406,11 @@ new Vue({
 
 - 第二个`li`被重新渲染
 
-  ![WX20190909-125426@2x](http://www.qinhanwen.xyz/WX20190909-125426@2x.png)
+  ![WX20190909-125426@2x](http://118.24.241.76/WX20190909-125426@2x.png)
 
 - 第三个`li`被重新渲染
 
-  ![WX20190909-125530@2x](http://www.qinhanwen.xyz/WX20190909-125530@2x.png)
+  ![WX20190909-125530@2x](http://118.24.241.76/WX20190909-125530@2x.png)
 
 - 第四个`li`被移除
 
@@ -1466,11 +1466,11 @@ new Vue({
 
 - 第四个`li`的更新内容
 
-  ![WX20190909-130108@2x](http://www.qinhanwen.xyz/WX20190909-130108@2x.png)
+  ![WX20190909-130108@2x](http://118.24.241.76/WX20190909-130108@2x.png)
 
 - 第三个`li`更新内容
 
-  ![WX20190909-130256@2x](http://www.qinhanwen.xyz/WX20190909-130256@2x.png)
+  ![WX20190909-130256@2x](http://118.24.241.76/WX20190909-130256@2x.png)
 
 - 移除第二个`li`
 
@@ -1496,15 +1496,15 @@ new Vue({
 
 `Vue.use(VueRouter)`后，在执行`install`方法的时候，除了安装了两个生命周期函数和全局组件，还为`vm.$router`和`vm.$route`添加了`get`
 
-![WX20190909-221338@2x](http://www.qinhanwen.xyz/WX20190909-221338@2x.png)
+![WX20190909-221338@2x](http://118.24.241.76/WX20190909-221338@2x.png)
 
 在`new VueRouter({routes})`的时候，创建路由注册表，下面是创建的实例
 
-![WX20190909-222713@2x](http://www.qinhanwen.xyz/WX20190909-222713@2x.png)
+![WX20190909-222713@2x](http://118.24.241.76/WX20190909-222713@2x.png)
 
 它的`__proto__`属性：
 
-![WX20190909-225609@2x](http://www.qinhanwen.xyz/WX20190909-225609@2x.png)
+![WX20190909-225609@2x](http://118.24.241.76/WX20190909-225609@2x.png)
 
 
 
@@ -1512,17 +1512,17 @@ new Vue({
 
 `$router`就是`VueRouter`的实例
 
-![WX20190909-224918@2x](http://www.qinhanwen.xyz/WX20190909-224918@2x.png)
+![WX20190909-224918@2x](http://118.24.241.76/WX20190909-224918@2x.png)
 
 监听路由变化
 
-![WX20190909-224041@2x](http://www.qinhanwen.xyz/WX20190909-224041@2x.png)
+![WX20190909-224041@2x](http://118.24.241.76/WX20190909-224041@2x.png)
 
 然后`$route`在这里赋值
 
-![WX20190909-225316@2x](http://www.qinhanwen.xyz/WX20190909-225316@2x.png)
+![WX20190909-225316@2x](http://118.24.241.76/WX20190909-225316@2x.png)
 
-![WX20190909-225405@2x](http://www.qinhanwen.xyz/WX20190909-225405@2x.png)
+![WX20190909-225405@2x](http://118.24.241.76/WX20190909-225405@2x.png)
 
 
 
@@ -1592,13 +1592,13 @@ with(this){return _c('App',[_c('p',{attrs:{"slot":"content"},slot:"content"},[_v
 
 因为`App`是个组件，所以开始创建组件，进入组件`init`，在`initInternalComponent`的时候，拿到`App`组件`vnode`里的`子vnode`，就是那个`p`标签的`vnode`
 
-![WX20190910-210255@2x](http://www.qinhanwen.xyz/WX20190910-210255@2x.png)
+![WX20190910-210255@2x](http://118.24.241.76/WX20190910-210255@2x.png)
 
 
 
 在`initRender`的时候为子组件`vm`添加`$slots`属性
 
-![WX20190910-204120@2x](http://www.qinhanwen.xyz/WX20190910-204120@2x.png)
+![WX20190910-204120@2x](http://118.24.241.76/WX20190910-204120@2x.png)
 
 
 
@@ -1620,7 +1620,7 @@ with(this){return _c('App',[_c('p',{attrs:{"slot":"content"},slot:"content"},[_v
     }
 ```
 
-![WX20190910-205350@2x](http://www.qinhanwen.xyz/WX20190910-205350@2x.png)
+![WX20190910-205350@2x](http://118.24.241.76/WX20190910-205350@2x.png)
 
 生成`vnode`
 
@@ -1675,7 +1675,7 @@ function renderSlot (
 
 返回的`nodes`就是这个，就是那个`p`标签的`vnode`
 
-![WX20190910-212407@2x](http://www.qinhanwen.xyz/WX20190910-212407@2x.png)
+![WX20190910-212407@2x](http://118.24.241.76/WX20190910-212407@2x.png)
 
 然后调用`_c`，就是`_createElement`方法，最后生成的`vnode`大概是这样的
 
@@ -2147,7 +2147,7 @@ with(this){return _c('div',[_c('button',{on:{"click":function($event){return cha
 
 生成`keep-alive`组件的`vnode`的时候，`render`函数就是`keep-alive`组件的`render`函数
 
-![微信截图_20190927223928](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190927223928.png)
+![微信截图_20190927223928](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190927223928.png)
 
 ```javascript
   render: function render () {
@@ -2203,7 +2203,7 @@ with(this){return _c('div',[_c('button',{on:{"click":function($event){return cha
 
 点击添加按钮，并且切换视图两次，触发派发更新
 
-![微信截图_20190928191902](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928191902.png)
+![微信截图_20190928191902](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928191902.png)
 
 走进更新视图的`patch`，会走进`prepatch`方法
 
@@ -2302,11 +2302,11 @@ function updateChildComponent (
 
 调用`vm.$forceUpdate`，为`queue`新增了一个`wathcer`
 
-![微信截图_20190928101915](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928101915.png)
+![微信截图_20190928101915](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928101915.png)
 
 之后调用新增这个`wathcer`的`run`方法(最后就是`  vm._update(vm._render(), hydrating);`)，在生成`vnode`的时候，从`cache`中取出缓存的`vnode`
 
-![微信截图_20190928185150](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928185150.png)
+![微信截图_20190928185150](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928185150.png)
 
 之后调用`update`更新视图，这次走的不是新增的流程，而是比较的
 
@@ -2368,17 +2368,17 @@ insert(parentElm, vnode.elm, refElm);
 
 把缓存的`dom`结构插入到了插槽中
 
-![微信截图_20190928192812](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928192812.png)
+![微信截图_20190928192812](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928192812.png)
 
 之后再移除旧的节点
 
-![微信截图_20190928193001](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928193001.png)
+![微信截图_20190928193001](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190928193001.png)
 
 
 
 看一下`componentInstance`在什么时候添加的
 
-![微信截图_20190929010011](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190929010011.png)
+![微信截图_20190929010011](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190929010011.png)
 
 看一下`createComponentInstanceForVnode`
 
@@ -2441,7 +2441,7 @@ new Vue({
 
 
 
-![微信截图_20190929235816](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190929235816.png)
+![微信截图_20190929235816](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190929235816.png)
 
 看一下`updateDirectives`方法，其实就是遍历`directives`，调用`_update`
 
@@ -2520,7 +2520,7 @@ function _update (oldVnode, vnode) {
 
 在这里调用`bind`钩子，其实就是调用`directive`传入的函数
 
-![微信截图_20190930000934](http://www.qinhanwen.xyz/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190930000934.png)
+![微信截图_20190930000934](http://118.24.241.76/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20190930000934.png)
 
 
 
@@ -2530,19 +2530,19 @@ function _update (oldVnode, vnode) {
 
 在`patch`阶段
 
-![WX20191007-130322@2x](http://www.qinhanwen.xyz/WX20191007-130322@2x.png)
+![WX20191007-130322@2x](http://118.24.241.76/WX20191007-130322@2x.png)
 
 
 
-![WX20191007-130349@2x](http://www.qinhanwen.xyz/WX20191007-130349@2x.png)
+![WX20191007-130349@2x](http://118.24.241.76/WX20191007-130349@2x.png)
 
 
 
-![WX20191007-130403@2x](http://www.qinhanwen.xyz/WX20191007-130403@2x.png)
+![WX20191007-130403@2x](http://118.24.241.76/WX20191007-130403@2x.png)
 
 
 
-![WX20191007-130428@2x](http://www.qinhanwen.xyz/WX20191007-130428@2x.png)
+![WX20191007-130428@2x](http://118.24.241.76/WX20191007-130428@2x.png)
 
 
 
@@ -2616,11 +2616,11 @@ function registerRef (vnode, isRemoval) {
   }
 ```
 
-![WX20191024-000600@2x](http://www.qinhanwen.xyz/WX20191024-000600@2x.png)
+![WX20191024-000600@2x](http://118.24.241.76/WX20191024-000600@2x.png)
 
-![WX20191024-000626@2x](http://www.qinhanwen.xyz/WX20191024-000626@2x.png)
+![WX20191024-000626@2x](http://118.24.241.76/WX20191024-000626@2x.png)
 
-![WX20191024-000744@2x](http://www.qinhanwen.xyz/WX20191024-000744@2x.png)
+![WX20191024-000744@2x](http://118.24.241.76/WX20191024-000744@2x.png)
 
 
 

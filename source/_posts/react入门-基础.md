@@ -167,7 +167,7 @@ class App extends Component {
 export default App;
 ```
 
-![WX20190324-153910@2x](http://www.qinhanwen.xyz/WX20190324-153910@2x.png)
+![WX20190324-153910@2x](http://118.24.241.76/WX20190324-153910@2x.png)
 
 方式二：使用ReactDom.render()
 
@@ -213,7 +213,7 @@ class PostListItem extends Component{
 export default PostListItem;
 ```
 
-![WX20190324-174124@2x](http://www.qinhanwen.xyz/WX20190324-174124@2x.png)
+![WX20190324-174124@2x](http://118.24.241.76/WX20190324-174124@2x.png)
 
 #### state
 
@@ -312,7 +312,7 @@ postListItem.css
 }
 ```
 
-![WX20190325-234559@2x](http://www.qinhanwen.xyz/WX20190325-234559@2x.png)
+![WX20190325-234559@2x](http://118.24.241.76/WX20190325-234559@2x.png)
 
 方式二：在使用组件的HTML页面通过link标签引入
 
@@ -360,7 +360,7 @@ class PostListItem extends Component {
 export default PostListItem;
 ```
 
-![WX20190325-235727@2x](http://www.qinhanwen.xyz/WX20190325-235727@2x.png)
+![WX20190325-235727@2x](http://118.24.241.76/WX20190325-235727@2x.png)
 
 
 
@@ -460,7 +460,7 @@ export default PostList;
 
 列表数据渲染，如果没有添加key，就会有警告提示。
 
-![WX20190326-224147@2x](http://www.qinhanwen.xyz/WX20190326-224147@2x.png)
+![WX20190326-224147@2x](http://118.24.241.76/WX20190326-224147@2x.png)
 
 当列表数据变化的时候，React通过key知道哪些元素变化，并且只重新渲染变化的元素。
 

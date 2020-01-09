@@ -27,19 +27,19 @@ $ npm install @ionic-native/camera --save
 
 将插件引入`app.module.ts`文件的providers中。
 
-![WX20190814-204936@2x](http://www.qinhanwen.xyz/WX20190814-204936@2x.png)
+![WX20190814-204936@2x](http://118.24.241.76/WX20190814-204936@2x.png)
 
 
 
 业务模块内导入
 
-![WX20190814-205237@2x](http://www.qinhanwen.xyz/WX20190814-205237@2x.png)
+![WX20190814-205237@2x](http://118.24.241.76/WX20190814-205237@2x.png)
 
 
 
 页面
 
-![WX20190814-205308@2x](http://www.qinhanwen.xyz/WX20190814-205308@2x.png)
+![WX20190814-205308@2x](http://118.24.241.76/WX20190814-205308@2x.png)
 
 这边安装的@ionic-native与@ionic-native版本都是4.14.0
 
@@ -72,7 +72,7 @@ $ brew install ios-deploy
 
 第二个问题
 
-![WX20190814-205910@2x](http://www.qinhanwen.xyz/WX20190814-205910@2x.png)
+![WX20190814-205910@2x](http://118.24.241.76/WX20190814-205910@2x.png)
 
 打包失败，没有证书，打开xcode，打开`platforms/ios/MyApp.codeproj`，配置证书，继续打包。
 
@@ -282,23 +282,23 @@ export function Cordova(opts: CordovaOptions = {}) {
 
 触发点击事件
 
-![WX20191030-212013@2x](http://www.qinhanwen.xyz/WX20191030-212013@2x.png)
+![WX20191030-212013@2x](http://118.24.241.76/WX20191030-212013@2x.png)
 
 获取插件实例
 
-![WX20191030-220527@2x](http://www.qinhanwen.xyz/WX20191030-220527@2x.png)
+![WX20191030-220527@2x](http://118.24.241.76/WX20191030-220527@2x.png)
 
-![WX20191030-220613@2x](http://www.qinhanwen.xyz/WX20191030-220613@2x.png)
+![WX20191030-220613@2x](http://118.24.241.76/WX20191030-220613@2x.png)
 
 调用实例方法
 
-![WX20191030-220841@2x](http://www.qinhanwen.xyz/WX20191030-220841@2x.png)
+![WX20191030-220841@2x](http://118.24.241.76/WX20191030-220841@2x.png)
 
-![WX20191030-220713@2x](http://www.qinhanwen.xyz/WX20191030-220713@2x.png)
+![WX20191030-220713@2x](http://118.24.241.76/WX20191030-220713@2x.png)
 
 postMessage通信
 
-![WX20191030-221034@2x](http://www.qinhanwen.xyz/WX20191030-221034@2x.png)
+![WX20191030-221034@2x](http://118.24.241.76/WX20191030-221034@2x.png)
 
 
 

@@ -85,7 +85,7 @@ export default store;
 
 从`Vue.use(Vuex)`开始，首先`Vuex`是一个对象
 
-![WX20191003-191819@2x](http://www.qinhanwen.xyz/WX20191003-191819@2x.png)
+![WX20191003-191819@2x](http://118.24.241.76/WX20191003-191819@2x.png)
 
 与路由插件一样，都会先执行插件的`install`方法
 
@@ -237,7 +237,7 @@ var Store = function Store (options) {
  this._modules = new ModuleCollection(options);
 ```
 
-![WX20191003-194046@2x](http://www.qinhanwen.xyz/WX20191003-194046@2x.png)
+![WX20191003-194046@2x](http://118.24.241.76/WX20191003-194046@2x.png)
 
 看一下`ModuleCollection`构造函数
 
@@ -291,7 +291,7 @@ ModuleCollection.prototype.register = function register (path, rawModule, runtim
 
 这里调用`this.register([], rawRootModule, false);`，之后通过`new Module(rawModule, runtime)`创建实例
 
-![WX20191003-194829@2x](http://www.qinhanwen.xyz/WX20191003-194829@2x.png)
+![WX20191003-194829@2x](http://118.24.241.76/WX20191003-194829@2x.png)
 
 看一下`Module`构造函数
 
@@ -309,17 +309,17 @@ var Module = function Module (rawModule, runtime) {
 };
 ```
 
-![WX20191003-195156@2x](http://www.qinhanwen.xyz/WX20191003-195156@2x.png)
+![WX20191003-195156@2x](http://118.24.241.76/WX20191003-195156@2x.png)
 
 之后把`newModule` 赋值给了 `this.root`
 
-![WX20191003-195627@2x](http://www.qinhanwen.xyz/WX20191003-195627@2x.png)
+![WX20191003-195627@2x](http://118.24.241.76/WX20191003-195627@2x.png)
 
 
 
 **2）安装模块**
 
-![WX20191003-200357@2x](http://www.qinhanwen.xyz/WX20191003-200357@2x.png)
+![WX20191003-200357@2x](http://118.24.241.76/WX20191003-200357@2x.png)
 
 看下`installModule`方法
 
@@ -407,13 +407,13 @@ function registerGetter (store, type, rawGetter, local) {
 
 最后添加到`store._wrappedGetters`上，也就是`root store`上
 
-![WX20191003-201815@2x](http://www.qinhanwen.xyz/WX20191003-201815@2x.png)
+![WX20191003-201815@2x](http://118.24.241.76/WX20191003-201815@2x.png)
 
 
 
 **3）初始化 `store._vm`**
 
-![WX20191004-163503@2x](http://www.qinhanwen.xyz/WX20191004-163503@2x.png)
+![WX20191004-163503@2x](http://118.24.241.76/WX20191004-163503@2x.png)
 
 看一下`resetStoreVM`
 
@@ -469,13 +469,13 @@ function resetStoreVM (store, state, hot) {
 
 在这里遍历`store._wrappedGetters`，之后为`store.getters`添加属性描述符
 
-![WX20191004-164945@2x](http://www.qinhanwen.xyz/WX20191004-164945@2x.png)
+![WX20191004-164945@2x](http://118.24.241.76/WX20191004-164945@2x.png)
 
 也就是访问`store.getters`上的属性的时候，其实访问的是`store._vm`上的属性
 
 在下面实例化的`store._vm`属性
 
-![WX20191004-165500@2x](http://www.qinhanwen.xyz/WX20191004-165500@2x.png)
+![WX20191004-165500@2x](http://118.24.241.76/WX20191004-165500@2x.png)
 
 这边调用`new Vue`，传入`computed`属性，走初始化计算属性`watcher`的流程，也传入了`data`属性
 
@@ -530,7 +530,7 @@ new Vue({
   }
 ```
 
-![WX20191004-195758@2x](http://www.qinhanwen.xyz/WX20191004-195758@2x.png)
+![WX20191004-195758@2x](http://118.24.241.76/WX20191004-195758@2x.png)
 
 前提是创建`vm`实例的时候，参数传入了`store`
 
@@ -540,15 +540,15 @@ new Vue({
 
 执行到`render`生成`vnode`的时候，会调用计算属性的回调获取`count`
 
-![WX20191004-200604@2x](http://www.qinhanwen.xyz/WX20191004-200604@2x.png)
+![WX20191004-200604@2x](http://118.24.241.76/WX20191004-200604@2x.png)
 
 触发`state`的`get`
 
-![WX20191004-200642@2x](http://www.qinhanwen.xyz/WX20191004-200642@2x.png)
+![WX20191004-200642@2x](http://118.24.241.76/WX20191004-200642@2x.png)
 
 又触发`count`的`get`，拿到`count`的值
 
-![WX20191004-201404@2x](http://www.qinhanwen.xyz/WX20191004-201404@2x.png)
+![WX20191004-201404@2x](http://118.24.241.76/WX20191004-201404@2x.png)
 
 也就是在这个阶段完成依赖收集
 
@@ -566,47 +566,47 @@ new Vue({
 
 2）第二个获取`getters.getCount`，在前面`resetStoreVM`的时候，为属性添加的`get`描述符被触发
 
-![WX20191004-201820@2x](http://www.qinhanwen.xyz/WX20191004-201820@2x.png)
+![WX20191004-201820@2x](http://118.24.241.76/WX20191004-201820@2x.png)
 
 其实就是触发计算属性`watcher`的`get`方法（这个计算属性`watcher`是在上面创建`store._vm`实例时候创建的），最后调用到`getCount`方法，右边是调用栈
 
-![WX20191004-202730@2x](http://www.qinhanwen.xyz/WX20191004-202730@2x.png)
+![WX20191004-202730@2x](http://118.24.241.76/WX20191004-202730@2x.png)
 
 3）`this.$store.dispatch('incrementAction');`
 
-![WX20191004-205047@2x](http://www.qinhanwen.xyz/WX20191004-205047@2x.png)
+![WX20191004-205047@2x](http://118.24.241.76/WX20191004-205047@2x.png)
 
 
 
-![WX20191004-205159@2x](http://www.qinhanwen.xyz/WX20191004-205159@2x.png)
+![WX20191004-205159@2x](http://118.24.241.76/WX20191004-205159@2x.png)
 
 
 
-![WX20191004-205318@2x](http://www.qinhanwen.xyz/WX20191004-205318@2x.png)
+![WX20191004-205318@2x](http://118.24.241.76/WX20191004-205318@2x.png)
 
 
 
-![WX20191004-205428@2x](http://www.qinhanwen.xyz/WX20191004-205428@2x.png)
+![WX20191004-205428@2x](http://118.24.241.76/WX20191004-205428@2x.png)
 
 
 
-![WX20191004-205446@2x](http://www.qinhanwen.xyz/WX20191004-205446@2x.png)
+![WX20191004-205446@2x](http://118.24.241.76/WX20191004-205446@2x.png)
 
 
 
-![WX20191004-205531@2x](http://www.qinhanwen.xyz/WX20191004-205531@2x.png)
+![WX20191004-205531@2x](http://118.24.241.76/WX20191004-205531@2x.png)
 
 
 
-![WX20191004-205543@2x](http://www.qinhanwen.xyz/WX20191004-205543@2x.png)
+![WX20191004-205543@2x](http://118.24.241.76/WX20191004-205543@2x.png)
 
 
 
-![WX20191004-205558@2x](http://www.qinhanwen.xyz/WX20191004-205558@2x.png)
+![WX20191004-205558@2x](http://118.24.241.76/WX20191004-205558@2x.png)
 
 在这里触发`set`
 
-![WX20191004-205650@2x](http://www.qinhanwen.xyz/WX20191004-205650@2x.png)
+![WX20191004-205650@2x](http://118.24.241.76/WX20191004-205650@2x.png)
 
 之前做过依赖收集，所以这里做派发更新
 

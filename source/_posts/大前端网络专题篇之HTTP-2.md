@@ -13,13 +13,13 @@ categories:
 
 请求报文：
 
-![](http://www.qinhanwen.xyz/WX20190625-081223@2x.png)
+![](http://118.24.241.76/WX20190625-081223@2x.png)
 
 
 
 响应报文：
 
-![](http://www.qinhanwen.xyz/WX20190625-081247@2x.png)
+![](http://118.24.241.76/WX20190625-081247@2x.png)
 
 
 

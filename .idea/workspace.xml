@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="052f1851-6621-4487-a51b-265dddb4fae0" name="Default Changelist" comment="" />
+    <list default="true" id="052f1851-6621-4487-a51b-265dddb4fae0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/source/_posts/Babel分享.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Babel分享.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/vue-ssr-2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/vue-ssr-3.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/webpack4-babel7项目构建.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/webpack4-babel7项目构建.md" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,11 +52,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547268514045</updated>
       <workItem from="1547433597083" duration="17000" />
+      <workItem from="1576553043915" duration="65000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17000" />
+    <option name="totallyTimeSpent" value="82000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="934" extended-state="0" />
@@ -59,7 +65,6 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -70,6 +75,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />

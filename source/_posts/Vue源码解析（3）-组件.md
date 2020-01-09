@@ -173,7 +173,7 @@ function _createElement (
 
 因为上一章是一个普通`p`标签，所以实例化了一个普通的VNode
 
-![WX20190830-152243@2x](http://www.qinhanwen.xyz/WX20190830-152243@2x.png)
+![WX20190830-152243@2x](http://118.24.241.76/WX20190830-152243@2x.png)
 
 而这里这里通过`createComponent`实例化一个VNode，
 
@@ -487,7 +487,7 @@ var componentVNodeHooks = {
   }
 ```
 
-![WX20190830-180321@2x](http://www.qinhanwen.xyz/WX20190830-180321@2x.png)
+![WX20190830-180321@2x](http://118.24.241.76/WX20190830-180321@2x.png)
 
 因为是个组件，所以看下`createComponent`
 
@@ -515,7 +515,7 @@ var componentVNodeHooks = {
   }
 ```
 
-![WX20190830-181035@2x](http://www.qinhanwen.xyz/WX20190830-181035@2x.png)
+![WX20190830-181035@2x](http://118.24.241.76/WX20190830-181035@2x.png)
 
 这里的`i`就是上面定义钩子函数中的`init`
 
@@ -563,7 +563,7 @@ function createComponentInstanceForVnode (
 }
 ```
 
-![WX20190830-181525@2x](http://www.qinhanwen.xyz/WX20190830-181525@2x.png)
+![WX20190830-181525@2x](http://118.24.241.76/WX20190830-181525@2x.png)
 
 断点继续往下走进`mountComponent`方法
 
@@ -645,7 +645,7 @@ function mountComponent (
 
 断点往下到`createElm`方法里创建了一个占位符，并且通过`createChildren`方法，创建了一个文本插入到占位符里，之后执行`insert`方法，但是因为传入的`parentElm`是`undefined`，所以直接`return`了
 
-![WX20190830-202356@2x](http://www.qinhanwen.xyz/WX20190830-202356@2x.png)
+![WX20190830-202356@2x](http://118.24.241.76/WX20190830-202356@2x.png)
 
 
 
@@ -699,7 +699,7 @@ function mountComponent (
   }
 ```
 
-![WX20190830-203942@2x](http://www.qinhanwen.xyz/WX20190830-203942@2x.png)
+![WX20190830-203942@2x](http://118.24.241.76/WX20190830-203942@2x.png)
 
 
 
@@ -860,13 +860,13 @@ function initGlobalAPI (Vue) {
 
 `Vue.options`初始化为一个对象，并且它的`__proto__`是`undefined`，之后遍历`ASSET_TYPES`，为`Vue.options`添加属性，加完以后是这样的。
 
-![WX20190831-155051@2x](http://www.qinhanwen.xyz/WX20190831-155051@2x.png)
+![WX20190831-155051@2x](http://118.24.241.76/WX20190831-155051@2x.png)
 
 后面的`  extend(Vue.options.components, builtInComponents);`，把内置组件添加到了这个属性上。
 
 回到`mergeOptions`，发现第一个参数上面还多了`created`方法，这是哪来的（`_base`就不说了`init`的时候加的）？
 
-![WX20190831-170122@2x](http://www.qinhanwen.xyz/WX20190831-170122@2x.png)
+![WX20190831-170122@2x](http://118.24.241.76/WX20190831-170122@2x.png)
 
 在`initGlobalAPI`中` initMixin$1(Vue);`方法，它为`Vue`构造函数添加了个`mixin`方法
 
@@ -988,7 +988,7 @@ function mergeHook (
 
 合并完之后返回的对象是这样的：
 
-![WX20190831-200159@2x](http://www.qinhanwen.xyz/WX20190831-200159@2x.png)
+![WX20190831-200159@2x](http://118.24.241.76/WX20190831-200159@2x.png)
 
 
 
@@ -1395,11 +1395,11 @@ export default {
 
 2. 在业务逻辑中调用`Vue.mixin`，做了个`mergeOptions`操作，之后`Vue.options`就多了`created`字段，是个函数数组。
 
-![WX20190901-115034@2x](http://www.qinhanwen.xyz/WX20190901-115034@2x.png)
+![WX20190901-115034@2x](http://118.24.241.76/WX20190901-115034@2x.png)
 
 3. 之后业务逻辑中调用`Vue.component`，这里的`this.options`就是`Vue.options`。这里的 `this.opitons._base.extend`做的操作其实就是把这个对象转换成一个继承于 `Vue`的构造函数，最后通过 `this.options[type + 's'][id] = definition` 把它挂载到 `Vue.options.components` 上
 
-![WX20190901-115517@2x](http://www.qinhanwen.xyz/WX20190901-115517@2x.png)
+![WX20190901-115517@2x](http://118.24.241.76/WX20190901-115517@2x.png)
 
 4. 然后进入业务代码的`new Vue`调用，先执行初始化`_init`函数，这一步做合并参数（也就是在这个阶段，生命周期钩子函数合并），初始化参数，并且调用`beforeCreate`和`created`钩子函数
 
@@ -1411,13 +1411,13 @@ export default {
 
    1）走进`createElement`方法，发现`App`不是普通的HTML标签，走进到`resolveAsset`方法判断
 
-![WX20190901-135155@2x](http://www.qinhanwen.xyz/WX20190901-135155@2x.png)
+![WX20190901-135155@2x](http://118.24.241.76/WX20190901-135155@2x.png)
 
 
 
 ​	2）发现`App`是个组件存在，走进`createComponent`方法（那这个`App`对象是什么时候被加到`context.$options`的呢），在第4步，`_init`函数初始化时候的合并参数`mergeOptions`方法调用这里
 
-![WX20190901-140340@2x](http://www.qinhanwen.xyz/WX20190901-140340@2x.png)
+![WX20190901-140340@2x](http://118.24.241.76/WX20190901-140340@2x.png)
 
 ​	3）` installComponentHooks(data);`安装组件钩子函数
 
@@ -1455,19 +1455,19 @@ export default {
 
 1）` i(vnode, false /* hydrating */);`就是调用了组件的`init`钩子函数
 
-![WX20190901-150842@2x](http://www.qinhanwen.xyz/WX20190901-150842@2x.png)
+![WX20190901-150842@2x](http://118.24.241.76/WX20190901-150842@2x.png)
 
 - 这里的`createComponentInstanceForVnode`方法，这里其实是创建了一个`Vue`的实例
 
-![WX20190901-150751@2x](http://www.qinhanwen.xyz/WX20190901-150751@2x.png)
+![WX20190901-150751@2x](http://118.24.241.76/WX20190901-150751@2x.png)
 
 - 然后调用`$mount`挂载子组件，重复进入第5步的步骤（入参会不一样），直到`tag`是一个普通的HTML标签时，到第10步的`createElm`里的`createComponent(vnode, insertedVnodeQueue, parentElm, refElm)`返回值为`undefined`
 
-  ![WX20190901-153926@2x](http://www.qinhanwen.xyz/WX20190901-153926@2x.png)
+  ![WX20190901-153926@2x](http://118.24.241.76/WX20190901-153926@2x.png)
 
 - 指针往下走创建占位符`vnode.elm`，就是业务代码中的`name-box`组件的`p`标签
 
-  ![WX20190901-154959@2x](http://www.qinhanwen.xyz/WX20190901-154959@2x.png)
+  ![WX20190901-154959@2x](http://118.24.241.76/WX20190901-154959@2x.png)
 
 - 接着进入`createChildren`方法，遍历子元素，插入到占位符中，就是上面`p`标签
 
@@ -1475,31 +1475,31 @@ export default {
 
 - 调用指针返回到`update`方法， 里面有个判断如果父级也是组件，就是`vm.$parent.$el = vm.$el;`
 
-  ![WX20190901-155701@2x](http://www.qinhanwen.xyz/WX20190901-155701@2x.png)
+  ![WX20190901-155701@2x](http://118.24.241.76/WX20190901-155701@2x.png)
 
 - ` init`执行完了,回到这
 
-![WX20190901-162031@2x](http://www.qinhanwen.xyz/WX20190901-162031@2x.png)
+![WX20190901-162031@2x](http://118.24.241.76/WX20190901-162031@2x.png)
 
 - `initComponent`方法，`vnode.elm=vnode.componentInstance.$el`，这个就是组件实例了，等下要插入到DOM里
 
-![WX20190901-162253@2x](http://www.qinhanwen.xyz/WX20190901-162253@2x.png)
+![WX20190901-162253@2x](http://118.24.241.76/WX20190901-162253@2x.png)
 
 - `insert`方法，这里没有`parentElm`，所以直接跳过了
 
 2）返回到最外层的`createComponent`方法，这是第一次调用`createComponent`的时候，在这里的`insert`方法将占位符插入到了DOM中
 
-![WX20190901-163107@2x](http://www.qinhanwen.xyz/WX20190901-163107@2x.png)
+![WX20190901-163107@2x](http://118.24.241.76/WX20190901-163107@2x.png)
 
 
 
 11. 插入到DOM中后，还有一个`invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch);`，就是执行各组件的`mounted`钩子函数
 
-    ![WX20190901-163511@2x](http://www.qinhanwen.xyz/WX20190901-163511@2x.png)
+    ![WX20190901-163511@2x](http://118.24.241.76/WX20190901-163511@2x.png)
 
 12. 之后再执行父组件的`mounted`钩子
 
-![WX20190901-163629@2x](http://www.qinhanwen.xyz/WX20190901-163629@2x.png)
+![WX20190901-163629@2x](http://118.24.241.76/WX20190901-163629@2x.png)
 
 
 
@@ -1680,7 +1680,7 @@ function resolveAsyncComponent (
 
 **声明`resolve`**
 
-![WX20190919-222351@2x](http://www.qinhanwen.xyz/WX20190919-222351@2x.png)
+![WX20190919-222351@2x](http://118.24.241.76/WX20190919-222351@2x.png)
 
 进入`once`方法，闭包存了一个`called`的值，只允许传入的`fn`被调用一次
 
@@ -1698,13 +1698,13 @@ function once (fn) {
 
 **之后走到` var res = factory(resolve, reject);`，这个`factory`方法其实就是，声明组件的第二个参数**
 
-![WX20190919-223256@2x](http://www.qinhanwen.xyz/WX20190919-223256@2x.png)
+![WX20190919-223256@2x](http://118.24.241.76/WX20190919-223256@2x.png)
 
 
 
 **之后创建一个异步组件占位符**
 
-![WX20190919-224423@2x](http://www.qinhanwen.xyz/WX20190919-224423@2x.png)
+![WX20190919-224423@2x](http://118.24.241.76/WX20190919-224423@2x.png)
 
 进入`createAsyncPlaceholder`方法
 
@@ -1725,13 +1725,13 @@ function createAsyncPlaceholder (
 
 其实就是一个空节点，多了个`asyncFactory`和`asyncMeta`
 
-![WX20190919-224709@2x](http://www.qinhanwen.xyz/WX20190919-224709@2x.png)
+![WX20190919-224709@2x](http://118.24.241.76/WX20190919-224709@2x.png)
 
 
 
 **在组件加载的时候，调用到这里**
 
-![WX20190919-223538@2x](http://www.qinhanwen.xyz/WX20190919-223538@2x.png)
+![WX20190919-223538@2x](http://118.24.241.76/WX20190919-223538@2x.png)
 
 之后进入`forceRender`方法
 

@@ -129,7 +129,7 @@ float:inherit 继承
 
 
 
-![](http://www.qinhanwen.xyz/WX20181126-211600@2x.png)
+![](http://118.24.241.76/WX20181126-211600@2x.png)
 
 顺带一提float和绝对定位的区别：
 
@@ -160,7 +160,7 @@ float:inherit 继承
 
 效果图：
 
-![](http://www.qinhanwen.xyz/WX20181126-221025@2x.png)
+![](http://118.24.241.76/WX20181126-221025@2x.png)
 
 
 
@@ -182,7 +182,7 @@ float:inherit 继承
 
  效果图：
 
-![](http://www.qinhanwen.xyz/WX20181126-222436@2x.png)
+![](http://118.24.241.76/WX20181126-222436@2x.png)
 
 
 

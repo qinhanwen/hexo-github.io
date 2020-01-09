@@ -124,7 +124,7 @@ console.log('koa server is listening port 3000');
 
 访问页面的时候，当前域下的Cookie如下图：
 
-![WX20190317-234008@2x](http://www.qinhanwen.xyz/WX20190317-234008@2x.png)
+![WX20190317-234008@2x](http://118.24.241.76/WX20190317-234008@2x.png)
 
 
 
@@ -134,7 +134,7 @@ console.log('koa server is listening port 3000');
 
 `http://www.qinhanwen.xyz:3000`域下多了个Cookie，这就是它的登录凭证。
 
-![WX20190317-234118@2x](http://www.qinhanwen.xyz/WX20190317-234118@2x.png)
+![WX20190317-234118@2x](http://118.24.241.76/WX20190317-234118@2x.png)
 
 
 
@@ -142,7 +142,7 @@ console.log('koa server is listening port 3000');
 
 ##### 3）点击第二个按钮，会发送另外一个请求到`http://www.qinhanwen.xyz:3000`域下，同时会自动带上这个域下的Cookie，接着请求返回，Cookie的值被放在响应体内。如图：
 
-![WX20190317-234348@2x](http://www.qinhanwen.xyz/WX20190317-234348@2x.png)
+![WX20190317-234348@2x](http://118.24.241.76/WX20190317-234348@2x.png)
 
 
 
@@ -274,13 +274,13 @@ console.log('koa server is listening port 3000');
 
 再次访问`http://www.qinhanwen.xyz:3000/index`，Cookie中存在值，这时候点击外链，表单自动提交，并且返回响应体
 
-![WX20190317-235320@2x](http://www.qinhanwen.xyz/WX20190317-235320@2x.png)
+![WX20190317-235320@2x](http://118.24.241.76/WX20190317-235320@2x.png)
 
 
 
 响应体如图：
 
-![WX20190318-134953@2x](http://www.qinhanwen.xyz/WX20190318-134953@2x.png)
+![WX20190318-134953@2x](http://118.24.241.76/WX20190318-134953@2x.png)
 
 服务端处理了来自第三方站点发送的请求，同时携带了Cookie（用户凭证），并且做出响应。
 
@@ -423,11 +423,11 @@ console.log('koa server is listening port 3000');
 
 当点击第三方页面的时候，如图：
 
-![WX20190318-131519@2x](http://www.qinhanwen.xyz/WX20190318-131519@2x.png)
+![WX20190318-131519@2x](http://118.24.241.76/WX20190318-131519@2x.png)
 
 可以看到跨域阻止了响应，但是服务端仍然收到了这个请求，并且打印出了key为name的Cookie，如图：
 
-![WX20190318-131641@2x](http://www.qinhanwen.xyz/WX20190318-131641@2x.png)
+![WX20190318-131641@2x](http://118.24.241.76/WX20190318-131641@2x.png)
 
 也就是说服务端收到了携带用户凭证的请求（Cookie），并且会做出响应。
 
@@ -513,7 +513,7 @@ console.log('koa server is listening port 3000');
 
 分别是 key为name的Cookie，origin以及referer
 
-![WX20190318-135449@2x](http://www.qinhanwen.xyz/WX20190318-135449@2x.png)
+![WX20190318-135449@2x](http://118.24.241.76/WX20190318-135449@2x.png)
 
 
 
@@ -521,7 +521,7 @@ console.log('koa server is listening port 3000');
 
 分别是 key为name的Cookie，origin以及referer
 
-![WX20190318-135523@2x](http://www.qinhanwen.xyz/WX20190318-135523@2x.png)
+![WX20190318-135523@2x](http://118.24.241.76/WX20190318-135523@2x.png)
 
 #### 补充个知识点：
 

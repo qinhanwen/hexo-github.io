@@ -45,7 +45,7 @@ categories:
 
 两个`ts`文件在同一个目录下，这样声明`a`相当于在全局中声明
 
-![WX20190820-225555@2x](http://www.qinhanwen.xyz/WX20190820-225555@2x.png)
+![WX20190820-225555@2x](http://118.24.241.76/WX20190820-225555@2x.png)
 
 
 
@@ -53,11 +53,11 @@ categories:
 
 使用`export`或者`import`，会在文件中创建一个本地作用域
 
-![WX20190820-230729@2x](http://www.qinhanwen.xyz/WX20190820-230729@2x.png)
+![WX20190820-230729@2x](http://118.24.241.76/WX20190820-230729@2x.png)
 
 正确的使用方式：
 
-![WX20190820-230807@2x](http://www.qinhanwen.xyz/WX20190820-230807@2x.png)
+![WX20190820-230807@2x](http://118.24.241.76/WX20190820-230807@2x.png)
 
 [尽量使用 ES 模块导入导出语法]([https://qinhanwen.github.io/2019/02/13/import-export%E7%AD%89%E7%AD%89/](https://qinhanwen.github.io/2019/02/13/import-export等等/))
 

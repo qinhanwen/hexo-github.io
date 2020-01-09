@@ -83,7 +83,7 @@ $ npm run build
 
 **提示说明**
 
-![WX20190627-205301@2x](http://www.qinhanwen.xyz/WX20190627-205301@2x.png)
+![WX20190627-205301@2x](http://118.24.241.76/WX20190627-205301@2x.png)
 
 Hash：本次打包对应的唯一hash值
 
@@ -163,7 +163,7 @@ output: {//输出
 
 加了这两个之后编译成这样，`libraryTarget:'umd'`是兼容各种模块化规范，比如AMD，CMD，CommonJS，还有`library:'eft'`是暴露在某个命名空间下（使用script标签引入的方式）。
 
-![WX20190728-140741@2x](http://www.qinhanwen.xyz/WX20190728-140741@2x.png)
+![WX20190728-140741@2x](http://118.24.241.76/WX20190728-140741@2x.png)
 
 
 
@@ -335,7 +335,7 @@ $ npm run build
 
 打开index.html页面，看到head下插入了一个style标签。
 
-![WX20190630-162033@2x](http://www.qinhanwen.xyz/WX20190630-162033@2x.png)
+![WX20190630-162033@2x](http://118.24.241.76/WX20190630-162033@2x.png)
 
 
 
@@ -440,13 +440,13 @@ clean-webpack-plugin，options设置了cleanAfterEveryBuildPatterns和verbose，
 $ npm run build
 ```
 
-![WX20190630-231105@2x](http://www.qinhanwen.xyz/WX20190630-231105@2x.png)
+![WX20190630-231105@2x](http://118.24.241.76/WX20190630-231105@2x.png)
 
 
 
 5）打开 `dist/index.html`
 
-![WX20190630-231534@2x](http://www.qinhanwen.xyz/WX20190630-231534@2x.png)
+![WX20190630-231534@2x](http://118.24.241.76/WX20190630-231534@2x.png)
 
 ## 编译
 

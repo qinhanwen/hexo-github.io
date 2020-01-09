@@ -29,7 +29,7 @@ exports.HookMap = require("./HookMap");
 exports.MultiHook = require("./MultiHook");
 ```
 
-![WX20191022-090003@2x](http://www.qinhanwen.xyz/WX20191022-090003@2x.png)
+![WX20191022-090003@2x](http://118.24.241.76/WX20191022-090003@2x.png)
 
 - tapable 暴露出来的都是类方法，new 一个类方法获得我们需要的钩子。类方法会根据传参，接受同样数量的参数。
 - 使用 tap/tapAsync/tapPromise 绑定钩子
@@ -299,17 +299,17 @@ module.exports = SyncHook;
 
 - queue.tap调用，其实就是把名称、类型与回调设置在taps数组里
 
-![WX20191022-093020@2x](http://www.qinhanwen.xyz/WX20191022-093020@2x.png)
+![WX20191022-093020@2x](http://118.24.241.76/WX20191022-093020@2x.png)
 
-![WX20191022-093529@2x](http://www.qinhanwen.xyz/WX20191022-093529@2x.png)
+![WX20191022-093529@2x](http://118.24.241.76/WX20191022-093529@2x.png)
 
 - queue.call调用，这里通过new Function生成了匿名函数，之后匿名函数被调用
 
-![WX20191022-101512@2x](http://www.qinhanwen.xyz/WX20191022-101512@2x.png)
+![WX20191022-101512@2x](http://118.24.241.76/WX20191022-101512@2x.png)
 
-![WX20191022-101647@2x](http://www.qinhanwen.xyz/WX20191022-101647@2x.png)
+![WX20191022-101647@2x](http://118.24.241.76/WX20191022-101647@2x.png)
 
-![WX20191022-101744@2x](http://www.qinhanwen.xyz/WX20191022-101744@2x.png)
+![WX20191022-101744@2x](http://118.24.241.76/WX20191022-101744@2x.png)
 
 ```javascript
 	create(options) {

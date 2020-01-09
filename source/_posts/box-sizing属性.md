@@ -19,7 +19,7 @@ categories:
 
 ###### 1）IE盒子模型
 
-![](http://www.qinhanwen.xyz/869623-20161130211301599-865892975.png)
+![](http://118.24.241.76/869623-20161130211301599-865892975.png)
 
 `width = border + padding + content`
 
@@ -27,7 +27,7 @@ categories:
 
 ###### 2）W3C盒子模型
 
-![](http://www.qinhanwen.xyz/869623-20161130211303568-1731032408.png)
+![](http://118.24.241.76/869623-20161130211303568-1731032408.png)
 
 `width = content`
 
@@ -59,7 +59,7 @@ categories:
 </html>
 ```
 
-![](http://www.qinhanwen.xyz/WX20181210-212255@2x.png)
+![](http://118.24.241.76/WX20181210-212255@2x.png)
 
 content是200
 
@@ -87,7 +87,7 @@ content是200
 </html>
 ```
 
-![](http://www.qinhanwen.xyz/WX20181210-223259@2x.png)
+![](http://118.24.241.76/WX20181210-223259@2x.png)
 
 content变成了160
 

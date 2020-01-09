@@ -499,7 +499,7 @@ export {
 
 需要Uglifyjs之类的配合（webpack4，设置mode为production就可以）。可以在构建的shell后面添加`--display-used-exports`参数
 
-![WX20191113-230408@2x](http://www.qinhanwen.xyz/WX20191113-230408@2x.png)
+![WX20191113-230408@2x](http://118.24.241.76/WX20191113-230408@2x.png)
 
 
 
@@ -1246,7 +1246,7 @@ DLL：动态链接库
 
 配置之前打包时间大概  **4916ms**
 
-![WX20191121-104615@2x](http://www.qinhanwen.xyz/WX20191121-104615@2x.png)
+![WX20191121-104615@2x](http://118.24.241.76/WX20191121-104615@2x.png)
 
 
 
@@ -1263,11 +1263,11 @@ module.exports = {
 }
 ```
 
-![WX20191121-105742@2x](http://www.qinhanwen.xyz/WX20191121-105742@2x.png)
+![WX20191121-105742@2x](http://118.24.241.76/WX20191121-105742@2x.png)
 
 文档说需要打包两次，才能看出来效果，那就看第二次构建的效果，打包时间大概 **2577ms**
 
-![WX20191121-105921@2x](http://www.qinhanwen.xyz/WX20191121-105921@2x.png)
+![WX20191121-105921@2x](http://118.24.241.76/WX20191121-105921@2x.png)
 
 
 
@@ -1327,7 +1327,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 可以从图中分析哪些模块太大，和如何优化。
 
-![WX20191123-200013@2x](http://www.qinhanwen.xyz/WX20191123-200013@2x.png)
+![WX20191123-200013@2x](http://118.24.241.76/WX20191123-200013@2x.png)
 
 
 
@@ -1343,7 +1343,7 @@ import cloneDeepWith from 'lodash/cloneDeepWith';
 import {cloneDeepWith} from 'lodash';
 ```
 
-![WX20191123-200351@2x](http://www.qinhanwen.xyz/WX20191123-200351@2x.png)
+![WX20191123-200351@2x](http://118.24.241.76/WX20191123-200351@2x.png)
 
 
 
@@ -1393,7 +1393,7 @@ export default new VueRouter({
 
 其中有遇到个报错，关于`hard-source-webpack-plugin`插件的
 
-![WX20191124-234008@2x](http://www.qinhanwen.xyz/WX20191124-234008@2x.png)
+![WX20191124-234008@2x](http://118.24.241.76/WX20191124-234008@2x.png)
 
 
 
@@ -1558,6 +1558,54 @@ export default {
     get,
     post
 }
+```
+
+
+
+## [devServer.proxy](https://webpack.js.org/configuration/dev-server/#devserverproxy)
+
+当您拥有单独的API后端开发服务器，并且希望在同一域上发送API请求时，代理某些URL可能会很有用。也就是解决跨域问题。
+
+
+
+deveServer配置
+
+```javascript
+...
+   devServer: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          pathRewrite: { '^/api': '' }, // 重写路径不需要 api
+          changeOrigin: true, //本地起虚拟服务器接收请求并转发
+        }
+      },
+   }
+...
+```
+
+
+
+后端服务
+
+```javascript
+const koa = require('koa')
+const app = new koa()
+
+const Router = require('koa-router')
+const router = new Router()
+
+router.get('/cors', async (ctx, next) => {
+  ctx.body = {
+    success: true
+  }
+})
+
+app.use(router.routes())
+
+app.listen(3001)
+console.log('koa server is listening port 3001')
+
 ```
 
 

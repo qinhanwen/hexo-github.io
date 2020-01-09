@@ -38,7 +38,7 @@ $ webpack
 $ node_modules/.bin/webpack
 ```
 
-![WX20190701-125659@2x](http://www.qinhanwen.xyz/WX20190701-125659@2x.png)
+![WX20190701-125659@2x](http://118.24.241.76/WX20190701-125659@2x.png)
 
 
 
@@ -72,7 +72,7 @@ $ npm run env
 
 jshint：代码检查工具，`npm run lint`执行脚本，会检查根目录下的js文件 
 
-![WX20190710-095011@2x](http://www.qinhanwen.xyz/WX20190710-095011@2x.png)
+![WX20190710-095011@2x](http://118.24.241.76/WX20190710-095011@2x.png)
 
 
 
@@ -94,7 +94,7 @@ index.js
  console.log(process.argv);
 ```
 
-![WX20190710-110522@2x](http://www.qinhanwen.xyz/WX20190710-110522@2x.png)
+![WX20190710-110522@2x](http://118.24.241.76/WX20190710-110522@2x.png)
 
 **process **是一个全局变量，即 global 对象的属性。它用于描述当前 Node.js 进程状态的对象，提供了一个与操作系统的简单接口。
 

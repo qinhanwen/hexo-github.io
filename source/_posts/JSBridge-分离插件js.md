@@ -53,11 +53,11 @@ $ bower install ngCordova
 
 在www/index.html引入
 
-![WX20190128-183902@2x](http://www.qinhanwen.xyz/WX20190128-183902@2x.png)
+![WX20190128-183902@2x](http://118.24.241.76/WX20190128-183902@2x.png)
 
 并在www/js/app.js注入
 
-![WX20190128-184112@2x](http://www.qinhanwen.xyz/WX20190128-184112@2x.png)
+![WX20190128-184112@2x](http://118.24.241.76/WX20190128-184112@2x.png)
 
 ##### 3）装个相机插件
 
@@ -76,7 +76,7 @@ $ cordova plugin add cordova-plugin-camera
 
 使用xcode安装到手机上，接着碰到一个问题导致调用插件的时候app直接闪退
 
-![WX20190129-124901@2x](http://www.qinhanwen.xyz/WX20190129-124901@2x.png)
+![WX20190129-124901@2x](http://118.24.241.76/WX20190129-124901@2x.png)
 
 解决方案，增加权限，在下面的文件以`Source Code`方式打开并加这一段
 
@@ -95,7 +95,7 @@ $ cordova plugin add cordova-plugin-camera
 
 如图：
 
-![WX20190129-125233@2x](http://www.qinhanwen.xyz/WX20190129-125233@2x.png)
+![WX20190129-125233@2x](http://118.24.241.76/WX20190129-125233@2x.png)
 
 
 
@@ -126,7 +126,7 @@ $ cordova plugin add cordova-plugin-camera
     }
 
     if(isIOS || isAndroid) {
-        filePath = 'http://www.qinhanwen.xyz/';
+        filePath = 'http://118.24.241.76/';
         setTimeout(function(){
             createAndAddScript(filePath + platform + '/cordova.js');
         }, 0);
@@ -144,19 +144,19 @@ $ cordova plugin add cordova-plugin-camera
 })(this);
 ```
 
-之后上传一份IOS平台引用的`cordova.js`文件，地址为`http://www.qinhanwen.xyz/ios/cordova.js`
+之后上传一份IOS平台引用的`cordova.js`文件，地址为`http://118.24.241.76/ios/cordova.js`
 
 
 
 更改`index.html`，引入`lauch.js`，如图：
 
-![WX20190129-172110@2x](http://www.qinhanwen.xyz/WX20190129-172110@2x.png)
+![WX20190129-172110@2x](http://118.24.241.76/WX20190129-172110@2x.png)
 
 
 
 打到真机上调试，当`lauch.js`加载成功后，加载了ios平台的`cordova.js`文件之后，加载`cordova_plugins.js`文件的时候加载失败
 
-![WX20190129-172759@2x](http://www.qinhanwen.xyz/WX20190129-172759@2x.png)
+![WX20190129-172759@2x](http://118.24.241.76/WX20190129-172759@2x.png)
 
 
 
@@ -172,11 +172,11 @@ $ cordova plugin add cordova-plugin-camera
 
 之后`cordova_plugins.js`是加载成功了，但是又出现一大堆的404。
 
-![WX20190129-173610@2x](http://www.qinhanwen.xyz/WX20190129-173610@2x.png)
+![WX20190129-173610@2x](http://118.24.241.76/WX20190129-173610@2x.png)
 
 其实`cordova_plugin.js`里有一个数组，里面有插件的信息，解析数组之后，会动态创建script标签，引入这些插件js，如图：
 
-![WX20190129-173750@2x](http://www.qinhanwen.xyz/WX20190129-173750@2x.png)
+![WX20190129-173750@2x](http://118.24.241.76/WX20190129-173750@2x.png)
 
 
 
@@ -184,7 +184,7 @@ $ cordova plugin add cordova-plugin-camera
 
 重新加载应用，加载插件js成功了，可以看到`index.html`审查元素变成了如图：
 
-![WechatIMG174](http://www.qinhanwen.xyz/WechatIMG174.png)
+![WechatIMG174](http://118.24.241.76/WechatIMG174.png)
 
 
 
@@ -198,7 +198,7 @@ $ cordova plugin add cordova-plugin-camera
  <preference name="CordovaWebViewEngine" value="CDVUIWebViewEngine" />
 ```
 
-![WX20190130-185249@2x](http://www.qinhanwen.xyz/WX20190130-185249@2x.png)
+![WX20190130-185249@2x](http://118.24.241.76/WX20190130-185249@2x.png)
 
 
 
@@ -206,19 +206,19 @@ $ cordova plugin add cordova-plugin-camera
 
 首先在调用过程中，传递参数的时候发现会把传入的成功与失败的回调，存在一个对象内，key是一个callbackId
 
-![WX20190130-213640@2x](http://www.qinhanwen.xyz/WX20190130-213640@2x.png)
+![WX20190130-213640@2x](http://118.24.241.76/WX20190130-213640@2x.png)
 
 ###### 1）UIWebView的通信方式：
 
 在从controller开始调用的地方进行断点，一步一步往内层调用走，发现了一个pokeNative函数，这个是轮训。从上面一张图可以看到一个commandQueue，压入了一个command数组，其实就是调用的一些信息，还有标识callbackId，原生接收到消息，就可以取得这些数据。然后通过callbackId找到对应的回调。
 
-![WX20190130-212710@2x](http://www.qinhanwen.xyz/WX20190130-212710@2x.png)
+![WX20190130-212710@2x](http://118.24.241.76/WX20190130-212710@2x.png)
 
 
 
 ###### 2）WKWebView的通信方式
 
-![WX20190130-232029@2x](http://www.qinhanwen.xyz/WX20190130-232029@2x.png)
+![WX20190130-232029@2x](http://118.24.241.76/WX20190130-232029@2x.png)
 
 command直接通过postMessage方法传入。
 

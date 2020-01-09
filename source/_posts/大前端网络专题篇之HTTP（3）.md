@@ -99,9 +99,9 @@ categories:
 
 有缓存命中和缓存未命中状态
 
-![http://www.qinhanwen.xyz/WX20181218-182944@2x.png](http://www.qinhanwen.xyz/WX20181218-182944@2x.png)
+![http://118.24.241.76/WX20181218-182944@2x.png](http://118.24.241.76/WX20181218-182944@2x.png)
 
-![](http://www.qinhanwen.xyz/WX20181218-185000@2x.png)
+![](http://118.24.241.76/WX20181218-185000@2x.png)
 
 
 
@@ -111,15 +111,15 @@ categories:
 
 ​	有缓存命中和缓存未命中状态
 
-![](http://www.qinhanwen.xyz/WX20181218-232303@2x.png)
+![](http://118.24.241.76/WX20181218-232303@2x.png)
 
 
 
-​		![](http://www.qinhanwen.xyz/WX20181219-123144@2x.png)
+​		![](http://118.24.241.76/WX20181219-123144@2x.png)
 
 
 
-![WX20190616-213040@2x](http://www.qinhanwen.xyz/WX20190616-213040@2x.png)
+![WX20190616-213040@2x](http://118.24.241.76/WX20190616-213040@2x.png)
 
 5️⃣、请简单介绍一下 LRU （Least recently used）算法
 
@@ -129,7 +129,7 @@ LRU算法的设计原则是：**如果一个数据在最近一段时间没有被
 
 1）最常见的实现是使用一个链表保存缓存数据，如下图
 
-![](http://www.qinhanwen.xyz/WX20190615-144815@2x.png)
+![](http://118.24.241.76/WX20190615-144815@2x.png)
 
 
 

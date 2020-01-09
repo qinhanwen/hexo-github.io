@@ -373,7 +373,7 @@ for(let key of str){
 
 
 
-对有Iterator接口的数据类型，可以使用`展开运算符`，`解构赋值`，`for…of`，`Array.from`。[了解一下字符串反转](![image-20190306211217543](http://www.qinhanwen.xyz/image-20190306211217543.png))
+对有Iterator接口的数据类型，可以使用`展开运算符`，`解构赋值`，`for…of`，`Array.from`。[了解一下字符串反转](![image-20190306211217543](http://118.24.241.76/image-20190306211217543.png))
 
 
 

@@ -7,7 +7,7 @@ categories:
 - Babel
 ---
 
-![WX20191202-201539@2x](http://www.qinhanwen.xyz/WX20191202-201539@2x.png)
+![WX20191202-201539@2x](http://118.24.241.76/WX20191202-201539@2x.png)
 
 ## 前置知识
 
@@ -179,7 +179,7 @@ console.log(output)
 
 从`parse(code)`方法调用进入，断点走到这个方法
 
-![WX20191201-204659@2x](http://www.qinhanwen.xyz/WX20191201-204659@2x.png)
+![WX20191201-204659@2x](http://118.24.241.76/WX20191201-204659@2x.png)
 
 `getTokenFromCode`方法，根据不同的Unicode编码值，进行不同的处理
 
@@ -350,11 +350,11 @@ console.log(output)
 
 看一下`readWord`方法
 
-![WX20191201-205528@2x](http://www.qinhanwen.xyz/WX20191201-205528@2x.png)
+![WX20191201-205528@2x](http://118.24.241.76/WX20191201-205528@2x.png)
 
 进入`readWord1`方法，比如`console.log`解析，就先拿`console`，然后返回
 
-![WX20191201-205600@2x](http://www.qinhanwen.xyz/WX20191201-205600@2x.png)
+![WX20191201-205600@2x](http://118.24.241.76/WX20191201-205600@2x.png)
 
 
 
@@ -362,15 +362,15 @@ console.log(output)
 
 `createIdentifier`方法，创建节点
 
-![WX20191204-100126@2x](http://www.qinhanwen.xyz/WX20191204-100126@2x.png)
+![WX20191204-100126@2x](http://118.24.241.76/WX20191204-100126@2x.png)
 
 `finishNode`方法
 
-![WX20191204-103613@2x](http://www.qinhanwen.xyz/WX20191204-103613@2x.png)
+![WX20191204-103613@2x](http://118.24.241.76/WX20191204-103613@2x.png)
 
 `finishNodeAt`方法
 
-![WX20191204-103656@2x](http://www.qinhanwen.xyz/WX20191204-103656@2x.png)
+![WX20191204-103656@2x](http://118.24.241.76/WX20191204-103656@2x.png)
 
 
 
@@ -472,43 +472,43 @@ console.log(output)
 
 进入`traverse`方法调用
 
-![WX20191203-155921@2x](http://www.qinhanwen.xyz/WX20191203-155921@2x.png)
+![WX20191203-155921@2x](http://118.24.241.76/WX20191203-155921@2x.png)
 
 进入`traverse.node`方法调用，从根开始的深度优先遍历
 
-![WX20191203-171623@2x](http://www.qinhanwen.xyz/WX20191203-171623@2x.png)
+![WX20191203-171623@2x](http://118.24.241.76/WX20191203-171623@2x.png)
 
 进入`context.visit`方法调用，根据nodes是否是数组，调用不同的visit方法
 
-![WX20191203-171845@2x](http://www.qinhanwen.xyz/WX20191203-171845@2x.png)
+![WX20191203-171845@2x](http://118.24.241.76/WX20191203-171845@2x.png)
 
 进入`visitSingle`方法
 
-![WX20191204-151112@2x](http://www.qinhanwen.xyz/WX20191204-151112@2x.png)
+![WX20191204-151112@2x](http://118.24.241.76/WX20191204-151112@2x.png)
 
 进入`visitQueue`方法
 
-![WX20191204-151212@2x](http://www.qinhanwen.xyz/WX20191204-151212@2x.png)
+![WX20191204-151212@2x](http://118.24.241.76/WX20191204-151212@2x.png)
 
 这里调用`enter`
 
-![WX20191203-173447@2x](http://www.qinhanwen.xyz/WX20191203-173447@2x.png)
+![WX20191203-173447@2x](http://118.24.241.76/WX20191203-173447@2x.png)
 
 从opts里拿到enter的数组
 
-![WX20191204-151428@2x](http://www.qinhanwen.xyz/WX20191204-151428@2x.png)
+![WX20191204-151428@2x](http://118.24.241.76/WX20191204-151428@2x.png)
 
 遍历fns，并调用
 
-![WX20191204-151501@2x](http://www.qinhanwen.xyz/WX20191204-151501@2x.png)
+![WX20191204-151501@2x](http://118.24.241.76/WX20191204-151501@2x.png)
 
 进入enter函数调用
 
-![WX20191204-151517@2x](http://www.qinhanwen.xyz/WX20191204-151517@2x.png)
+![WX20191204-151517@2x](http://118.24.241.76/WX20191204-151517@2x.png)
 
 打印出来的enter的路径，也就是深度遍历的顺序。
 
-![WX20191203-173148@2x](http://www.qinhanwen.xyz/WX20191203-173148@2x.png)
+![WX20191203-173148@2x](http://118.24.241.76/WX20191203-173148@2x.png)
 
 
 
@@ -518,23 +518,23 @@ console.log(output)
 
 进入`generate`方法
 
-![WX20191204-152451@2x](http://www.qinhanwen.xyz/WX20191204-152451@2x.png)
+![WX20191204-152451@2x](http://118.24.241.76/WX20191204-152451@2x.png)
 
 进入`gen.generate`调用，`this.ast`是在`new Generator(ast, opts, code)`的时候挂载在实例上的
 
-![WX20191204-152756@2x](http://www.qinhanwen.xyz/WX20191204-152756@2x.png)
+![WX20191204-152756@2x](http://118.24.241.76/WX20191204-152756@2x.png)
 
 进入`generate`方法
 
-![WX20191204-165751@2x](http://www.qinhanwen.xyz/WX20191204-165751@2x.png)
+![WX20191204-165751@2x](http://118.24.241.76/WX20191204-165751@2x.png)
 
 在`print`方法里做的对节点解析并且`push`到`_buf`数组里
 
-![WX20191204-165552@2x](http://www.qinhanwen.xyz/WX20191204-165552@2x.png)
+![WX20191204-165552@2x](http://118.24.241.76/WX20191204-165552@2x.png)
 
 最后调用`this._buf.get`方法，把字符串合并
 
-![WX20191204-170009@2x](http://www.qinhanwen.xyz/WX20191204-170009@2x.png)
+![WX20191204-170009@2x](http://118.24.241.76/WX20191204-170009@2x.png)
 
 
 
