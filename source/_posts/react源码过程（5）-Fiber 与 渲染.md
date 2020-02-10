@@ -57,7 +57,7 @@ const APP = () => (
 ReactDom.render(<APP />, document.querySelector('#root'))
 ```
 
-![WX20191225-131528](http://118.24.241.76/WX20191225-131528.png)
+![WX20191225-131528](http://114.55.30.96/WX20191225-131528.png)
 
 ## 例子
 
@@ -199,11 +199,11 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
 
 生成的 ReactElement
 
-![WX20191226-140330](http://118.24.241.76/WX20191226-140330.png)
+![WX20191226-140330](http://114.55.30.96/WX20191226-140330.png)
 
 **之后进入 ReactDOM.render，第一个参数就是 ReactElement，第二个是 DOM 引用**
 
-![WX20191225-233334@2x](http://118.24.241.76/WX20191225-233334@2x.png)
+![WX20191225-233334@2x](http://114.55.30.96/WX20191225-233334@2x.png)
 
 **进入 legacyRenderSubtreeIntoContainer 方法**
 

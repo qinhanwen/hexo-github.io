@@ -9,7 +9,13 @@ categories:
 
 ## 事件
 
-React组件上声明的事件没有绑定在React组件对应的原生DOM节点上，而是绑定在document节点上，触发的事件是对原生事件的包装。
+React利用事件委托机制在document上统一监听DOM事件，再根据触发的target将事件分发到具体的组件实例。另外上面e是一个合成事件对象(SyntheticEvent)，而不是原始的DOM事件对象。
+
+React自定义一套事件系统的动机有以下几个：
+
+- 抹平浏览器之间的兼容性差异
+- 事件‘合成’, 即事件自定义
+- 抽象跨平台事件机制
 
 
 
@@ -53,7 +59,7 @@ React组件上声明的事件没有绑定在React组件对应的原生DOM节点�
 
 组件在创建的时候会调用实例的 render方法，通过 createElement 创建 ReactConponent ，得到组件上的属性
 
-![WX20191231-142031](http://118.24.241.76/WX20191231-142031.png)
+![WX20191231-142031](http://114.55.30.96/WX20191231-142031.png)
 
 
 
@@ -391,3 +397,89 @@ function invokeGuardedCallback(name, func, context, a, b, c, d, e, f) {
 // 最后进入 invokeGuardedCallbackDev
 // 就是调用了传入的 func
 ```
+
+
+
+## 补充
+
+**1. 在props初始化和更新时会进行事件绑定**。首先React会判断元素是否是`媒体类型`，**媒体类型的事件是无法在Document监听的，所以会直接在元素上进行绑定**
+
+**2. 反之就在Document上绑定**. 这里面需要两个信息 第一个是事件依赖列表, 比如`onMouseEnter`依赖`mouseover/mouseout`; 第二个是ReactBrowserEventEmitter维护的'已订阅事件表'。**事件处理器只需在Document订阅一次，所以相比在每个元素上订阅事件会节省很多资源**.
+
+```javascript
+export function listenTo(
+  registrationName: string,           // 注册名称，如onClick
+  mountAt: Document | Element | Node, // 组件树容器，一般是Document
+): void {
+  const listeningSet = getListeningSetForElement(mountAt);             // 已订阅事件表
+  const dependencies = registrationNameDependencies[registrationName]; // 事件依赖
+
+  for (let i = 0; i < dependencies.length; i++) {
+    const dependency = dependencies[i];
+    if (!listeningSet.has(dependency)) {                               // 未订阅
+      switch (dependency) {
+        // ... 特殊的事件监听处理
+        default:
+          const isMediaEvent = mediaEventTypes.indexOf(dependency) !== -1;
+          if (!isMediaEvent) {
+            trapBubbledEvent(dependency, mountAt);                     // 设置事件处理器
+          }
+          break;
+      }
+      listeningSet.add(dependency);                                    // 更新已订阅表
+    }
+  }
+}
+```
+
+![](https://user-gold-cdn.xitu.io/2019/8/3/16c551b6dd8de319?imageslim)
+
+
+
+**遍历组件树来获取订阅该事件的用户事件处理器**
+
+```javascript
+export function traverseTwoPhase(inst, fn, arg) {
+  const path = [];
+  while (inst) {           // 从inst开始，向上级回溯
+    path.push(inst);
+    inst = getParent(inst);
+  }
+
+  let i;
+  // 捕获阶段，先从最顶层的父组件开始, 向下级传播
+  for (i = path.length; i-- > 0; ) {
+    fn(path[i], 'captured', arg);
+  }
+
+  // 冒泡阶段，从inst，即事件触发点开始, 向上级传播
+  for (i = 0; i < path.length; i++) {
+    fn(path[i], 'bubbled', arg);
+  }
+}
+```
+
+
+
+![WX20200126-224832@2x](http://114.55.30.96/WX20200126-224832@2x.png)
+
+最终计算出来的`_dispatchListeners`队列是这样的：`[handleB, handleC, handleA]`
+
+
+
+## 参考资料
+
+https://juejin.im/post/5d44e3745188255d5861d654
+
+
+
+
+
+
+
+
+
+
+
+
+

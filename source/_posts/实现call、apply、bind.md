@@ -133,11 +133,11 @@ console.log(child);//{ d: 4 }
 
 发现问题了，打印的`child`只有属性`d`，这是因为在调用`Parent.myCall(this,a,b,c);`的时候，传入的this问题，如图：
 
-![WX20190227-100303@2x](http://118.24.241.76//WX20190227-100303@2x.png)
+![WX20190227-100303@2x](http://114.55.30.96//WX20190227-100303@2x.png)
 
 但是在`myCall`方法里，创建的`obj.__proto__ = ctx`，而`obj.fn()`调用的时候，Parent方法里this指向这个新创建的对象，如图：
 
-![WX20190227-100341@2x](http://118.24.241.76//WX20190227-100341@2x.png)
+![WX20190227-100341@2x](http://114.55.30.96//WX20190227-100341@2x.png)
 
 所以使用`Object.create()`方法似乎不是一个很好的选择
 
@@ -199,7 +199,7 @@ console.log(window.c);//3
 
 看下[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)的介绍得知，当传入的第一个参数为null或者undefined，就会默认指向全局，也就导致了上面的这些值暴露到了window对象上。
 
-![WX20190227-102830@2x](http://118.24.241.76//WX20190227-102830@2x.png)
+![WX20190227-102830@2x](http://114.55.30.96//WX20190227-102830@2x.png)
 
 
 

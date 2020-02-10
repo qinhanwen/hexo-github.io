@@ -25,6 +25,7 @@ categories:
 
 **触发更新和DOM Diff**
 
-- 点击事件触发，拿到 target 来获得 FiberNode。之后更新它的 updateQueue，如果多次 setState，会有个合并的阶段（每次更新的新的对象都在 updateQueue 链表里，会循环合并）
-- 
+- 点击事件触发，拿到 target 来获得 FiberNode。之后更新它的 updateQueue，如果多次 setState，每次更新的新的对象都在 updateQueue 单向链表里
+- 之后进入任务调度阶段，更新 Fiber 树，在更新的时候从 updateQueue 循环取出最后的 resultState（就是 setState 的对象或者方法返回的对象合并），更新到 FiberNode上。之后合并有影响到的 FiberNode，生成 effect 链表
+- 之后进入提交阶段，更新视图
 

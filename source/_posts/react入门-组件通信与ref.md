@@ -50,7 +50,7 @@ class Timer extends Component {
 export default Timer;
 ```
 
-![timer](http://118.24.241.76/timer.gif)
+![timer](http://114.55.30.96/timer.gif)
 
 timer作为普通属性，直接挂载在this上。
 
@@ -334,7 +334,7 @@ export default PostItem;
 
 B和C是兄弟组件，它们拥有共同的父组件
 
-![WX20190327-202433@2x](http://118.24.241.76/WX20190327-202433@2x.png)
+![WX20190327-202433@2x](http://114.55.30.96/WX20190327-202433@2x.png)
 
 ##### 方式一：props
 
@@ -691,7 +691,7 @@ function InputAutoFocus(props) {
 export default InputAutoFocus
 ```
 
-![WX20190329-235653@2x](http://118.24.241.76/WX20190329-235653@2x.png)
+![WX20190329-235653@2x](http://114.55.30.96/WX20190329-235653@2x.png)
 
 
 
@@ -701,13 +701,13 @@ export default InputAutoFocus
 
 当我注释了引入React的时候，报错了，为什么呢。
 
-![WX20190329-235959@2x](http://118.24.241.76/WX20190329-235959@2x.png)
+![WX20190329-235959@2x](http://114.55.30.96/WX20190329-235959@2x.png)
 
 
 
 通过Babel编译可以看到`React.createElement`，JSX的语法会编译成这个，最后转成一个reactElement。所以注释了引入React就报错了。
 
-![WX20190330-000218@2x](http://118.24.241.76/WX20190330-000218@2x.png)
+![WX20190330-000218@2x](http://114.55.30.96/WX20190330-000218@2x.png)
 
 
 

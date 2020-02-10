@@ -17,7 +17,7 @@ categories:
 
 - 如果符合条件就请求工作调度
 
-![WX20191103-121127@2x](http://118.24.241.76/WX20191103-121127@2x.png)
+![WX20191103-121127@2x](http://114.55.30.96/WX20191103-121127@2x.png)
 
 ```javascript
 function scheduleWork(

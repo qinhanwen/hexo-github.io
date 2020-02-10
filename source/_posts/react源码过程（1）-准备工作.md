@@ -17,7 +17,7 @@ $ yarn install
 
 在安装模块的时候遇到报错
 
-![WX20191009-221629@2x](http://118.24.241.76/WX20191009-221629@2x.png)
+![WX20191009-221629@2x](http://114.55.30.96/WX20191009-221629@2x.png)
 
 ```shell
 $ yarn cache clean
@@ -81,4 +81,4 @@ $ npm run build
 
 https://react.jokcy.me/
 
-![scheduler-fiber-scheduler](http://118.24.241.76/scheduler-fiber-scheduler.png)
+![scheduler-fiber-scheduler](http://114.55.30.96/scheduler-fiber-scheduler.png)

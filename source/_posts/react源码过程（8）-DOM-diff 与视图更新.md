@@ -5,7 +5,9 @@ tags:
   - react源码过程
 categories:
   - react源码过程
----## DOM diff
+---
+
+## DOM diff
 
 **无 key**
 
@@ -363,7 +365,7 @@ function reconcileChildren(current$$1, workInProgress, nextChildren, renderExpir
 
 - FiberNode 新的与旧的之间比较，是遍历新生成 newChildren 数组（只有 2 项）
 
-  ![WechatIMG456](http://118.24.241.76/WechatIMG456.png)
+  ![WechatIMG456](http://114.55.30.96/WechatIMG456.png)
 
 刚进来的时候，声明了几个变量
 
@@ -386,17 +388,17 @@ lastPlacedIndex = 0;
 
 先将列表最后一项从 dom 中移除，之后再逐个更新列表其他元素。需要注意的就是需要更新的节点会是一个链表，比如这边的 **firstEffect.nextEffct.nextEffct**，是在 renderRoot 阶段里的 workLoop 里生成的
 
-![WX20200108-232929@2x](http://118.24.241.76/WX20200108-232929@2x.png)
+![WX20200108-232929@2x](http://114.55.30.96/WX20200108-232929@2x.png)
 
 看下具体生成的步骤
 
-这里的 firstEffect 是在 reconcileChildrenArray 里生成的，在第三个 FiberNode 删除的时候添加到 returnFiber 上
+这里的 firstEffect 是在 reconcileChildrenArray 里生成的（就是更新 Fiber树的时候），在第三个 FiberNode 删除的时候添加到 returnFiber 上
 
-![WX20200109-001720@2x](http://118.24.241.76/WX20200109-001720@2x.png)
+![WX20200109-001720@2x](http://114.55.30.96/WX20200109-001720@2x.png)
 
 在 completeUnitOfWork 方法做的链接（也就是生成 stateNode 与做链接关系是一件事）
 
-![WX20200109-000620@2x](http://118.24.241.76/WX20200109-000620@2x.png)
+![WX20200109-000620@2x](http://114.55.30.96/WX20200109-000620@2x.png)
 
 **有 key**
 
@@ -491,9 +493,9 @@ function mapRemainingChildren(returnFiber, currentFirstChild) {
 }
 ```
 
-![WX20200109-102218](http://118.24.241.76/WX20200109-102218.png)
+![WX20200109-102218](http://114.55.30.96/WX20200109-102218.png)
 
-之后取出对应的 FiberNode 做更新，还剩下的 existingChildren 里的被删除
+之后还是遍历  newChildren  数组，取出对应的 FiberNode 做更新，还剩下的 existingChildren 里的被删除
 
 ```javascript
 for (; newIdx < newChildren.length; newIdx++) {

@@ -50,7 +50,7 @@ name.then(function(data){console.log(data)})//qinhanwen
 
 打印的name如图：
 
-![WX20190220-181141@2x](http://118.24.241.76/WX20190220-181141@2x.png)
+![WX20190220-181141@2x](http://114.55.30.96/WX20190220-181141@2x.png)
 
 可以看到返回的是一个Promise对象（async函数默认返回就是一个Promise对象），它的`status`是`resolved`，`value`是`qinhanwen`。当`status`为`resolved`的时候，`value`是会往下传递的，下一个`.then(onfullfiled)`的中的`onfullfiled`的参数。
 
@@ -72,7 +72,7 @@ name.catch(reason => console.log(reason));
 
 打印的name如图：
 
-![WX20190220-182856@2x](http://118.24.241.76/WX20190220-182856@2x.png)
+![WX20190220-182856@2x](http://114.55.30.96/WX20190220-182856@2x.png)
 
 抛出的错误会被catch方法的回调接收到
 

@@ -476,7 +476,7 @@ function addRouteRecord (
 
 这个例子中的`history`实例
 
-![WX20190908-125822@2x](http://118.24.241.76/WX20190908-125822@2x.png)
+![WX20190908-125822@2x](http://114.55.30.96/WX20190908-125822@2x.png)
 
 
 
@@ -486,7 +486,7 @@ function addRouteRecord (
 
 在`new Vue`的时候，走进`init`之后，触发`beforeCreate`生命周期钩子（在上面做`mergeOptions`操作（参数合并）的时候，为`vm.$options`添加（或合并）的钩子函数）
 
-![WX20190908-122910@2x](http://118.24.241.76/WX20190908-122910@2x.png)
+![WX20190908-122910@2x](http://114.55.30.96/WX20190908-122910@2x.png)
 
 进入调用钩子函数
 
@@ -605,9 +605,9 @@ History.prototype.transitionTo = function transitionTo (
 
 2）进入`confirmTransition`方法做真正的切换，最后会执行传入的`onComplete`回调，其实最后调用的是`history.setupListeners`
 
-![WX20190908-180620@2x](http://118.24.241.76/WX20190908-180620@2x.png)
+![WX20190908-180620@2x](http://114.55.30.96/WX20190908-180620@2x.png)
 
-![WX20190908-180811@2x](http://118.24.241.76/WX20190908-180811@2x.png)
+![WX20190908-180811@2x](http://114.55.30.96/WX20190908-180811@2x.png)
 
 ```javascript
  HashHistory.prototype.setupListeners = function setupListeners () {
@@ -651,11 +651,11 @@ History.prototype.transitionTo = function transitionTo (
 
 点击`router-link`组件试一下，执行了`router.push(location,noop)`
 
-![WX20190908-185554@2x](http://118.24.241.76/WX20190908-185554@2x.png)
+![WX20190908-185554@2x](http://114.55.30.96/WX20190908-185554@2x.png)
 
 这个`location`参数在这里，组件`render`的时候获得的
 
-![WX20190908-185859@2x](http://118.24.241.76/WX20190908-185859@2x.png)
+![WX20190908-185859@2x](http://114.55.30.96/WX20190908-185859@2x.png)
 
 走进`push`方法
 
@@ -674,7 +674,7 @@ VueRouter.prototype.push = function push (location, onComplete, onAbort) {
 };
 ```
 
-![WX20190908-190519@2x](http://118.24.241.76/WX20190908-190519@2x.png)
+![WX20190908-190519@2x](http://114.55.30.96/WX20190908-190519@2x.png)
 
 进入`this.history.push`方法
 
@@ -780,13 +780,13 @@ History.prototype.updateRoute = function updateRoute (route) {
 
 这个`this.$1.apps`是在`init`的时候往里面`push`值
 
-![WX20190908-192258@2x](http://118.24.241.76/WX20190908-192258@2x.png)
+![WX20190908-192258@2x](http://114.55.30.96/WX20190908-192258@2x.png)
 
 
 
 最后调用回调函数
 
-![WX20190908-205722@2x](http://118.24.241.76/WX20190908-205722@2x.png)
+![WX20190908-205722@2x](http://114.55.30.96/WX20190908-205722@2x.png)
 
 走进去`pushHash`
 
@@ -821,7 +821,7 @@ function pushState (url, replace) {
 }
 ```
 
-![WX20190908-210104@2x](http://118.24.241.76/WX20190908-210104@2x.png)
+![WX20190908-210104@2x](http://114.55.30.96/WX20190908-210104@2x.png)
 
 
 
@@ -833,15 +833,15 @@ function pushState (url, replace) {
 
 router-link组件有自己的render方法，在这里添加了on的属性，之后生成DOM结构的时候就会为a标签添加
 
-![WX20191028-222327@2x](http://118.24.241.76/WX20191028-222327@2x.png)
+![WX20191028-222327@2x](http://114.55.30.96/WX20191028-222327@2x.png)
 
 a标签点击的时候，进去handler方法
 
-![WX20191028-221738@2x](http://118.24.241.76/WX20191028-221738@2x.png)
+![WX20191028-221738@2x](http://114.55.30.96/WX20191028-221738@2x.png)
 
 guardEvent判断是否event上有preventDefault，有就调用，阻止默认行为
 
-![WX20191028-221608@2x](http://118.24.241.76/WX20191028-221608@2x.png)
+![WX20191028-221608@2x](http://114.55.30.96/WX20191028-221608@2x.png)
 
 
 

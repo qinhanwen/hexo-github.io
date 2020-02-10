@@ -52,7 +52,7 @@ $ mongod
 
 这时候我报错了。
 
-![WechatIMG321](http://118.24.241.76/WechatIMG321.png)
+![WechatIMG321](http://114.55.30.96/WechatIMG321.png)
 
 解决方法：
 
@@ -73,7 +73,7 @@ $ /usr/local/mongodb/bin/mongod
 
 打开http://localhost:27017/，看到
 
-![WX20190408-234819@2x](http://118.24.241.76/WX20190408-234819@2x.png)
+![WX20190408-234819@2x](http://114.55.30.96/WX20190408-234819@2x.png)
 
 
 
@@ -102,7 +102,7 @@ $ show users
 
 如图
 
-![WX20190412-135301@2x](http://118.24.241.76/WX20190412-135301@2x.png)
+![WX20190412-135301@2x](http://114.55.30.96/WX20190412-135301@2x.png)
 
 
 
@@ -136,7 +136,7 @@ $ db.createUser({
     })
 ```
 
-![WX20190412-141012@2x](http://118.24.241.76/WX20190412-141012@2x.png)
+![WX20190412-141012@2x](http://114.55.30.96/WX20190412-141012@2x.png)
 
 
 
@@ -189,7 +189,7 @@ $ db.workmate.insert(workmate);
 $ db.workmate.find();
 ```
 
-![WX20190415-085524@2x](http://118.24.241.76/WX20190415-085524@2x.png)
+![WX20190415-085524@2x](http://114.55.30.96/WX20190415-085524@2x.png)
 
 添加成功了。
 
@@ -203,7 +203,7 @@ $ db.workmate.find();
 $ db.workmate.update({"name":"qinhanwen"},{"$set":{age:25}})
 ```
 
-![WX20190415-085625@2x](http://118.24.241.76/WX20190415-085625@2x.png)
+![WX20190415-085625@2x](http://114.55.30.96/WX20190415-085625@2x.png)
 
 
 
@@ -220,7 +220,7 @@ $ db.workmate.update({"name":"qinhanwen"},{"$set":{"skill.name":"css"}});
 $ db.workmate.find();
 ```
 
-![WX20190415-090452@2x](http://118.24.241.76/WX20190415-090452@2x.png)
+![WX20190415-090452@2x](http://114.55.30.96/WX20190415-090452@2x.png)
 
 
 
@@ -233,7 +233,7 @@ $ db.workmate.update({"name":"qinhanwen"},{"$unset":{"age":""}});
 $ db.workmate.find();
 ```
 
-![WX20190415-090709@2x](http://118.24.241.76/WX20190415-090709@2x.png)
+![WX20190415-090709@2x](http://114.55.30.96/WX20190415-090709@2x.png)
 
 
 
@@ -246,7 +246,7 @@ $ db.workmate.update({"name":"qinhanwen"},{"$set":{"age":25}});
 $ db.workmate.update({"name":"qinhanwen"},{$inc:{"age":-2}});
 ```
 
-![WX20190415-091029@2x](http://118.24.241.76/WX20190415-091029@2x.png)
+![WX20190415-091029@2x](http://114.55.30.96/WX20190415-091029@2x.png)
 
 
 
@@ -264,7 +264,7 @@ $ db.workmate.update({},{$set:{favorite:[]}},{multi:true});
 $ db.workmate.find();
 ```
 
-![WX20190415-091558@2x](http://118.24.241.76/WX20190415-091558@2x.png)
+![WX20190415-091558@2x](http://114.55.30.96/WX20190415-091558@2x.png)
 
 
 
@@ -279,7 +279,7 @@ $ db.workmate.find();
 $ db.workmate.update({name:'baoge'},{$set:{age:32}},{upsert:true})
 ```
 
-![WX20190415-091922@2x](http://118.24.241.76/WX20190415-091922@2x.png)
+![WX20190415-091922@2x](http://114.55.30.96/WX20190415-091922@2x.png)
 
 
 
@@ -293,7 +293,7 @@ $ db.workmate.update({name:'baoge'},{$set:{age:32}},{upsert:true})
 $ db.workmate.update({name:'qinhanwen'},{$push:{favorite:'draw'}});
 ```
 
-![WX20190416-055710@2x](http://118.24.241.76/WX20190416-055710@2x.png)
+![WX20190416-055710@2x](http://114.55.30.96/WX20190416-055710@2x.png)
 
 
 
@@ -301,7 +301,7 @@ $ db.workmate.update({name:'qinhanwen'},{$push:{favorite:'draw'}});
 $ db.workmate.update({name:'qinhanwen'},{$push:{"skill.name1":'css'}});
 ```
 
-![WX20190416-055946@2x](http://118.24.241.76/WX20190416-055946@2x.png)
+![WX20190416-055946@2x](http://114.55.30.96/WX20190416-055946@2x.png)
 
 
 
@@ -313,7 +313,7 @@ $ db.workmate.update({name:'qinhanwen'},{$push:{"skill.name1":'css'}});
 $ db.workmate.update({name:'qinhanwen',favorite:{$ne:'swimming'}},{$push:{favorite:'swimming'}})
 ```
 
-![WX20190416-060659@2x](http://118.24.241.76/WX20190416-060659@2x.png)
+![WX20190416-060659@2x](http://114.55.30.96/WX20190416-060659@2x.png)
 
 
 
@@ -334,7 +334,7 @@ $ var favorite = ['book','basketball'];
 $ db.workmate.update({name:'qinhanwen'},{$addToSet:{favorite:{$each:favorite}}})
 ```
 
-![WX20190416-062354@2x](http://118.24.241.76/WX20190416-062354@2x.png)
+![WX20190416-062354@2x](http://114.55.30.96/WX20190416-062354@2x.png)
 
 
 
@@ -350,7 +350,7 @@ $ db.workmate.update({name:'qinhanwen'},{$pop:{favorite:1}})
 $ db.workmate.update({name:'qinhanwen'},{$pop:{favorite:-1}})
 ```
 
-![WX20190416-062639@2x](http://118.24.241.76/WX20190416-062639@2x.png)
+![WX20190416-062639@2x](http://114.55.30.96/WX20190416-062639@2x.png)
 
 
 
@@ -360,7 +360,7 @@ $ db.workmate.update({name:'qinhanwen'},{$pop:{favorite:-1}})
 $  db.workmate.update({name:'qinhanwen'},{$set:{"favorite.2":"Code"}})
 ```
 
-![WX20190416-062921@2x](http://118.24.241.76/WX20190416-062921@2x.png)
+![WX20190416-062921@2x](http://114.55.30.96/WX20190416-062921@2x.png)
 
 
 
@@ -447,7 +447,7 @@ $ db.workmate.find({"skill.name1":"html"},{name:true,favorite:true});
 $ db.workmate.find({"skill.name1":"html"},{name:true,favorite:true,_id:false});
 ```
 
-![WX20190416-072453@2x](http://118.24.241.76/WX20190416-072453@2x.png)
+![WX20190416-072453@2x](http://114.55.30.96/WX20190416-072453@2x.png)
 
 
 
@@ -477,7 +477,7 @@ $ db.workmate.find({"skill.name1":"html",age:{$gt:25}},{name:true,favorite:true,
 $ db.workmate.find({"skill.name1":"html",age:{$lte:25}},{name:true,favorite:true,_id:false});
 ```
 
-![WX20190416-072944@2x](http://118.24.241.76/WX20190416-072944@2x.png)
+![WX20190416-072944@2x](http://114.55.30.96/WX20190416-072944@2x.png)
 
 
 
@@ -491,7 +491,7 @@ $ db.workmate.find({"skill.name1":"html",age:{$lte:25}},{name:true,favorite:true
 $ db.workmate.find({"skill.name1":"html",age:{$lt:28}});
 ```
 
-![WX20190417-061311@2x](http://118.24.241.76/WX20190417-061311@2x.png)
+![WX20190417-061311@2x](http://114.55.30.96/WX20190417-061311@2x.png)
 
 
 
@@ -505,7 +505,7 @@ $ db.workmate.find({"skill.name1":"html",age:{$lt:28}});
 $ db.workmate.find({age:{$in:[25,30]}},{"skill.name1":1,_id:0,name:1})
 ```
 
-![WX20190417-062008@2x](http://118.24.241.76/WX20190417-062008@2x.png)
+![WX20190417-062008@2x](http://114.55.30.96/WX20190417-062008@2x.png)
 
 
 
@@ -519,7 +519,7 @@ $ db.workmate.find({age:{$in:[25,30]}},{"skill.name1":1,_id:0,name:1})
 $ db.workmate.find({$or:[{age:{$gt:26}},{"skill.name":"draw"}]})
 ```
 
-![WX20190417-063157@2x](http://118.24.241.76/WX20190417-063157@2x.png)
+![WX20190417-063157@2x](http://114.55.30.96/WX20190417-063157@2x.png)
 
 
 
@@ -600,7 +600,7 @@ db.workmate.insert([workmate,workmate1,workmate2]);
 $ db.workmate.find({favorite:'swimming'},{name:1,_id:0})
 ```
 
-![WX20190417-070917@2x](http://118.24.241.76/WX20190417-070917@2x.png)
+![WX20190417-070917@2x](http://114.55.30.96/WX20190417-070917@2x.png)
 
 如果favorite后面使用个[]包含，那就变成完整匹配
 
@@ -616,7 +616,7 @@ $ db.workmate.find({favorite:'swimming'},{name:1,_id:0})
 $ db.workmate.find({favorite:{$all:['sleep','swimming']}})
 ```
 
-![WX20190417-072512@2x](http://118.24.241.76/WX20190417-072512@2x.png)
+![WX20190417-072512@2x](http://114.55.30.96/WX20190417-072512@2x.png)
 
 
 
@@ -630,7 +630,7 @@ $ db.workmate.find({favorite:{$all:['sleep','swimming']}})
 $ db.workmate.find({favorite:{$in:['sleep','swimming']}},{name:1,_id:0})
 ```
 
-![WX20190417-072313@2x](http://118.24.241.76/WX20190417-072313@2x.png)
+![WX20190417-072313@2x](http://114.55.30.96/WX20190417-072313@2x.png)
 
 
 
@@ -644,7 +644,7 @@ $ db.workmate.find({favorite:{$in:['sleep','swimming']}},{name:1,_id:0})
 $ db.workmate.find({favorite:{$size:3}},{name:1,_id:0})
 ```
 
-![WX20190417-072759@2x](http://118.24.241.76/WX20190417-072759@2x.png)
+![WX20190417-072759@2x](http://114.55.30.96/WX20190417-072759@2x.png)
 
 
 
@@ -656,7 +656,7 @@ $ db.workmate.find({favorite:{$size:3}},{name:1,_id:0})
 $ db.workmate.find({},{name:1,favorite:{$slice:1},_id:false})
 ```
 
-![WX20190417-073025@2x](http://118.24.241.76/WX20190417-073025@2x.png)
+![WX20190417-073025@2x](http://114.55.30.96/WX20190417-073025@2x.png)
 
 
 
@@ -680,7 +680,7 @@ limit为0，目测是跳过第一条显示之后的所有。
 $ db.workmate.find({},{name:true,age:true,_id:false}).limit(0).skip(1);
 ```
 
-![WX20190417-081159@2x](http://118.24.241.76/WX20190417-081159@2x.png)
+![WX20190417-081159@2x](http://114.55.30.96/WX20190417-081159@2x.png)
 
 
 
